@@ -1,3 +1,5 @@
+set nocompatible
+set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME
 let mapleader = "\<Space>"
 filetype plugin indent on
 syntax on
