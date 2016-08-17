@@ -27,10 +27,12 @@ set encoding=utf-8
 set tabstop=2
 set showcmd
 set scrolloff=2
+set cursorline
 
 " Custom Key Mappings
 inoremap <CR> <Esc>
 let mapleader = "\<Space>"
+map ; :
 
 " Shortcuts
 nnoremap <leader>j :!jasmine<CR>
