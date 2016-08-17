@@ -14,7 +14,6 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME
 set number
-set autochdir
 colorscheme slate
 let mapleader = "\<Space>"
 syntax on
