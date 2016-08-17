@@ -18,4 +18,4 @@ colorscheme slate
 let mapleader = "\<Space>"
 syntax on
 set encoding=utf-8
-
+set tabstop=2
