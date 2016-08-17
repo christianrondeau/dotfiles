@@ -1,9 +1,20 @@
-set nocompatible
-set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME
+" Vundle begin
+set nocompatible              " be iMproved, required
+filetype on                  " required
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'Valloric/YouCompleteMe'
+call vundle#end()            " required
+filetype plugin indent on    " required
+":PluginUpdate
+"auto-approve removal
+" set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME
 set number
 let mapleader = "\<Space>"
-filetype plugin indent on
 syntax on
 set encoding=utf-8
-execute pathogen#infect()
 
