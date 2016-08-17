@@ -21,7 +21,9 @@ filetype plugin indent on
 
 " Custom Settings
 syntax on
-colorscheme slate
+if stridx(&shell, 'cmd.exe')==-1
+				colors wombat
+endif
 set relativenumber
 set encoding=utf-8
 set tabstop=2
