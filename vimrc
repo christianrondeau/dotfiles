@@ -22,12 +22,15 @@ filetype plugin indent on
 " Custom Settings
 syntax on
 colorscheme slate
-let mapleader = "\<Space>"
 set relativenumber
 set encoding=utf-8
 set tabstop=2
 set showcmd
 set scrolloff=2
+
+" Custom Key Mappings
+inoremap <CR> <Esc>
+let mapleader = "\<Space>"
 
 " Shortcuts
 nnoremap <leader>j :!jasmine<CR>
