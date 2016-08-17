@@ -9,14 +9,16 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 "Plugin 'Valloric/YouCompleteMe'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME
-set number
-colorscheme slate
-let mapleader = "\<Space>"
+" set number
 syntax on
+colorscheme slate
+set relativenumber
+let mapleader = "\<Space>"
 set encoding=utf-8
 set tabstop=2
 
