@@ -1,10 +1,12 @@
-" Vundle begin
-set nocompatible              " be iMproved, required
-filetype on                  " required
-filetype off                  " required
+" Vundle
+set nocompatible
+filetype on
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+
+" Plugins
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'godlygeek/tabular'
@@ -12,17 +14,26 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'pangloss/vim-javascript'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'Valloric/YouCompleteMe'
-call vundle#end()            " required
-filetype plugin indent on    " required
-" set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME
-" set number
+
+" Vundle
+call vundle#end()
+filetype plugin indent on
+
+" Custom Settings
 syntax on
 colorscheme slate
-set relativenumber
 let mapleader = "\<Space>"
+set relativenumber
 set encoding=utf-8
 set tabstop=2
+set showcmd
+set scrolloff=2
+
+" Shortcuts
+nnoremap <leader>j :!jasmine<CR>
+nnoremap <leader>w <C-W>w
+
+" CTRLP Settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
