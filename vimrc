@@ -9,6 +9,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'tpope/vim-obsession'
 "Plugin 'Valloric/YouCompleteMe'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -19,3 +20,4 @@ let mapleader = "\<Space>"
 syntax on
 set encoding=utf-8
 set tabstop=2
+
