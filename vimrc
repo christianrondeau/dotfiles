@@ -21,8 +21,13 @@ filetype plugin indent on
 
 " Custom Settings
 syntax on
-if stridx(&shell, 'cmd.exe')==-1
-				colors wombat
+if has("gui_running") 
+	set rtp+=~/.vim
+	colors wombat
+elseif stridx(&shell, 'cmd.exe') != -1
+	colors industry
+else
+	colors wombat
 endif
 set relativenumber
 set encoding=utf-8
