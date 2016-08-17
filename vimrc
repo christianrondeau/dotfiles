@@ -14,6 +14,8 @@ filetype plugin indent on    " required
 "auto-approve removal
 " set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME
 set number
+set autochdir
+colorscheme slate
 let mapleader = "\<Space>"
 syntax on
 set encoding=utf-8
