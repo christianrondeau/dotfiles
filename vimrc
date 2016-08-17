@@ -12,8 +12,6 @@ Plugin 'plasticboy/vim-markdown'
 "Plugin 'Valloric/YouCompleteMe'
 call vundle#end()            " required
 filetype plugin indent on    " required
-":PluginUpdate
-"auto-approve removal
 " set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME
 set number
 set autochdir
