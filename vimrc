@@ -42,8 +42,12 @@ let mapleader = "\<Space>"
 map ; :
 
 " Shortcuts
-nnoremap <leader>j :!jasmine<CR>
-nnoremap <leader>w <C-W>w
+nnoremap <leader>t :!jasmine<CR> " Test
+nnoremap <leader>w <C-W>w " Switch windows
+nnoremap <leader>s :Gstatus<CR>
+nnoremap <leader>c :Gcommit<CR>
+nnoremap <leader>p :Gpush<CR>
+nnoremap <leader>n :noh<CR>
 
 " CTRLP Settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
