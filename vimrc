@@ -44,6 +44,7 @@ set cursorline
 set incsearch
 set cindent
 set vb
+set visualbell t_vb=
 
 " Custom Key Mappings
 inoremap <CR> <Esc>
@@ -66,6 +67,6 @@ augroup END
 " CTRLP Settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'dir':  '\v[\/](\.(git|hg|svn)\|node_modules)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \ }
