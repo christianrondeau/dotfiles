@@ -31,3 +31,16 @@ snippet fn
 	function(${1}) {
 		${0}
 	}
+
+# Describe
+snippet de
+	describe("${1:description}", function() {
+		${0}
+	});
+
+# It
+snippet it
+	it("${1:description}", function() {
+		expect(${2:actual}).to${3:Equal}(${0});
+	});
+
