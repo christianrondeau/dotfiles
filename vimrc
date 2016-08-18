@@ -46,6 +46,9 @@ set cindent
 set vb
 set visualbell t_vb=
 
+" Tree (netrw)
+let g:netrw_liststyle=3
+
 " Custom Key Mappings
 inoremap <CR> <Esc>
 let mapleader = "\<Space>"
