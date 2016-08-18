@@ -1,0 +1,33 @@
+# console.log
+snippet log
+	console.log(${0});
+
+# throw Error
+snippet err
+	throw new Error('${1:error message}');
+
+# if
+snippet if
+	if (${1:true}) {
+		${0}
+	}
+
+# if ... else
+snippet ife
+	if (${1:true}) {
+		${2}
+	} else {
+		${0}
+	}
+
+# Function
+snippet fun
+	function ${1:function_name}(${2}) {
+		${0}
+	}
+
+# Anonymous Function
+snippet fn
+	function(${1}) {
+		${0}
+	}
