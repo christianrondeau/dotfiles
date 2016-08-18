@@ -51,9 +51,6 @@ let mapleader = "\<Space>"
 map ; :
 
 " Shortcuts
-"if &filetype=='javascript'
-"  nnoremap <leader>t :!jasmine<CR>
-"endif
 nnoremap <leader>w <C-W>w
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
