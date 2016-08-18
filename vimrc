@@ -51,7 +51,7 @@ map ; :
 
 " Shortcuts
 nnoremap <leader>t :!jasmine<CR>
-nnoremap <leader>w <C-W>
+nnoremap <leader>w <C-W>w
 nnoremap <leader>s :Gstatus<CR>
 nnoremap <leader>c :Gcommit<CR>i
 nnoremap <leader>p :Gpush<CR>
