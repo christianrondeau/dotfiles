@@ -27,6 +27,7 @@ set rtp+=~/.vim/vimfiles
 syntax on
 if has("gui_running") 
 	colors wombat
+	set lines=40 columns=140
 elseif stridx(&shell, 'cmd.exe') != -1
 	colors industry
 else
