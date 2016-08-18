@@ -51,12 +51,20 @@ let mapleader = "\<Space>"
 map ; :
 
 " Shortcuts
-nnoremap <leader>t :!jasmine<CR>
+"if &filetype=='javascript'
+"  nnoremap <leader>t :!jasmine<CR>
+"endif
 nnoremap <leader>w <C-W>w
-nnoremap <leader>s :Gstatus<CR>
-nnoremap <leader>c :Gcommit<CR>i
-nnoremap <leader>p :Gpush<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>i
+nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>n :noh<CR>
+
+" Shortcuts (language specific)
+augroup Javascript
+  autocmd filetype javascript nnoremap <buffer> <leader>t :!jasmine<CR>
+augroup END
 
 " CTRLP Settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
