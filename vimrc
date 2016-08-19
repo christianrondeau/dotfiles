@@ -64,7 +64,7 @@ nnoremap <leader>n :noh<CR>
 
 " Shortcuts (language specific)
 augroup Javascript
-  autocmd filetype javascript nnoremap <buffer> <leader>t :!jasmine<CR>
+  autocmd filetype javascript nnoremap <buffer> <leader>t :wa<CR>:!jasmine<CR>
 augroup END
 
 " CTRLP Settings
