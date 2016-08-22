@@ -42,6 +42,8 @@ set showcmd
 set scrolloff=2
 set cursorline
 set incsearch
+set showmatch
+set hlsearch
 set cindent
 set vb
 set visualbell t_vb=
@@ -62,6 +64,11 @@ nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>n :noh<CR>
+
+" Use very magic regex
+nnoremap / /\v
+vnoremap / /\v
+set gdefault " Use /g by default
 
 " Shortcuts (language specific)
 augroup Javascript
