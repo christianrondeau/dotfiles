@@ -64,6 +64,7 @@ nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>n :noh<CR>
+nnoremap K i<CR><Esc> 
 
 " Use very magic regex
 nnoremap / /\v
