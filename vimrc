@@ -76,6 +76,9 @@ augroup Javascript
   autocmd filetype javascript nnoremap <buffer> <leader>t :wa<CR>:!jasmine<CR>
 augroup END
 
+" Disable auto comment new lines
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o 
+
 " CTRLP Settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = {
