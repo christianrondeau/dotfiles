@@ -82,6 +82,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " CTRLP Settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)\|node_modules)$',
+  \ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \ }
