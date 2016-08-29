@@ -88,7 +88,8 @@ autocmd FileType typescript JsPreTmpl html
 autocmd FileType typescript syn clear foldBraces
 
 " CTRLP Settings
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*.swp,*.zip,*.dll,*.exe,*.map
+let g:ctrlp_root_markers = ['package.json']
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj)$',
   \ 'file': '\v\.(exe|dll|map)$',
