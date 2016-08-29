@@ -57,9 +57,10 @@ au GuiEnter * set visualbell t_vb=
 let g:netrw_liststyle=3
 
 " Custom Key Mappings
-inoremap <CR> <Esc>
 let mapleader = "\<Space>"
-map ; :
+inoremap <CR> <Esc>
+nnoremap , ;
+nnoremap ; :
 
 " Shortcuts
 nnoremap <leader>w <C-W>w
