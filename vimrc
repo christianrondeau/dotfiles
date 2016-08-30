@@ -22,6 +22,8 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
+Plugin 'scrooloose/nerdtree'
+
 " Vundle
 call vundle#end()
 filetype plugin indent on
@@ -53,9 +55,6 @@ set vb
 set visualbell t_vb=
 au GuiEnter * set visualbell t_vb=
 
-" Tree (netrw)
-let g:netrw_liststyle=3
-
 " Custom Key Mappings
 let mapleader = "\<Space>"
 inoremap <CR> <Esc>
@@ -64,6 +63,7 @@ nnoremap ; :
 
 " Shortcuts
 nnoremap <leader>w <C-W>w
+nnoremap <silent> <leader>l :NERDTreeToggle<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
@@ -92,6 +92,7 @@ autocmd FileType typescript syn clear foldBraces
 set wildignore+=*/tmp/*,*.swp,*.zip,*.dll,*.exe,*.map
 let g:ctrlp_root_markers = ['package.json']
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj)$',
+  \ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj|dist)$',
   \ 'file': '\v\.(exe|dll|map)$',
   \ }
+
