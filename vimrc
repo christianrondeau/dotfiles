@@ -125,4 +125,3 @@ let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " Omni Settings
 set completeopt=longest,menuone
-
