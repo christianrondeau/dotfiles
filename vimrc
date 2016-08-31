@@ -70,6 +70,8 @@ vnoremap ; :
 nnoremap , ;
 vnoremap , ;
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<Esc>"
+nnoremap zz zO
+nnoremap K i<CR><Esc> 
 
 " Shortcuts
 nnoremap <silent> <leader>w <C-W>w
@@ -79,7 +81,6 @@ nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <silent> <leader>n :noh<CR>
-nnoremap K i<CR><Esc> 
 
 " Use very magic regex
 nnoremap / /\v
