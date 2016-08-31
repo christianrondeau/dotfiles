@@ -80,6 +80,7 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
+nnoremap <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>n :noh<CR>
 
 " Use very magic regex
