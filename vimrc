@@ -1,28 +1,40 @@
+" Instructions
+" 1. Checkout with submodule https://github.com/christianrondeau/.vim
+" 2. Run :PluginInstall
+" 3. Build vimproc.vim (https://github.com/Shougo/vimproc.vim)
+
 " Vundle
 set nocompatible
 filetype on
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim' " Plugin manager
 
 " Plugins
-Plugin 'plasticboy/vim-markdown'
-Plugin 'pangloss/vim-javascript'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'Quramy/vim-js-pretty-template'
+Plugin 'tpope/vim-fugitive'                " Git commands
+Plugin 'scrooloose/nerdtree'               " Tree explorer
+Plugin 'ctrlpvim/ctrlp.vim'                " CTRL+P shortcut to fuzzy find files
+Plugin 'MarcWeber/vim-addon-mw-utils'      " Dependency for SnipMate
+Plugin 'tomtom/tlib_vim'                   " Dependency for SnipMate
+Plugin 'garbas/vim-snipmate'               " Snippets (see ~/.vim/snippets)
+Plugin 'tpope/vim-surround'                " Operations for quotes, parenthesis
+Plugin 'godlygeek/tabular'                 " Align columns
+Plugin 'jeffkreeftmeijer/vim-numbertoggle' " Show relative numbers in command
 
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'godlygeek/tabular'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'ctrlpvim/ctrlp.vim'
+" Language Servers
+Plugin 'Shougo/vimproc.vim' " Dependency (executes processes)
+Plugin 'Quramy/tsuquyomi'   " TypeScript Language Server
 
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+" Syntax Check
+Plugin 'scrooloose/syntastic' " Base plugin for syntax check
 
-Plugin 'scrooloose/nerdtree'
+" Syntax Highlighting
+Plugin 'plasticboy/vim-markdown'       " Markdown
+Plugin 'pangloss/vim-javascript'       " JavaScript
+Plugin 'leafgarland/typescript-vim'    " TypeScript
+Plugin 'Quramy/vim-js-pretty-template' " JavaScript/TypeScript HTML templates
+Plugin 'jason0x43/vim-js-indent'       " JavaScript/TypeScript Indentation
 
 " Vundle
 call vundle#end()
@@ -96,3 +108,12 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|dll|map)$',
   \ }
 
+" Syntastic Settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
