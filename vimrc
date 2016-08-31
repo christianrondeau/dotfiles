@@ -48,20 +48,20 @@ else
 	colors wombat
 endif
 
-set relativenumber
-set encoding=utf-8
-set tabstop=2
-set shiftwidth=2
-set showcmd
-set scrolloff=2
-set cursorline
-set incsearch
-set showmatch
-set hlsearch
-set cindent
-set vb
-set visualbell t_vb=
-au GuiEnter * set visualbell t_vb=
+set relativenumber " By default, show line numbers relative to the cursor
+set encoding=utf-8 " UTF-8
+set tabstop=2 " Tab Width
+set shiftwidth=2 " Controls ReIndent (`<<` and `>>`)
+set showcmd " Show typed commands 
+set scrolloff=2 " Shows the next 2 lines after cursor when scrolling
+set cursorline " Highlight the current line
+set incsearch " Show search result as you type
+set showmatch " Highlight matching braces
+set hlsearch " highlight all / search results
+set cindent " Strict C-line indenting
+set backspace=indent,eol,start " Allow backspace on autoindent
+set visualbell t_vb= " No screen flash
+au GuiEnter * set visualbell t_vb= " No screen flash
 
 " Custom Key Mappings
 let mapleader = "\<Space>"
