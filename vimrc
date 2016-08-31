@@ -3,6 +3,7 @@ set nocompatible
 filetype on
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/vimfiles
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " Plugin manager
 
@@ -17,6 +18,7 @@ Plugin 'tpope/vim-surround'                " Operations for quotes, parenthesis
 Plugin 'godlygeek/tabular'                 " Align columns
 Plugin 'jeffkreeftmeijer/vim-numbertoggle' " Show relative numbers in command
 Plugin 'ervandew/supertab'                 " Omni complete w/ tab
+Plugin 'vim-airline/vim-airline'           " Improved status line
 
 " Language Servers
 Plugin 'Shougo/vimproc.vim' " Dependency (executes processes)
@@ -37,15 +39,21 @@ call vundle#end()
 filetype plugin indent on
 
 " Custom Settings
-set rtp+=~/.vim/vimfiles
 syntax on
 if has("gui_running") 
+	" gVim
 	colors wombat
 	set lines=40 columns=140
+	set guifont=Hack:h11
+	let g:airline_powerline_fonts = 1
 elseif stridx(&shell, 'cmd.exe') != -1
+	" Vim in Windows Terminal
 	colors industry
 else
+	" Vim on Linux
 	colors wombat
+	set guifont=Hack:h10
+	let g:airline_powerline_fonts = 1
 endif
 
 set relativenumber " By default, show line numbers relative to the cursor
@@ -60,7 +68,7 @@ set showmatch " Highlight matching braces
 set hlsearch " highlight all / search results
 set cindent " Strict C-line indenting
 set backspace=indent,eol,start " Allow backspace on autoindent
-set visualbell t_vb= " No screen flash
+set laststatus=2 " Always show status line
 au GuiEnter * set visualbell t_vb= " No screen flash
 
 " Custom Key Mappings
@@ -92,7 +100,7 @@ set gdefault " Use /g by default
 
 augroup Javascript
 	autocmd!
-  autocmd filetype javascript nnoremap <buffer> <leader>t :wa<CR>:!jasmine<CR>
+	autocmd filetype javascript nnoremap <buffer> <leader>t :wa<CR>:!jasmine<CR>
 augroup END
 
 augroup TypeScript
@@ -112,9 +120,9 @@ augroup END
 set wildignore+=*/tmp/*,*.swp,*.zip,*.dll,*.exe,*.map
 let g:ctrlp_root_markers = ['package.json']
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj|dist|out)$',
-  \ 'file': '\v\.(exe|dll|map)$',
-  \ }
+			\ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj|dist|out)$',
+			\ 'file': '\v\.(exe|dll|map)$',
+			\ }
 
 " Syntastic Settings
 set statusline+=%#warningmsg#
@@ -130,3 +138,13 @@ let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " Omni Settings
 set completeopt=longest,menuone
+
+" Vim Airline Settings
+let g:airline#extensions#default#layout = [
+			\ [ 'a', 'c' ],
+			\ [ 'b', 'error', 'warning' ]
+			\ ]
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#obsession#enabled = 0
+let g:airline#extensions#branch#format = 1
