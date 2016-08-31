@@ -16,6 +16,7 @@ Plugin 'garbas/vim-snipmate'               " Snippets (see ~/.vim/snippets)
 Plugin 'tpope/vim-surround'                " Operations for quotes, parenthesis
 Plugin 'godlygeek/tabular'                 " Align columns
 Plugin 'jeffkreeftmeijer/vim-numbertoggle' " Show relative numbers in command
+Plugin 'ervandew/supertab'                 " Omni complete w/ tab
 
 " Language Servers
 Plugin 'Shougo/vimproc.vim' " Dependency (executes processes)
@@ -64,18 +65,20 @@ au GuiEnter * set visualbell t_vb=
 
 " Custom Key Mappings
 let mapleader = "\<Space>"
-inoremap <CR> <Esc>
-nnoremap , ;
 nnoremap ; :
+vnoremap ; :
+nnoremap , ;
+vnoremap , ;
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<Esc>"
 
 " Shortcuts
-nnoremap <leader>w <C-W>w
+nnoremap <silent> <leader>w <C-W>w
 nnoremap <silent> <leader>l :NERDTreeToggle<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
-nnoremap <leader>n :noh<CR>
+nnoremap <silent> <leader>n :noh<CR>
 nnoremap K i<CR><Esc> 
 
 " Use very magic regex
@@ -84,8 +87,13 @@ vnoremap / /\v
 set gdefault " Use /g by default
 
 " Shortcuts (language specific)
+
 augroup Javascript
   autocmd filetype javascript nnoremap <buffer> <leader>t :wa<CR>:!jasmine<CR>
+augroup END
+
+augroup TypeScript
+	autocmd FileType typescript nmap <buffer> <Leader>r <Plug>(TsuquyomiRenameSymbol)
 augroup END
 
 " Disable auto comment new lines
@@ -112,3 +120,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
+
+" Omni Settings
+set completeopt=longest,menuone
+
