@@ -91,19 +91,22 @@ set gdefault " Use /g by default
 " Shortcuts (language specific)
 
 augroup Javascript
+	autocmd!
   autocmd filetype javascript nnoremap <buffer> <leader>t :wa<CR>:!jasmine<CR>
 augroup END
 
 augroup TypeScript
+	autocmd!
 	autocmd FileType typescript nmap <buffer> <Leader>r <Plug>(TsuquyomiRenameSymbol)
+	autocmd FileType typescript JsPreTmpl html
+	autocmd FileType typescript syn clear foldBraces
 augroup END
 
 " Disable auto comment new lines
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o 
-
-" Syntax highlighting for HTML in TypeScript
-autocmd FileType typescript JsPreTmpl html
-autocmd FileType typescript syn clear foldBraces
+augroup DisableAutoCommentNewLines
+	autocmd!
+	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o 
+augroup END
 
 " CTRLP Settings
 set wildignore+=*/tmp/*,*.swp,*.zip,*.dll,*.exe,*.map
