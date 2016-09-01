@@ -52,7 +52,6 @@ elseif stridx(&shell, 'cmd.exe') != -1
 else
 	" Vim on Linux
 	colors wombat
-	set guifont=Hack:h10
 	let g:airline_powerline_fonts = 1
 endif
 
@@ -69,6 +68,7 @@ set hlsearch " highlight all / search results
 set cindent " Strict C-line indenting
 set backspace=indent,eol,start " Allow backspace on autoindent
 set laststatus=2 " Always show status line
+set visualbell t_vb=
 au GuiEnter * set visualbell t_vb= " No screen flash
 
 " Custom Key Mappings
