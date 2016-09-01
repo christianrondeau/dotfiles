@@ -1,6 +1,5 @@
 " Custom Key Mappings
 let mapleader = "\<Space>"
-inoremap <CR> "\<Esc>"
 
 " Shortcuts
 nnoremap K i<CR><Esc> 
