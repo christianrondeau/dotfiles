@@ -2,5 +2,6 @@
 let mapleader = "\<Space>"
 
 " Shortcuts
+nnoremap ; :
 nnoremap K i<CR><Esc> 
-nnoremap <silent> <leader>n :noh<CR>
+nnoremap <leader>n :noh<CR>
