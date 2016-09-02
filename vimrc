@@ -45,14 +45,15 @@ if has("gui_running")
 	colors wombat
 	set lines=40 columns=140
 	set guifont=Hack:h11
-	let g:airline_powerline_fonts = 1
+	set guioptions-=T " Hide toolbar
+	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
 elseif stridx(&shell, 'cmd.exe') != -1
 	" Vim in Windows Terminal
 	colors industry
 else
 	" Vim on Linux
 	colors wombat
-	let g:airline_powerline_fonts = 1
+	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
 endif
 
 set relativenumber                 " By default, show line numbers relative to the cursor
