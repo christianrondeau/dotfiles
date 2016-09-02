@@ -55,21 +55,22 @@ else
 	let g:airline_powerline_fonts = 1
 endif
 
-set relativenumber " By default, show line numbers relative to the cursor
-set encoding=utf-8 " UTF-8
-set tabstop=2 " Tab Width
-set shiftwidth=2 " Controls ReIndent (`<<` and `>>`)
-set showcmd " Show typed commands 
-set scrolloff=2 " Shows the next 2 lines after cursor when scrolling
-set cursorline " Highlight the current line
-set incsearch " Show search result as you type
-set showmatch " Highlight matching braces
-set hlsearch " highlight all / search results
-set cindent " Strict C-line indenting
-set backspace=indent,eol,start " Allow backspace on autoindent
-set laststatus=2 " Always show status line
-set visualbell t_vb=
-au GuiEnter * set visualbell t_vb= " No screen flash
+set relativenumber                 " By default, show line numbers relative to the cursor
+set encoding=utf-8                 " UTF-8
+set tabstop=2                      " Tab Width
+set shiftwidth=2                   " Controls ReIndent (`<<` and `>>`)
+set showcmd                        " Show typed commands
+set scrolloff=2                    " Shows the next 2 lines after cursor when scrolling
+set cursorline                     " Highlight the current line
+set incsearch                      " Show search result as you type
+set showmatch                      " Highlight matching braces
+set hlsearch                       " highlight all / search results
+set cindent                        " Strict C-line indenting
+set foldlevelstart=20              " Open folds by default
+set backspace=indent,eol,start     " Allow backspace on autoindent
+set laststatus=2                   " Always show status line
+set visualbell t_vb=               " No screen flash (Android)
+au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
 
 " Custom Key Mappings
 let mapleader = "\<Space>"
