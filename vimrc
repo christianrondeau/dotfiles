@@ -92,6 +92,7 @@ nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>gd :Gdiff<CR>
+noremap <C-b> :CtrlPBuffer<CR>
 nnoremap <silent> <leader>n :noh<CR>
 set pastetoggle=<leader>p
 
