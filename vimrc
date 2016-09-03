@@ -65,6 +65,7 @@ set scrolloff=2                    " Shows the next 2 lines after cursor when sc
 set cursorline                     " Highlight the current line
 set incsearch                      " Show search result as you type
 set showmatch                      " Highlight matching braces
+set showmode                       " Shows when in paste mode
 set hlsearch                       " highlight all / search results
 set cindent                        " Strict C-line indenting
 set foldlevelstart=20              " Open folds by default
@@ -92,6 +93,7 @@ nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>n :noh<CR>
+set pastetoggle=<leader>p
 
 " Use very magic regex
 nnoremap / /\v
