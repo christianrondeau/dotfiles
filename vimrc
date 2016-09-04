@@ -1,4 +1,4 @@
-" Vundle
+" Vundle Setup {{{
 set nocompatible
 filetype on
 filetype off
@@ -6,8 +6,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/.vim/vimfiles
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " Plugin manager
+" }}}
 
-" Plugins
+" Plugins {{{
 Plugin 'tpope/vim-fugitive'                " Git commands
 Plugin 'scrooloose/nerdtree'               " Tree explorer
 Plugin 'ctrlpvim/ctrlp.vim'                " CTRL+P shortcut to fuzzy find files
@@ -33,15 +34,18 @@ Plugin 'pangloss/vim-javascript'       " JavaScript
 Plugin 'leafgarland/typescript-vim'    " TypeScript
 Plugin 'Quramy/vim-js-pretty-template' " JavaScript/TypeScript HTML templates
 Plugin 'jason0x43/vim-js-indent'       " JavaScript/TypeScript Indentation
+" }}}
 
-" Vundle
+" Vundle End {{{
 call vundle#end()
 filetype plugin indent on
+" }}}
 
-" Custom Settings
+" Terminal Settings {{{
 syntax on
 if has("gui_running") 
 	" gVim
+	au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
 	colors wombat
 	set lines=40 columns=140
 	set guifont=Hack:h11
@@ -55,7 +59,9 @@ else
 	colors wombat
 	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
 endif
+" }}}
 
+" Settings {{{
 set relativenumber                 " By default, show line numbers relative to the cursor
 set encoding=utf-8                 " UTF-8
 set tabstop=2                      " Tab Width
@@ -68,13 +74,13 @@ set showmatch                      " Highlight matching braces
 set showmode                       " Shows when in paste mode
 set hlsearch                       " highlight all / search results
 set cindent                        " Strict C-line indenting
-set foldlevelstart=20              " Open folds by default
+set foldlevelstart=99              " Open folds by default
 set backspace=indent,eol,start     " Allow backspace on autoindent
 set laststatus=2                   " Always show status line
 set visualbell t_vb=               " No screen flash (Android)
-au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
+" }}}
 
-" Custom Key Mappings
+" Custom Key Mappings {{{
 let mapleader = "\<Space>"
 nnoremap ; :
 vnoremap ; :
@@ -104,41 +110,55 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+" }}}
 
-" Use very magic regex
+" Regex {{{
 nnoremap / /\v
 vnoremap / /\v
 set gdefault " Use /g by default
+" }}}
 
-" Shortcuts (language specific)
+" Vimscript {{{
+augroup filetype_vim
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+	autocmd FileType vim setlocal foldlevel=0
+augroup END
+" }}}
 
-augroup Javascript
+" JavaScript {{{
+augroup filetype_javascript
 	autocmd!
 	autocmd filetype javascript nnoremap <buffer> <leader>t :wa<CR>:!jasmine<CR>
 augroup END
+" }}}
 
-augroup TypeScript
+" TypeScript {{{
+augroup filetype_typescript
 	autocmd!
 	autocmd FileType typescript nnoremap <buffer> <Leader>r <Plug>(TsuquyomiRenameSymbol)
 	autocmd FileType typescript JsPreTmpl html
 	autocmd FileType typescript syn clear foldBraces
 augroup END
+" }}}
 
-" Disable auto comment new lines
+" All Languages {{{
 augroup DisableAutoCommentNewLines
 	autocmd!
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o 
 augroup END
+" }}{
 
-" CTRLP Settings
+" CTRLP Settings {{π
 set wildignore+=*/tmp/*,*.swp,*.zip,*.dll,*.exe,*.map
 let g:ctrlp_root_markers = ['package.json']
 let g:ctrlp_custom_ignore = {
 			\ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj|dist|out)$',
 			\ 'file': '\v\.(exe|dll|map)$',
 			\ }
+" }}}
 
-" Syntastic Settings
+" Syntastic Settings {{{
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -149,11 +169,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
+" }}}
 
-" Omni Settings
+" Omni Settings {{{
 set completeopt=longest,menuone
+" }}}
 
-" Vim Airline Settings
+" Vim Airline Settings {{{
 let g:airline#extensions#default#layout = [
 			\ [ 'a', 'c' ],
 			\ [ 'b', 'error', 'warning' ]
@@ -162,4 +184,5 @@ let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#obsession#enabled = 0
 let g:airline#extensions#branch#format = 1
+" }}}
 
