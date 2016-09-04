@@ -87,14 +87,23 @@ nnoremap K i<CR><Esc>
 " Shortcuts
 nnoremap <silent> <leader>w <C-W>w
 nnoremap <silent> <leader>l :NERDTreeToggle<CR>
+nnoremap <silent> <leader>ll :NERDTreeFind<CR>
 nnoremap <silent> <leader>n :noh<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>ev :vsplit $HOME/.vim/vimrc<CR>
+nnoremap <leader>sv $HOME/.vim/vimrc<CR>
 noremap <C-b> :CtrlPBuffer<CR>
 set pastetoggle=<leader>p
+
+" Breaking Habits...
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " Use very magic regex
 nnoremap / /\v
