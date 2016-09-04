@@ -87,13 +87,13 @@ nnoremap K i<CR><Esc>
 " Shortcuts
 nnoremap <silent> <leader>w <C-W>w
 nnoremap <silent> <leader>l :NERDTreeToggle<CR>
+nnoremap <silent> <leader>n :noh<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>gd :Gdiff<CR>
 noremap <C-b> :CtrlPBuffer<CR>
-nnoremap <silent> <leader>n :noh<CR>
 set pastetoggle=<leader>p
 
 " Use very magic regex
@@ -110,7 +110,7 @@ augroup END
 
 augroup TypeScript
 	autocmd!
-	autocmd FileType typescript nmap <buffer> <Leader>r <Plug>(TsuquyomiRenameSymbol)
+	autocmd FileType typescript nnoremap <buffer> <Leader>r <Plug>(TsuquyomiRenameSymbol)
 	autocmd FileType typescript JsPreTmpl html
 	autocmd FileType typescript syn clear foldBraces
 augroup END
@@ -153,3 +153,4 @@ let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#obsession#enabled = 0
 let g:airline#extensions#branch#format = 1
+
