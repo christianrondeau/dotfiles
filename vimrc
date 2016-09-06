@@ -113,6 +113,17 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 " }}}
 
+" Temporary Files
+nnoremap <leader>e1 :e $TEMP/vim-temp-1.txt<CR>
+nnoremap <leader>e2 :e $TEMP/vim-temp-2.txt<CR>
+nnoremap <leader>e3 :e $TEMP/vim-temp-3.txt<CR>
+nnoremap <leader>e4 :e $TEMP/vim-temp-4.txt<CR>
+nnoremap <leader>e5 :e $TEMP/vim-temp-5.txt<CR>
+nnoremap <leader>e6 :e $TEMP/vim-temp-6.txt<CR>
+nnoremap <leader>e7 :e $TEMP/vim-temp-7.txt<CR>
+nnoremap <leader>e8 :e $TEMP/vim-temp-8.txt<CR>
+nnoremap <leader>e9 :e $TEMP/vim-temp-9.txt<CR>
+
 " Regex {{{
 nnoremap / /\v
 vnoremap / /\v
