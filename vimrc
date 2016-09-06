@@ -114,6 +114,8 @@ noremap <Right> <NOP>
 " }}}
 
 " Temporary Files {{{
+:set directory=$TEMP,.
+
 nnoremap <leader>e1 :e $TEMP/vim-temp-1.txt<CR>
 nnoremap <leader>e2 :e $TEMP/vim-temp-2.txt<CR>
 nnoremap <leader>e3 :e $TEMP/vim-temp-3.txt<CR>
