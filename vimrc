@@ -101,9 +101,10 @@ nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>ev :vsplit $HOME/.vim/vimrc<CR>
-nnoremap <leader>sv $HOME/.vim/vimrc<CR>
+nnoremap <leader>sv :source $HOME/.vim/vimrc<CR>
 noremap <C-b> :CtrlPBuffer<CR>
-set pastetoggle=<leader>p
+inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
+set pastetoggle=<F2>
 
 " Breaking Habits...
 noremap <Up> <NOP>
