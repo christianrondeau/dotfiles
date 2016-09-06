@@ -113,7 +113,7 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 " }}}
 
-" Temporary Files
+" Temporary Files {{{
 nnoremap <leader>e1 :e $TEMP/vim-temp-1.txt<CR>
 nnoremap <leader>e2 :e $TEMP/vim-temp-2.txt<CR>
 nnoremap <leader>e3 :e $TEMP/vim-temp-3.txt<CR>
@@ -123,6 +123,7 @@ nnoremap <leader>e6 :e $TEMP/vim-temp-6.txt<CR>
 nnoremap <leader>e7 :e $TEMP/vim-temp-7.txt<CR>
 nnoremap <leader>e8 :e $TEMP/vim-temp-8.txt<CR>
 nnoremap <leader>e9 :e $TEMP/vim-temp-9.txt<CR>
+" }}}
 
 " Regex {{{
 nnoremap / /\v
@@ -135,6 +136,13 @@ augroup filetype_vim
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
 	autocmd FileType vim setlocal foldlevel=0
+augroup END
+" }}}
+
+" Text {{{
+augroup filetype_txt
+	autocmd!
+	autocmd FileType text setlocal noautoindent nocindent nosmartindent
 augroup END
 " }}}
 
