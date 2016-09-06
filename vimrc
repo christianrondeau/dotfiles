@@ -58,6 +58,9 @@ else
 	" Vim on Linux
 	colors wombat
 	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
+  set title 
+  set titleold="" 
+  set titlestring=VIM:\ %F
 endif
 " }}}
 
