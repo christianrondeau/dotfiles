@@ -128,6 +128,10 @@ nnoremap <leader>e9 :e $TEMP/vim-temp-9.txt<CR>
 " Regex {{{
 nnoremap / /\v
 vnoremap / /\v
+cnoremap %s/ %smagic/
+cnoremap \>s/ \>smagic/
+nnoremap :g/ :g/\v
+nnoremap :g// :g//
 set gdefault " Use /g by default
 " }}}
 
