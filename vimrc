@@ -136,7 +136,9 @@ vnoremap / /\v
 cnoremap %s/ %smagic/
 cnoremap \>s/ \>smagic/
 nnoremap :g/ :g/\v
+nnoremap ;g/ :g/\v
 nnoremap :g// :g//
+nnoremap ;g// :g//
 set gdefault " Use /g by default
 " }}}
 
@@ -152,6 +154,13 @@ augroup END
 augroup filetype_txt
 	autocmd!
 	autocmd FileType text setlocal noautoindent nocindent nosmartindent
+augroup END
+" }}}
+
+" Markdown {{{
+augroup filetype_markdown
+	autocmd!
+	autocmd FileType markdown setlocal expandtab shiftwidth=2 softtabstop=2
 augroup END
 " }}}
 
