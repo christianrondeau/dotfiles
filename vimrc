@@ -135,10 +135,8 @@ nnoremap / /\v
 vnoremap / /\v
 cnoremap %s/ %smagic/
 cnoremap \>s/ \>smagic/
-nnoremap :g/ :g/\v
-nnoremap ;g/ :g/\v
-nnoremap :g// :g//
-nnoremap ;g// :g//
+cnoremap g/ g/\v
+cnoremap g!/ g!/\v
 set gdefault " Use /g by default
 " }}}
 
