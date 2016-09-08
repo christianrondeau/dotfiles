@@ -34,6 +34,7 @@ Plugin 'pangloss/vim-javascript'       " JavaScript
 Plugin 'leafgarland/typescript-vim'    " TypeScript
 Plugin 'Quramy/vim-js-pretty-template' " JavaScript/TypeScript HTML templates
 Plugin 'jason0x43/vim-js-indent'       " JavaScript/TypeScript Indentation
+Plugin 'PProvost/vim-ps1'              " PowerShell
 " }}}
 
 " Vundle End {{{
