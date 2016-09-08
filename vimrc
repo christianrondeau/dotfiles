@@ -83,6 +83,12 @@ set laststatus=2                   " Always show status line
 set visualbell t_vb=               " No screen flash (Android)
 " }}}
 
+" Git Grep {{{
+if !exists(":Ggr")
+	command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
+endif
+" }}}
+
 " Custom Key Mappings {{{
 let mapleader = "\<Space>"
 nnoremap ; :
@@ -103,6 +109,7 @@ nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gf :Ggr<Space>
 nnoremap <leader>ev :vsplit $HOME/.vim/vimrc<CR>
 nnoremap <leader>sv :source $HOME/.vim/vimrc<CR>
 noremap <C-b> :CtrlPBuffer<CR>
@@ -221,4 +228,3 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#obsession#enabled = 0
 let g:airline#extensions#branch#format = 1
 " }}}
-

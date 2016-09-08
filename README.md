@@ -13,7 +13,6 @@ Checkout this repo with submodule: `git clone https://github.com/christianrondea
 3. Create a symlink to the `vimrc` file": `mklink %HOME%\.vimrc %HOME%\.vim\vimrc`
   - For Visual Studio: `mklink %HOME%\.vsvimrc %HOME%\.vim\vsvimrc` (if using VsVim)
 5. Install the Hack font *with PowerLine patch* using `choco install hackfont` or download it from: Download from https://github.com/powerline/fonts/tree/master/Hack
-7. Install [grepwin](http://www.vim.org/scripts/script.php?script_id=311): `choco install gnuwin32-grep.install`
 
 ## Termux-specific
 1. Build [vimproc.vim](https://github.com/Shougo/vimproc.vim) using `make -f make_android.mak` in the `~/vim/bundle/vimproc.vim` folder
