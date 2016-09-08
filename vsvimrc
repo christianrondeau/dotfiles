@@ -5,3 +5,6 @@ let mapleader = "\<Space>"
 nnoremap ; :
 nnoremap K i<CR><Esc> 
 nnoremap <leader>n :noh<CR>
+
+" Clipboard
+set clipboard=unnamed
