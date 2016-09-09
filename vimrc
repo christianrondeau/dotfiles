@@ -20,6 +20,7 @@ Plugin 'godlygeek/tabular'                 " Align columns
 Plugin 'jeffkreeftmeijer/vim-numbertoggle' " Show relative numbers in command
 Plugin 'ervandew/supertab'                 " Omni complete w/ tab
 Plugin 'vim-airline/vim-airline'           " Improved status line
+Plugin 'krisajenkins/vim-pipe'             " Pipes buffer to something's stdin
 
 " Language Servers
 Plugin 'Shougo/vimproc.vim' " Dependency (executes processes)
@@ -35,6 +36,7 @@ Plugin 'leafgarland/typescript-vim'    " TypeScript
 Plugin 'Quramy/vim-js-pretty-template' " JavaScript/TypeScript HTML templates
 Plugin 'jason0x43/vim-js-indent'       " JavaScript/TypeScript Indentation
 Plugin 'PProvost/vim-ps1'              " PowerShell
+Plugin 'elzr/vim-json'                 " JSON
 " }}}
 
 " Vundle End {{{
@@ -92,6 +94,7 @@ endif
 
 " Custom Key Mappings {{{
 let mapleader = "\<Space>"
+let maplocalleader = "\\"
 nnoremap ; :
 vnoremap ; :
 nnoremap , ;
@@ -183,6 +186,13 @@ augroup filetype_typescript
 	autocmd FileType typescript nnoremap <buffer> <Leader>r <Plug>(TsuquyomiRenameSymbol)
 	autocmd FileType typescript JsPreTmpl html
 	autocmd FileType typescript syn clear foldBraces
+augroup END
+" }}}
+
+" JSON {{{
+augroup filetype_json
+	autocmd!
+	let b:vimpipe_command="python -m json.tool"
 augroup END
 " }}}
 
