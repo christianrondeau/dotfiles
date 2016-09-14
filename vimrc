@@ -107,6 +107,7 @@ nnoremap K i<CR><Esc>
 nnoremap <silent> <leader>w <C-W>w
 nnoremap <silent> <leader>l :NERDTreeToggle<CR>
 nnoremap <silent> <leader>ll :NERDTreeFind<CR>
+nnoremap <silent> <leader>lq :NERDTreeClose<CR>
 nnoremap <silent> <leader>n :noh<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
