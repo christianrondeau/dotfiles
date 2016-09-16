@@ -152,6 +152,14 @@ cnoremap g!/ g!/\v
 set gdefault " Use /g by default
 " }}}
 
+" Persistent undo {{{
+set undofile
+set undodir=$HOME/.vim/undo
+
+set undolevels=100
+set undoreload=10000
+" }}}
+
 " Vimscript {{{
 augroup filetype_vim
 	autocmd!
