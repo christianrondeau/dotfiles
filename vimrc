@@ -185,7 +185,7 @@ augroup END
 " JavaScript {{{
 augroup filetype_javascript
 	autocmd!
-	autocmd filetype javascript nnoremap <buffer> <leader>t :wa<CR>:!jasmine<CR>
+	autocmd filetype javascript nnoremap <buffer> <leader>t :wa<CR>:!npm test<CR>
 augroup END
 " }}}
 
