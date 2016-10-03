@@ -118,8 +118,8 @@ nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gf :Ggr<Space>
-nnoremap <leader>ev :vsplit $HOME/.vim/vimrc<CR>
-nnoremap <leader>sv :source $HOME/.vim/vimrc<CR>
+nnoremap <leader>ev :vsplit $HOME/.vim/_vimrc<CR>
+nnoremap <leader>sv :source %<CR>
 noremap <C-b> :CtrlPBuffer<CR>
 inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
 set pastetoggle=<F2>
