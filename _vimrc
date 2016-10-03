@@ -11,6 +11,7 @@ Plugin 'VundleVim/Vundle.vim' " Plugin manager
 " Plugins {{{
 Plugin 'tpope/vim-fugitive'                " Git commands
 Plugin 'scrooloose/nerdtree'               " Tree explorer
+Plugin 'scrooloose/nerdcommenter'          " Comment
 Plugin 'ctrlpvim/ctrlp.vim'                " CTRL+P shortcut to fuzzy find files
 Plugin 'MarcWeber/vim-addon-mw-utils'      " Dependency for SnipMate
 Plugin 'tomtom/tlib_vim'                   " Dependency for SnipMate
