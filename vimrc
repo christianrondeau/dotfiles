@@ -72,6 +72,7 @@ set relativenumber                 " By default, show line numbers relative to t
 set encoding=utf-8                 " UTF-8
 set tabstop=2                      " Tab Width
 set shiftwidth=2                   " Controls ReIndent (`<<` and `>>`)
+set textwidth=0                    " Disables auto line breaks
 set showcmd                        " Show typed commands
 set scrolloff=2                    " Shows the next 2 lines after cursor when scrolling
 set cursorline                     " Highlight the current line
