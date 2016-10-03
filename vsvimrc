@@ -1,10 +1,23 @@
-" Custom Key Mappings
+" Custom Key Mappings {{{
 let mapleader = "\<Space>"
+" }}}
 
-" Shortcuts
+" Shortcuts {{{
 nnoremap ; :
+nnoremap , ;
 nnoremap K i<CR><Esc> 
 nnoremap <leader>n :noh<CR>
+" }}}
 
-" Clipboard
+" Clipboard {{{
 set clipboard=unnamed
+" }}}
+
+" Persistent undo {{{
+set undofile
+set undodir=$HOME/.vim/undo
+
+set undolevels=100
+set undoreload=10000
+" }}}
+
