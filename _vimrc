@@ -82,6 +82,7 @@ set showmode                       " Shows when in paste mode
 set hlsearch                       " highlight all / search results
 set cindent                        " Strict C-line indenting
 set foldlevelstart=99              " Open folds by default
+let &showbreak="↳ "                " Show line breaks
 set backspace=indent,eol,start     " Allow backspace on autoindent
 set laststatus=2                   " Always show status line
 set visualbell t_vb=               " No screen flash (Android)
