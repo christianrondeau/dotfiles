@@ -87,6 +87,7 @@ let &showbreak="↳ "                " Show line breaks
 set backspace=indent,eol,start     " Allow backspace on autoindent
 set laststatus=2                   " Always show status line
 set visualbell t_vb=               " No screen flash (Android)
+set noerrorbells                   " No error sounds
 set nobackup                       " Prevents creating <filename>~ files
 set nowritebackup                  " Prevents creating <filename>~ files
 " }}}
