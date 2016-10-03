@@ -85,6 +85,8 @@ set foldlevelstart=99              " Open folds by default
 set backspace=indent,eol,start     " Allow backspace on autoindent
 set laststatus=2                   " Always show status line
 set visualbell t_vb=               " No screen flash (Android)
+set nobackup                       " Prevents creating <filename>~ files
+set nowritebackup                  " Prevents creating <filename>~ files
 " }}}
 
 " Git Grep {{{
@@ -249,3 +251,4 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#obsession#enabled = 0
 let g:airline#extensions#branch#format = 1
 " }}}
+

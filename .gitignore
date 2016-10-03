@@ -12,5 +12,4 @@ undo/*
 !undo/.gitinclude
 # Vim Runtime
 vim[7-9][0-9]/
-_vimrc
 
