@@ -8,15 +8,16 @@ Checkout this repo with submodule: `git clone https://github.com/christianrondea
 1. Start VIM and run `:PluginInstall`
 
 ## Windows-specific
-1. For Windows: Create a `HOME` environment variable pointing to to `C:\Users\(username)`
-2. Get [vimproc.vim](https://github.com/Shougo/vimproc.vim) assemblies from https://github.com/Shougo/vimproc.vim/releases
-3. Create a symlink to the `vimrc` file": `mklink %HOME%\.vimrc %HOME%\.vim\vimrc`
-  - For Visual Studio: `mklink %HOME%\.vsvimrc %HOME%\.vim\vsvimrc` (if using VsVim)
-5. Install the Hack font *with PowerLine patch* using `choco install hackfont` or download it from: Download from https://github.com/powerline/fonts/tree/master/Hack
+1. Create environment variables:
+  1. User `HOME` pointing to to `C:\Users\(username)`
+  2. User `VIM` pointing to to `C:\Users\(username)\.vim`
+  3. System `VIMRUNTIME` pointing to to the Vim installation path
+2. Get [vimproc.vim](https://github.com/Shougo/vimproc.vim) assemblies from https://github.com/Shougo/vimproc.vim/releases (if using TypeScript)
+3. Install the Hack font *with PowerLine patch* using `choco install hackfont` or download it from: Download from https://github.com/powerline/fonts/tree/master/Hack
 
 ## Termux-specific
-1. Build [vimproc.vim](https://github.com/Shougo/vimproc.vim) using `make -f make_android.mak` in the `~/vim/bundle/vimproc.vim` folder
-2. Create a symlink to the `vimrc` file": `ln -s ~/git/dotfiles/.vim ~/.vim`
+1. Build [vimproc.vim](https://github.com/Shougo/vimproc.vim) using `make -f make_android.mak` in the `~/vim/bundle/vimproc.vim` folder (if using TypeScript)
+2. Create a symlink to the `vimrc` file": `ln -s ~/.vim/_vimrc ~/.vimrc`
 3. Install the Hack font: Buy https://play.google.com/store/apps/details?id=com.termux.styling&hl=en
 
 # Usage
