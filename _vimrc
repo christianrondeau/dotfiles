@@ -1,4 +1,5 @@
 " Vundle Setup {{{
+scriptencoding utf-8
 set nocompatible
 filetype on
 filetype off
@@ -83,13 +84,15 @@ set showmode                       " Shows when in paste mode
 set hlsearch                       " highlight all / search results
 set cindent                        " Strict C-line indenting
 set foldlevelstart=99              " Open folds by default
-let &showbreak="↳ "                " Show line breaks
 set backspace=indent,eol,start     " Allow backspace on autoindent
 set laststatus=2                   " Always show status line
 set visualbell t_vb=               " No screen flash (Android)
 set noerrorbells                   " No error sounds
 set nobackup                       " Prevents creating <filename>~ files
 set nowritebackup                  " Prevents creating <filename>~ files
+set list                           " Show whitespace
+set listchars=tab:›⇢,trail:·,extends:↲
+let &showbreak="↳ "                " Show line breaks
 " }}}
 
 " Git Grep {{{
