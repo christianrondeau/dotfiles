@@ -1,3 +1,8 @@
+" Christian Rondeau's .vimrc
+" Get it from https://github.com/christianrondeau/.vim
+
+" Plugins {{{
+
 " Vundle Setup {{{
 scriptencoding utf-8
 set nocompatible
@@ -9,7 +14,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " Plugin manager
 " }}}
 
-" Plugins {{{
+" Plugins List {{{
 Plugin 'tpope/vim-fugitive'                " Git commands
 Plugin 'scrooloose/nerdtree'               " Tree explorer
 Plugin 'scrooloose/nerdcommenter'          " Comment
@@ -23,6 +28,7 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle' " Show relative numbers in command
 Plugin 'ervandew/supertab'                 " Omni complete w/ tab
 Plugin 'vim-airline/vim-airline'           " Improved status line
 Plugin 'krisajenkins/vim-pipe'             " Pipes buffer to something's stdin
+Plugin 'sjl/gundo.vim'                     " Show the undo tree
 
 " Language Servers
 Plugin 'Shougo/vimproc.vim' " Dependency (executes processes)
@@ -46,8 +52,9 @@ call vundle#end()
 filetype plugin indent on
 " }}}
 
+" }}}
+
 " Terminal Settings {{{
-syntax on
 if has("gui_running") 
 	" gVim
 	au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
@@ -67,32 +74,55 @@ else
   set titleold="" 
   set titlestring=VIM:\ %F
 endif
+
+set visualbell t_vb=               " No screen flash (Android)
+set noerrorbells                   " No error sounds
 " }}}
 
-" Settings {{{
+" UI Settings {{{
+syntax on                          " Show syntax colors
+set laststatus=2                   " Always show status line
 set relativenumber                 " By default, show line numbers relative to the cursor
-set encoding=utf-8                 " UTF-8
-set tabstop=2                      " Tab Width
-set shiftwidth=2                   " Controls ReIndent (`<<` and `>>`)
 set textwidth=0                    " Disables auto line breaks
 set showcmd                        " Show typed commands
 set scrolloff=2                    " Shows the next 2 lines after cursor when scrolling
 set cursorline                     " Highlight the current line
-set incsearch                      " Show search result as you type
-set showmatch                      " Highlight matching braces
 set showmode                       " Shows when in paste mode
-set hlsearch                       " highlight all / search results
-set cindent                        " Strict C-line indenting
-set foldlevelstart=99              " Open folds by default
-set backspace=indent,eol,start     " Allow backspace on autoindent
-set laststatus=2                   " Always show status line
-set visualbell t_vb=               " No screen flash (Android)
-set noerrorbells                   " No error sounds
-set nobackup                       " Prevents creating <filename>~ files
-set nowritebackup                  " Prevents creating <filename>~ files
+set showmatch                      " Highlight matching braces
+set wildmenu                       " Shows a menu when using Tab in command paths
 set list                           " Show whitespace
 set listchars=tab:›⇢,trail:·,extends:↲
 let &showbreak="↳ "                " Show line breaks
+" }}}
+
+" Text Settings {{{
+set encoding=utf-8                 " UTF-8
+set tabstop=2                      " Tab Width
+set shiftwidth=2                   " Controls ReIndent (`<<` and `>>`)
+set cindent                        " Strict C-line indenting
+" }}}
+
+" Search Settings {{{
+set incsearch                      " Show search result as you type
+set hlsearch                       " highlight all / search results
+nnoremap / /\v                     " Very magic by default
+vnoremap / /\v                     " Very magic by default
+cnoremap %s/ %smagic/              " Very magic by default
+cnoremap \>s/ \>smagic/            " Very magic by default
+cnoremap g/ g/\v                   " Very magic by default
+cnoremap g!/ g!/\v                 " Very magic by default
+set gdefault                       " Use /g by default
+" }}}
+
+" Folding {{{
+set foldlevelstart=99              " Open folds by default
+" }}}
+
+" Vim Behavior Settings {{{
+set backspace=indent,eol,start     " Allow backspace on autoindent
+set nobackup                       " Prevents creating <filename>~ files
+set nowritebackup                  " Prevents creating <filename>~ files
+set nolazyredraw                   " Avoids redrawing when running macros
 " }}}
 
 " Git Grep {{{
@@ -101,18 +131,36 @@ if !exists(":Ggr")
 endif
 " }}}
 
-" Custom Key Mappings {{{
+" Keyboard Mappings {{{
+" Leaders {{{
 let mapleader = "\<Space>"
 let maplocalleader = "\\"
+" }}}
+
+" Overrides {{{
 nnoremap ; :
 vnoremap ; :
 nnoremap , ;
 vnoremap , ;
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<Esc>"
-nnoremap zz zO
-nnoremap K i<CR><Esc> 
+" }}}
 
-" Shortcuts
+" Remap enter (but not in autocomplete) {{{
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<Esc>"
+" }}}
+
+" Custom shortcuts {{{
+nnoremap K i<CR><Esc> 
+set pastetoggle=<F2>
+" }}}
+
+" Breaking habits... {{{
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+" }}}
+
+" Leader shortcuts {{{
 nnoremap <silent> <leader>w <C-W>w
 nnoremap <silent> <leader>l :NERDTreeToggle<CR>
 nnoremap <silent> <leader>ll :NERDTreeFind<CR>
@@ -126,15 +174,13 @@ nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gf :Ggr<Space>
 nnoremap <leader>ev :vsplit $HOME/.vim/_vimrc<CR>
 nnoremap <leader>sv :source %<CR>
+nnoremap <leader>u :GundoToggle<CR>
+" }}}
+
+" Control shortcuts {{{
 noremap <C-b> :CtrlPBuffer<CR>
 inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
-set pastetoggle=<F2>
-
-" Breaking Habits...
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+" }}}
 " }}}
 
 " Temporary Files {{{
@@ -151,16 +197,6 @@ nnoremap <leader>e8 :e $TEMP/vim-temp-8.txt<CR>
 nnoremap <leader>e9 :e $TEMP/vim-temp-9.txt<CR>
 " }}}
 
-" Regex {{{
-nnoremap / /\v
-vnoremap / /\v
-cnoremap %s/ %smagic/
-cnoremap \>s/ \>smagic/
-cnoremap g/ g/\v
-cnoremap g!/ g!/\v
-set gdefault " Use /g by default
-" }}}
-
 " Persistent undo {{{
 set undofile
 set undodir=$HOME/.vim/undo
@@ -168,6 +204,8 @@ set undodir=$HOME/.vim/undo
 set undolevels=100
 set undoreload=10000
 " }}}
+
+" Languages {{{
 
 " Vimscript {{{
 augroup filetype_vim
@@ -228,6 +266,8 @@ let g:ctrlp_custom_ignore = {
 			\ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj|dist|out)$',
 			\ 'file': '\v\.(exe|dll|map)$',
 			\ }
+" }}}
+
 " }}}
 
 " Syntastic Settings {{{
