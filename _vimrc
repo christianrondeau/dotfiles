@@ -105,13 +105,14 @@ set cindent                        " Strict C-line indenting
 " Search Settings {{{
 set incsearch                      " Show search result as you type
 set hlsearch                       " highlight all / search results
-nnoremap / /\v                     " Very magic by default
-vnoremap / /\v                     " Very magic by default
-cnoremap %s/ %smagic/              " Very magic by default
-cnoremap \>s/ \>smagic/            " Very magic by default
-cnoremap g/ g/\v                   " Very magic by default
-cnoremap g!/ g!/\v                 " Very magic by default
 set gdefault                       " Use /g by default
+" Use very magic regex everywhere
+nnoremap / /\v
+vnoremap / /\v
+cnoremap %s/ %sm/
+cnoremap \>s/ \>sm/
+cnoremap g/ g/\v
+cnoremap g!/ g!/\v
 " }}}
 
 " Folding {{{
