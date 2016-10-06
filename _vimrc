@@ -299,3 +299,23 @@ let g:airline#extensions#obsession#enabled = 0
 let g:airline#extensions#branch#format = 1
 " }}}
 
+" PowerShell {{{
+if has("win32")
+	let g:curshell = &shell
+	let g:curshellcmdflag = &shellcmdflag
+
+	function! TogglePowerShell()
+		if &shell ==# "powershell"
+			let &shell = g:curshell
+			let &shellcmdflag = g:curshellcmdflag
+			echom "shell reset to default shell"
+		else
+			set shell=powershell
+			set shellcmdflag=-command
+			echom "shell set to PowerShell"
+		endif
+	endfunction
+	nnoremap <F9> :call TogglePowerShell()<cr>
+	cnoremap <F9> <c-c>:call TogglePowerShell()<cr>:
+endif
+" }}}
