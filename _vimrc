@@ -1,11 +1,13 @@
 " Christian Rondeau's .vimrc
 " Get it from https://github.com/christianrondeau/.vim
 
+scriptencoding utf-8
+set encoding=utf-8
+set nocompatible
+
 " Plugins {{{
 
 " Vundle Setup {{{
-scriptencoding utf-8
-set nocompatible
 filetype on
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -91,12 +93,11 @@ set showmode                       " Shows when in paste mode
 set showmatch                      " Highlight matching braces
 set wildmenu                       " Shows a menu when using Tab in command paths
 set list                           " Show whitespace
-set listchars=tab:›⇢,trail:·,extends:↲
-let &showbreak="↳ "                " Show line breaks
+set showbreak=↳\ 
+set listchars=tab:›\ ,trail:·,extends:↲
 " }}}
 
 " Text Settings {{{
-set encoding=utf-8                 " UTF-8
 set tabstop=2                      " Tab Width
 set shiftwidth=2                   " Controls ReIndent (`<<` and `>>`)
 set cindent                        " Strict C-line indenting
