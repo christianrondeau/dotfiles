@@ -1,9 +1,8 @@
 " Christian Rondeau's .vimrc
 " Get it from https://github.com/christianrondeau/.vim
-
+set nocompatible
 scriptencoding utf-8
 set encoding=utf-8
-set nocompatible
 
 " Plugins {{{
 
@@ -93,8 +92,10 @@ set showmode                       " Shows when in paste mode
 set showmatch                      " Highlight matching braces
 set wildmenu                       " Shows a menu when using Tab in command paths
 set list                           " Show whitespace
-set showbreak=↳\ 
-set listchars=tab:›\ ,trail:·,extends:↲
+" Set showbreak to '↪ '
+let &showbreak="\u21aa "
+" Set listchars to '›', '·', '↲'
+let &listchars="tab:\u203a\ ,trail:\u00b7,extends:\u21b2"
 " }}}
 
 " Text Settings {{{
