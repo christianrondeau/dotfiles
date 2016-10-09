@@ -66,7 +66,7 @@ if has("gui_running")
 	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
 elseif stridx(&shell, 'cmd.exe') != -1
 	" Vim in Windows Terminal
-	colors industry
+	colors noctu
 else
 	" Vim on Linux
 	colors wombat
@@ -82,6 +82,7 @@ set noerrorbells                   " No error sounds
 
 " UI Settings {{{
 syntax on                          " Show syntax colors
+set hidden                         " Allows hidden buffers
 set laststatus=2                   " Always show status line
 set relativenumber                 " By default, show line numbers relative to the cursor
 set textwidth=0                    " Disables auto line breaks
