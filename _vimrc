@@ -112,8 +112,8 @@ set gdefault                       " Use /g by default
 " Use very magic regex everywhere
 nnoremap / /\v
 vnoremap / /\v
-cnoremap %s/ %sm/
-cnoremap \>s/ \>sm/
+cnoremap %s/ %sm/\v
+cnoremap \>s/ \>sm/\v
 cnoremap g/ g/\v
 cnoremap g!/ g!/\v
 " }}}
