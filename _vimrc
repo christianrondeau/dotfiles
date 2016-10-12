@@ -46,6 +46,7 @@ Plugin 'Quramy/vim-js-pretty-template' " JavaScript/TypeScript HTML templates
 Plugin 'jason0x43/vim-js-indent'       " JavaScript/TypeScript Indentation
 Plugin 'PProvost/vim-ps1'              " PowerShell
 Plugin 'elzr/vim-json'                 " JSON
+Plugin 'christianrondeau/vim-base64'   " Base64 conversion
 " }}}
 
 " Vundle End {{{
