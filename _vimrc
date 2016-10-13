@@ -30,6 +30,7 @@ Plugin 'ervandew/supertab'                 " Omni complete w/ tab
 Plugin 'vim-airline/vim-airline'           " Improved status line
 Plugin 'krisajenkins/vim-pipe'             " Pipes buffer to something's stdin
 Plugin 'sjl/gundo.vim'                     " Show the undo tree
+Plugin 'christianrondeau/vim-base64'       " Base64 conversion
 
 " Language Servers
 Plugin 'Shougo/vimproc.vim' " Dependency (executes processes)
@@ -46,7 +47,6 @@ Plugin 'Quramy/vim-js-pretty-template' " JavaScript/TypeScript HTML templates
 Plugin 'jason0x43/vim-js-indent'       " JavaScript/TypeScript Indentation
 Plugin 'PProvost/vim-ps1'              " PowerShell
 Plugin 'elzr/vim-json'                 " JSON
-Plugin 'christianrondeau/vim-base64'   " Base64 conversion
 " }}}
 
 " Vundle End {{{
@@ -107,6 +107,7 @@ set cindent                        " Strict C-line indenting
 " }}}
 
 " Search Settings {{{
+let @/=""                          " Empty search on launch
 set incsearch                      " Show search result as you type
 set hlsearch                       " highlight all / search results
 set gdefault                       " Use /g by default
