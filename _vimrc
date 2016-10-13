@@ -149,6 +149,8 @@ vnoremap ; :
 nnoremap , ;
 vnoremap , ;
 nnoremap q; q:
+nnoremap <cr> <NOP>
+nnoremap <space> <NOP>
 " }}}
 
 " Remap enter (but not in autocomplete) {{{
