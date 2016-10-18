@@ -15,6 +15,10 @@ nnoremap Q q:
 set clipboard=unnamed
 " }}}
 
+" UI Settings {{{
+set scrolloff=4                    " Shows the next 4 lines after cursor when scrolling
+" }}}
+
 " Search Settings {{{
 set incsearch                      " Show search result as you type
 set hlsearch                       " highlight all / search results
