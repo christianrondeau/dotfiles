@@ -1,8 +1,8 @@
 " Custom Key Mappings {{{
-let mapleader = "\<Space>"
-let maplocalleader = "\\"
-" }}}
-
+ let mapleader = "\<Space>"
+ let maplocalleader = "\\"
+ " }}}
+ 
 " Shortcuts {{{
 nnoremap ; :
 nnoremap , ;
@@ -15,13 +15,7 @@ nnoremap Q q:
 set clipboard=unnamed
 " }}}
 
-" Persistent undo {{{
-set undodir=$HOME/.vim/undo
-" }}}
-
 " Search Settings {{{
-let @/=""                          " Empty search on launch
 set incsearch                      " Show search result as you type
 set hlsearch                       " highlight all / search results
-set gdefault                       " Use /g by default
 " }}}
