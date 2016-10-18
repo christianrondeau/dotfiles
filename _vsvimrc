@@ -17,6 +17,7 @@ set clipboard=unnamed
 
 " UI Settings {{{
 set scrolloff=4                    " Shows the next 4 lines after cursor when scrolling
+map <MiddleMouse> <nop>
 " }}}
 
 " Search Settings {{{
