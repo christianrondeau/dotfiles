@@ -1,5 +1,6 @@
 " Custom Key Mappings {{{
 let mapleader = "\<Space>"
+let maplocalleader = "\\"
 " }}}
 
 " Shortcuts {{{
@@ -7,6 +8,7 @@ nnoremap ; :
 nnoremap , ;
 nnoremap K i<CR><Esc> 
 nnoremap <leader>n :noh<CR>
+nnoremap Q q:
 " }}}
 
 " Clipboard {{{
