@@ -1,18 +1,26 @@
 " Custom Key Mappings {{{
-let mapleader = "\<Space>"
-" }}}
-
+ let mapleader = "\<Space>"
+ let maplocalleader = "\\"
+ " }}}
+ 
 " Shortcuts {{{
 nnoremap ; :
 nnoremap , ;
 nnoremap K i<CR><Esc> 
 nnoremap <leader>n :noh<CR>
+nnoremap Q q:
 " }}}
 
 " Clipboard {{{
 set clipboard=unnamed
 " }}}
 
-" Persistent undo {{{
-set undodir=$HOME/.vim/undo
+" UI Settings {{{
+set scrolloff=4                    " Shows the next 4 lines after cursor when scrolling
+map <MiddleMouse> <nop>
+" }}}
+
+" Search Settings {{{
+set incsearch                      " Show search result as you type
+set hlsearch                       " highlight all / search results
 " }}}
