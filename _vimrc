@@ -78,6 +78,7 @@ else
   set title 
   set titleold="" 
   set titlestring=VIM:\ %F
+	set mouse=a " Allows mouse when using SSH from Termux
 endif
 
 set visualbell t_vb=               " No screen flash (Android)
