@@ -262,6 +262,7 @@ augroup END
 augroup filetype_json
 	autocmd!
 	let b:vimpipe_command="python -m json.tool"
+	nnoremap <localleader>f :%!python -m json.tool<cr>
 augroup END
 " }}}
 
