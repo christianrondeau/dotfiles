@@ -31,6 +31,7 @@ Plugin 'vim-airline/vim-airline'           " Improved status line
 Plugin 'krisajenkins/vim-pipe'             " Pipes buffer to something's stdin
 Plugin 'sjl/gundo.vim'                     " Show the undo tree
 Plugin 'christianrondeau/vim-base64'       " Base64 conversion
+Plugin 'vim-scripts/ReplaceWithRegister'   " Paste and keep register
 
 " Language Servers
 Plugin 'Shougo/vimproc.vim' " Dependency (executes processes)
