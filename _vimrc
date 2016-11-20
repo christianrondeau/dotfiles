@@ -15,7 +15,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " Plugin manager
 " }}}
 
-" Plugins List {{{
 Plugin 'tpope/vim-fugitive'                " Git commands
 Plugin 'scrooloose/nerdtree'               " Tree explorer
 Plugin 'scrooloose/nerdcommenter'          " Comment
@@ -32,6 +31,7 @@ Plugin 'krisajenkins/vim-pipe'             " Pipes buffer to something's stdin
 Plugin 'sjl/gundo.vim'                     " Show the undo tree
 Plugin 'christianrondeau/vim-base64'       " Base64 conversion
 Plugin 'vim-scripts/ReplaceWithRegister'   " Paste and keep register
+Plugin 'christianrondeau/vim-loggly-search' " Search in  Loggly
 
 " Language Servers
 Plugin 'Shougo/vimproc.vim' " Dependency (executes processes)
@@ -51,7 +51,6 @@ Plugin 'elzr/vim-json'                 " JSON
 
 " Testing
 Plugin 'junegunn/vader.vim'            " Test runner
-" }}}
 
 " Vundle End {{{
 call vundle#end()
@@ -333,3 +332,10 @@ if has("win32")
 	cnoremap <F9> <c-c>:call TogglePowerShell()<cr>:
 endif
 " }}}
+
+" Machine Config {{{
+if filereadable(expand("~/.vimrc_private"))
+	source ~/.vimrc_private
+endif
+" }}}
+
