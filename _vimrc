@@ -186,7 +186,7 @@ nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gf :Ggr<Space>
 nnoremap <leader>ev :vsplit $HOME/.vim/_vimrc<CR>
-nnoremap <leader>sv :source %<CR>
+nnoremap <leader>sv :update | source %<CR>
 nnoremap <leader>u :GundoToggle<CR>
 " }}}
 
