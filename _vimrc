@@ -90,6 +90,7 @@ syntax on                          " Show syntax colors
 set hidden                         " Allows hidden buffers
 set laststatus=2                   " Always show status line
 set relativenumber                 " By default, show line numbers relative to the cursor
+set display=lastline               " Show wrapped last line, not just "@".
 set textwidth=0                    " Disables auto line breaks
 set showcmd                        " Show typed commands
 set scrolloff=2                    " Shows the next 2 lines after cursor when scrolling
