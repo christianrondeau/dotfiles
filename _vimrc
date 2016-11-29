@@ -181,6 +181,7 @@ nnoremap <silent> <leader>l :NERDTreeToggle<CR>
 nnoremap <silent> <leader>ll :NERDTreeFind<CR>
 nnoremap <silent> <leader>lq :NERDTreeClose<CR>
 nnoremap <silent> <leader>n :noh<CR>
+nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
