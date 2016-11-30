@@ -110,6 +110,7 @@ let &listchars="tab:\u203a\ ,trail:\u00b7,extends:\u21b2"
 set tabstop=2                      " Tab Width
 set shiftwidth=2                   " Controls ReIndent (`<<` and `>>`)
 set cindent                        " Strict C-line indenting
+set iskeyword-=-
 " }}}
 
 " Search Settings {{{
