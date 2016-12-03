@@ -101,6 +101,10 @@ Plugin 'christianrondeau/vim-loggly-search'
 " Run with `:Vader %`
 Plugin 'junegunn/vader.vim'
 
+" Follow links (paths & urls)
+" Run with `<leader>o`, back with `<c-o>`
+Plugin 'vim-scripts/utl.vim'
+
 " }}}
 
 " Plugins: Languages / Syntax {{{
@@ -129,30 +133,46 @@ filetype plugin indent on
 
 " }}}
 
-" Terminal Settings {{{
+" Terminal {{{
 
 if has("gui_running") 
-	" gVim
+	" Terminal: gVim {{{
+
 	au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
 	colors wombat
 	set lines=40 columns=140
 	set guifont=Hack:h11
 	set guioptions-=T " Hide toolbar
 	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
+
+	" }}}
 elseif stridx(&shell, 'cmd.exe') != -1
-	" Vim in Windows Terminal
+	" Terminal: Windows cmd {{{
+
 	colors noctu
+
+	" }}}
 else
-	" Vim on Linux
+	" Terminal: Linux bash {{{
+
 	colors wombat
 	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
-  set title 
-  set titleold="" 
-  set titlestring=VIM:\ %F
 	set mouse=a " Allows mouse when using SSH from Termux
+
+	" Vim on Termux
+	if stridx(expand('~/'), 'termux') != -1
+  		set title 
+  		set titleold="" 
+  		set titlestring=VIM:\ %F
+		let g:utl_cfg_hdl_scm_http = "silent !termux-open-url %u"
+		vnoremap <silent> <leader>y :w !termux-clipboard-set<CR><CR>
+
+	endif	
+
+	" }}}
 endif
 
-set visualbell t_vb=               " No screen flash (Android)
+set visualbell t_vb=               " No screen flash
 set noerrorbells                   " No error sounds
 
 " }}}
@@ -271,7 +291,7 @@ nnoremap <silent> <leader>l :NERDTreeToggle<CR>
 nnoremap <silent> <leader>ll :NERDTreeFind<CR>
 nnoremap <silent> <leader>lq :NERDTreeClose<CR>
 nnoremap <silent> <leader>n :noh<CR>
-nnoremap <silent> <lehttps://github.com/tpope/vim-fugitiveader>path :let @+ = expand("%:p")<CR>
+nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
@@ -281,6 +301,8 @@ nnoremap <leader>gf :Ggr<Space>
 nnoremap <leader>ev :vsplit $HOME/.vim/_vimrc<CR>
 nnoremap <leader>sv :update<CR>:source %<CR>
 nnoremap <leader>u :GundoToggle<CR>
+nnoremap <silent> <leader>o :Utl<CR>
+vnoremap <silent> <leader>o "*y:Utl openLink visual edit<CR>
 
 " }}}
 
