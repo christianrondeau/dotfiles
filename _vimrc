@@ -105,6 +105,10 @@ Plugin 'junegunn/vader.vim'
 " Run with `<leader>o`, back with `<c-o>`
 Plugin 'vim-scripts/utl.vim'
 
+" Follow links (paths & urls)
+" Run with `<leader>o`, back with `<c-o>`
+Plugin 'vimwiki/vimwiki'
+
 " }}}
 
 " Plugins: Languages / Syntax {{{
@@ -303,6 +307,7 @@ nnoremap <leader>sv :update<CR>:source %<CR>
 nnoremap <leader>u :GundoToggle<CR>
 nnoremap <silent> <leader>o :Utl<CR>
 vnoremap <silent> <leader>o "*y:Utl openLink visual edit<CR>
+nnoremap <silent> <leader>mru :CtrlPMRUFiles<CR>
 
 " }}}
 
@@ -383,6 +388,16 @@ augroup filetype_json
 augroup END
 
 " }}}
+
+" Languages: Vim Wiki {{{
+
+augroup filetype_vimwiki
+	autocmd!
+	autocmd FileType vimwiki nnoremap <silent><buffer> <leader>o <Plug>VimwikiFollowLink
+augroup END
+
+" }}}
+
 
 " Languages: All {{{
 
