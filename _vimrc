@@ -20,7 +20,7 @@ set rtp+=~/.vim/vimfiles
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " Plugin manager
 
-"   }}}
+" }}}
 
 " Plugins: Dependencies {{{
 
@@ -33,7 +33,7 @@ Plugin 'tomtom/tlib_vim'
 " Dependency for tsuquyomi
 Plugin 'Shougo/vimproc.vim'
 
-"    }}}
+" }}}
 
 " Plugins: Common {{{
 
@@ -194,6 +194,7 @@ set scrolloff=2                    " Shows the next 2 lines after cursor when sc
 set cursorline                     " Highlight the current line
 set showmode                       " Shows when in paste mode
 set showmatch                      " Highlight matching braces
+set wildmode=longest,list,full     " Bash-like, then cycle
 set wildmenu                       " Shows a menu when using Tab in command paths
 set list                           " Show whitespace
 " Set showbreak to '↪ '
@@ -201,6 +202,8 @@ let &showbreak="\u21aa "
 " Set listchars to '›', '·', '↲'
 let &listchars="tab:\u203a\ ,trail:\u00b7,extends:\u21b2"
 set foldlevelstart=99              " Open folds by default
+set splitbelow                     " Create splits below
+set splitright                     " Create vsplits on the right
 
 " }}}
 
