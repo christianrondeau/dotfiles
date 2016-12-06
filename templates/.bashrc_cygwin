@@ -21,6 +21,12 @@ ssh-add $HOME/.ssh/id_rsa
 
 # Configure often-used aliases
 alias posh="powershell -File "
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gca="git commit --amend"
+alias gp="git push"
+alias gu="git pull"
 
 # Configure GIT to use crlf everywhere but in ~/.vim
 function git () {
@@ -33,3 +39,9 @@ function git () {
             ;;
     esac
 }
+
+# GIT auto complete
+# curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+if [ -f ~/.git-completion.bash ]; then
+	. ~/.git-completion.bash
+fi
