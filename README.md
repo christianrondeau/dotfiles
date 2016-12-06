@@ -18,7 +18,7 @@ Checkout this repo with submodule: `git clone https://github.com/christianrondea
 1. Create a symlink to the `vimrc` file": `ln -s ~/.vim/_vimrc ~/.vimrc`
 1. Add the content of the [cygwin bashrc template](templates/.bashrc_cygwin) to `~/.bashrc`
 1. Start VIM and run `:PluginInstall`
-1. Fix all line breaks issues it created: ` cd ~/.vim/bundle; for D in */; do cd ~/.vim/bundle/$D; pwd; git checkout -- .; done`
+1. Fix all line breaks issues it created: `cd ~/.vim/bundle; for D in */; do cd ~/.vim/bundle/$D; pwd; git rm -rf --cached .; git reset --hard HEAD; done` (note: this is horrible, but I could not yet find a way to checkout files correctly from `:PluginInstall`)
 
 ## Termux-specific
 1. Build [vimproc.vim](https://github.com/Shougo/vimproc.vim) using `make -f make_android.mak` in the `~/vim/bundle/vimproc.vim` folder (if using TypeScript)
