@@ -108,7 +108,7 @@ Plugin 'junegunn/vader.vim'
 Plugin 'vim-scripts/utl.vim'
 
 " Follow links (paths & urls)
-" Run with `<leader>o`, back with `<c-o>`
+" Run with `<leader>ww`, follow link with <leader>wo, back with `<c-o>`
 Plugin 'vimwiki/vimwiki'
 
 " }}}
@@ -414,16 +414,6 @@ augroup END
 
 " }}}
 
-" Languages: Vim Wiki {{{
-
-augroup filetype_vimwiki
-	autocmd!
-	autocmd FileType vimwiki nnoremap <silent><buffer> <leader>o <Plug>VimwikiFollowLink
-augroup END
-
-" }}}
-
-
 " Languages: All {{{
 
 augroup DisableAutoCommentNewLines
@@ -523,6 +513,23 @@ let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#obsession#enabled = 0
 let g:airline#extensions#branch#format = 1
+
+" }}}
+
+" Vimwiki Settings {{{
+
+" Prevent CR override
+nnoremap łwf <Plug>VimwikiFollowLink
+nnoremap łws <Plug>VimwikiSplitLink
+nnoremap łwv <Plug>VimwikiVSplitLink
+nnoremap łwv <Plug>VimwikiTabnewLink
+vnoremap łwn <Plug>VimwikiNormalizeLinkVisualCR
+inoremap łwn VimwikiReturn
+
+augroup filetype_vimwiki
+	autocmd!
+	autocmd FileType vimwiki nnoremap <silent><buffer> <leader>wo <Plug>VimwikiFollowLink
+augroup END
 
 " }}}
 
