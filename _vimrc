@@ -33,6 +33,8 @@ Plugin 'tomtom/tlib_vim'
 " Dependency for tsuquyomi
 Plugin 'Shougo/vimproc.vim'
 
+Plugin 'tpope/vim-dispatch'
+
 " }}}
 
 " Plugins: Common {{{
@@ -128,6 +130,22 @@ Plugin 'OrangeT/vim-csharp'            " C#/Razor
 
 " }}}
 
+" Plugins: OmniSharp {{{
+
+let s:OmniSharp_enabled = 0
+if has("python") && has("win32") && filereadable("C:/Python27/python.exe") && filereadable(expand("~/.vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp") . ".exe")
+
+	" Requires:
+	" * Install Python 32 bit (match Vim): `choco install python2-x86_32`
+	" * Update `OmniSharp` submodules: `cd ~/.vim/bundle/omnisharp-vim` and `git submodule update --init --recursive`
+	" * Build the server with `cd server` and `msbuild`
+
+	let s:OmniSharp_enabled = 1
+	Plugin 'OmniSharp/omnisharp-vim'
+endif
+
+" }}}
+
 " Plugins: Vundle End {{{
 
 call vundle#end()
@@ -193,7 +211,11 @@ set showcmd                        " Show typed commands
 set scrolloff=2                    " Shows the next 2 lines after cursor when scrolling
 set cursorline                     " Highlight the current line
 set showmode                       " Shows when in paste mode
-set showmatch                      " Highlight matching braces
+if s:OmniSharp_enabled
+	set noshowmatch                  " Disabled for OmniSharp
+else
+	set showmatch                    " Highlight matching braces
+endif
 set wildmode=longest,list,full     " Bash-like, then cycle
 set wildmenu                       " Shows a menu when using Tab in command paths
 set list                           " Show whitespace
@@ -443,6 +465,51 @@ let g:syntastic_typescript_checkers = ['tsuquyomi']
 " Omni Settings {{{
 
 set completeopt=longest,menuone
+
+" }}}
+
+" OmniSharp Settings {{{
+
+if s:OmniSharp_enabled
+
+	" OmniSharp
+	let g:OmniSharp_server_type = 'roslyn'
+
+	" CtrlP
+	let g:OmniSharp_selector_ui = 'ctrlp'
+
+	" SuperTab
+	let g:SuperTabDefaultCompletionType = 'context'
+	let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+	let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
+	let g:SuperTabClosePreviewOnPopupClose = 1
+
+	" Syntastic
+	let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
+
+	augroup omnisharp_commands
+		autocmd!
+
+		" File Settings
+		autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+		autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+		autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+		autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+		" Shortcuts
+		autocmd FileType cs nnoremap <localleader>b :wa!<cr>:OmniSharpBuildAsync<cr>
+		autocmd FileType cs nnoremap <localleader>rr :OmniSharpRename<cr>
+		autocmd FileType cs nnoremap <localleader>gd :OmniSharpGotoDefinition<cr>
+		autocmd FileType cs nnoremap <localleader>gi :OmniSharpFindImplementations<cr>
+		autocmd FileType cs nnoremap <localleader>t :OmniSharpFindType<cr>
+		autocmd FileType cs nnoremap <localleader>ts :OmniSharpFindSymbol<cr>
+		autocmd FileType cs nnoremap <localleader>gu :OmniSharpFindUsages<cr>
+		autocmd FileType cs nnoremap <localleader><localleader> :OmniSharpGetCodeActions<cr>
+		autocmd FileType cs vnoremap <localleader><localleader> :call OmniSharp#GetCodeActions('visual')<cr>
+
+	augroup END
+
+endif
 
 " }}}
 
