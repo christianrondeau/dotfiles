@@ -186,16 +186,28 @@ Plugin 'OrangeT/vim-csharp'            " C#/Razor
 
 " Plugins: OmniSharp {{{
 
-let s:OmniSharp_enabled = 0
-if has("python") && has("win32") && filereadable("C:/Python27/python.exe") && filereadable(expand("~/.vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp") . ".exe")
-
 	" Requires:
 	" * Install Python 32 bit (match Vim): `choco install python2-x86_32`
 	" * Update `OmniSharp` submodules: `cd ~/.vim/bundle/omnisharp-vim` and `git submodule update --init --recursive`
-	" * Build the server with `cd server` and `msbuild`
+	" * Build the server with `cd server` and `msbuild` on Windows, or `cd roslyn` and `build.sh` on Linux
 
-	let s:OmniSharp_enabled = 1
+let s:OmniSharp_enabled = 0
+if has("python") && has("win32") && filereadable("C:/Python27/python.exe")
+
 	Plugin 'OmniSharp/omnisharp-vim'
+
+	if filereadable(expand("~/.vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp") . ".exe")
+		let s:OmniSharp_enabled = 1
+	endif
+
+elseif has("python") && has("unix")
+
+	Plugin 'OmniSharp/omnisharp-vim'
+
+	if filereadable(expand("~/.vim/bundle/omnisharp-vim/omnisharp-roslyn/src/OmniSharp/bin/Release/netcoreapp1.0/linux-x64/OmniSharp") . ".exe")
+		let s:OmniSharp_enabled = 1
+	endif
+
 endif
 
 " }}}
@@ -484,7 +496,9 @@ set completeopt=longest,menuone
 if s:OmniSharp_enabled
 
 	" OmniSharp
-	let g:OmniSharp_server_type = 'roslyn'
+	if has("unix")
+		let g:OmniSharp_server_type = 'roslyn'
+	endif
 
 	" CtrlP
 	let g:OmniSharp_selector_ui = 'ctrlp'
