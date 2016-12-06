@@ -70,7 +70,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 if has("win32unix")
-	let g:vundle#bundle_dir = "c:/cygwin64/home/" . $USER . ".vim/bundle"
+	let g:vundle#bundle_dir = "c:/cygwin64/home/" . $USER . "/.vim/bundle"
 endif
 Plugin 'VundleVim/Vundle.vim' " Plugin manager
 
