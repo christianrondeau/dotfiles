@@ -9,6 +9,58 @@ set encoding=utf-8
 
 " }}}
 
+" Terminal {{{
+
+let s:term = ''
+set rtp+=~/.vim/vimfiles
+if has("gui_running") 
+	" Terminal: gVim {{{
+
+	let s:term = 'gvim'
+	au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
+	colors wombat
+	set lines=40 columns=140
+	set guifont=Hack:h11
+	set guioptions-=T " Hide toolbar
+	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
+
+	" }}}
+elseif stridx(&shell, 'cmd.exe') != -1
+	" Terminal: Windows cmd {{{
+
+	let s:term = 'cmd'
+	colors noctu
+
+	" }}}
+else
+	" Terminal: Linux bash {{{
+
+	colors wombat
+	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
+	set mouse=a " Allows mouse when using SSH from Termux
+
+	" Vim on Termux
+	if stridx(expand('~/'), 'termux') != -1
+
+		let s:term = 'termux'
+  	set title 
+  	set titleold="" 
+  	set titlestring=VIM:\ %F
+
+	else
+
+		let s:term = 'bash'
+		'
+	endif	
+
+	" }}}
+endif
+
+set visualbell t_vb=               " No screen flash
+set noerrorbells                   " No error sounds
+
+" }}}
+
 " Plugins {{{
 
 " Plugins: Vundle Setup {{{
@@ -16,7 +68,6 @@ set encoding=utf-8
 filetype on
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=~/.vim/vimfiles
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " Plugin manager
 
@@ -155,50 +206,6 @@ filetype plugin indent on
 
 " }}}
 
-" Terminal {{{
-
-if has("gui_running") 
-	" Terminal: gVim {{{
-
-	au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
-	colors wombat
-	set lines=40 columns=140
-	set guifont=Hack:h11
-	set guioptions-=T " Hide toolbar
-	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
-
-	" }}}
-elseif stridx(&shell, 'cmd.exe') != -1
-	" Terminal: Windows cmd {{{
-
-	colors noctu
-
-	" }}}
-else
-	" Terminal: Linux bash {{{
-
-	colors wombat
-	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
-	set mouse=a " Allows mouse when using SSH from Termux
-
-	" Vim on Termux
-	if stridx(expand('~/'), 'termux') != -1
-  		set title 
-  		set titleold="" 
-  		set titlestring=VIM:\ %F
-		let g:utl_cfg_hdl_scm_http = "silent !termux-open-url %u"
-		vnoremap <silent> <leader>y :w !termux-clipboard-set<CR><CR>
-
-	endif	
-
-	" }}}
-endif
-
-set visualbell t_vb=               " No screen flash
-set noerrorbells                   " No error sounds
-
-" }}}
-
 " UI Settings {{{
 
 syntax on                          " Show syntax colors
@@ -315,8 +322,7 @@ set pastetoggle=<F2>
 
 " Mappings: Leader shortcuts {{{
 
-nnoremap <silent> <leader>w <C-W>w
-nnoremap <silent> <leader>l :NERDTreeToggle<CR>
+nnoremap <silent> <leader>lo :NERDTreeToggle<CR>
 nnoremap <silent> <leader>ll :NERDTreeFind<CR>
 nnoremap <silent> <leader>lq :NERDTreeClose<CR>
 nnoremap <silent> <leader>n :noh<CR>
@@ -333,6 +339,11 @@ nnoremap <leader>u :GundoToggle<CR>
 nnoremap <silent> <leader>o :Utl<CR>
 vnoremap <silent> <leader>o "*y:Utl openLink visual edit<CR>
 nnoremap <silent> <leader>mru :CtrlPMRUFiles<CR>
+if s:term == "termux"
+	vnoremap <leader>y y:call system('termux-clipboard-set', @")<CR><CR>
+else
+	vnoremap <silent> <leader>y "+y
+endif
 
 " }}}
 
@@ -537,6 +548,12 @@ augroup filetype_vimwiki
 	autocmd!
 	autocmd FileType vimwiki nnoremap <silent><buffer> <leader>wo <Plug>VimwikiFollowLink
 augroup END
+
+" }}}
+
+" UTL Settings {{{
+
+let g:utl_cfg_hdl_scm_http = "silent !termux-open-url %u"
 
 " }}}
 
