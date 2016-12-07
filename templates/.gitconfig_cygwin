@@ -1,6 +1,10 @@
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+  tool = diffconflicts
 [mergetool]
 	prompt = false
 	keepBackup = false
+	trustExitCode = true
+[mergetool "diffconflicts"]
+	cmd = "~/.vim/.bin/diffconflicts vim $BASE $LOCAL $REMOTE $MERGED"
+[core]
+	autocrlf = true
