@@ -69,9 +69,6 @@ filetype on
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-if has("win32unix")
-	let g:vundle#bundle_dir = "c:/cygwin64/home/" . $USER . "/.vim/bundle"
-endif
 Plugin 'VundleVim/Vundle.vim' " Plugin manager
 
 " }}}
@@ -457,7 +454,7 @@ augroup END
 set wildignore+=*/tmp/*,*.swp,*.zip,*.dll,*.exe,*.map
 let g:ctrlp_root_markers = ['package.json']
 let g:ctrlp_custom_ignore = {
-			\ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj|dist|out)$',
+			\ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj|dist|out|undo)$',
 			\ 'file': '\v\.(exe|dll|map)$',
 			\ }
 

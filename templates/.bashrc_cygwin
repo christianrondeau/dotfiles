@@ -6,7 +6,8 @@ export PATH=${PATH}:"/cygdrive/c/WINDOWS/system32/WindowsPowerShell/v1.0"
 export PATH=${PATH}:"$APPDATA/npm"
 
 # Use Windows' GIT, but Cygwin's SSH
-export VIM="$HOME/.vim"
+export VIM="C:/cygwin64/$HOME/.vim"
+export GIT_CONFIG="C:/cygwin64/$HOME/.gitconfig"
 export GIT_SSH="C:/cygwin64/bin/ssh.exe"
 export GIT_EDITOR="C:/cygwin64/bin/vim.exe"
 
