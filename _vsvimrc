@@ -6,6 +6,10 @@ set cursorline
 set noexpandtab
 " }}}
 
+" VsVim {{{
+set vsvim_cleanmacros
+" }}}
+
 " Custom Key Mappings {{{
  let mapleader = "\<Space>"
  let maplocalleader = "\\"
