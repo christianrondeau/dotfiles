@@ -357,8 +357,10 @@ vnoremap <silent> <leader>o "*y:Utl openLink visual edit<CR>
 nnoremap <silent> <leader>mru :CtrlPMRUFiles<CR>
 if s:term == "termux"
 	vnoremap <leader>y y:call system('termux-clipboard-set', @")<CR><CR>
+	nnoremap <silent><leader>p :set paste \| exe "read! termux-clipboard-get" \| set nopaste<CR>
 else
 	vnoremap <silent> <leader>y "+y
+	nnoremap <silent> <leader>p :set paste<CR>"+p:set nopaste<CR>
 endif
 
 " }}}
