@@ -6,13 +6,13 @@
 set nocompatible
 scriptencoding utf-8
 set encoding=utf-8
+set rtp+=~/.vim/vimfiles
 
 " }}}
 
 " Terminal {{{
 
 let s:term = ''
-set rtp+=~/.vim/vimfiles
 if has("gui_running") 
 	" Terminal: gVim {{{
 
@@ -67,28 +67,31 @@ set noerrorbells                   " No error sounds
 
 " Plugins {{{
 
-" Plugins: Vundle Setup {{{
+" Plugins: vim-plug setup {{{
 
-filetype on
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim' " Plugin manager
+" vim-plug allows installing, updating plugins.
+" Usage: :PlugInstall, :PlugUpdate and :PlugUpgrade
+call plug#begin("~/.vim/bundle")
 
 " }}}
 
 " Plugins: Dependencies {{{
 
 " Dependency for SnipMate
-Plugin 'MarcWeber/vim-addon-mw-utils'
+Plug 'MarcWeber/vim-addon-mw-utils'
 
 " Dependency for SnipMate
-Plugin 'tomtom/tlib_vim'
+Plug 'tomtom/tlib_vim'
 
 " Dependency for tsuquyomi
-Plugin 'Shougo/vimproc.vim'
+if has("unix")
+	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+else
+	" Download DLL files from: https://github.com/Shougo/vimproc.vim/releases
+	Plug 'Shougo/vimproc.vim'
+endif
 
-Plugin 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch'
 
 " }}}
 
@@ -96,92 +99,110 @@ Plugin 'tpope/vim-dispatch'
 
 " Git commands
 " Use `<leader>gc` to commit, `gs` to stage, `gp` to push, `gu` to update
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Tree explorer
 " Use `<leader>ll` to open/close tree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
 " Comment shortcuts
 " Use `<leader>cc` to comment, `<leader>cu` to uncomment
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " CTRL+P shortcut to fuzzy find files
 " Use `<c-p>` for fuzzy search, `<c-b>` for buffers search
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Snippets
 " see ~/.vim/snippets, use `<Tab>` like autocomplete
-Plugin 'garbas/vim-snipmate'
+Plug 'garbas/vim-snipmate'
 
 " Operations for quotes, parenthesis
 " Use `cs"'` to replace `"`" by `'`, or `cs"<p>` for tags
 " Use `ds(` to delete parenthesis, etc.
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Align columns
 " Run `:Tabularize /<char>` to align text blocks
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 
 " Switch from/to absolute line numbers
 " Absolute when unfocused, relative when focused
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Omni complete w/ tab
 " Simply use `<Tab>` to autocomplete
-Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
 " Improved status line
-Plugin 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 
 " Pipes buffer to something's stdin
 " See b:vimpipe_command for usages
-Plugin 'krisajenkins/vim-pipe'
+Plug 'krisajenkins/vim-pipe'
 
 " Show the undo tree
 " Use `<leader>u` to open tree
-Plugin 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim'
 
 " Base64 conversion
 " Use `<leader>btoa` or `<leader>atob` on visually selected text
-Plugin 'christianrondeau/vim-base64'
+Plug 'christianrondeau/vim-base64'
 
 " Paste and keep register
 " Use `gr` to replace visually selected text
-Plugin 'vim-scripts/ReplaceWithRegister'
+Plug 'vim-scripts/ReplaceWithRegister'
 
 " Search in  Loggly
 " Use <leader>loggly to search
-Plugin 'christianrondeau/vim-loggly-search'
+Plug 'christianrondeau/vim-loggly-search'
 
 " Automated vimscript tests
 " Run with `:Vader %`
-Plugin 'junegunn/vader.vim'
+Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
 
 " Follow links (paths & urls)
 " Run with `<leader>o`, back with `<c-o>`
-Plugin 'vim-scripts/utl.vim'
+Plug 'vim-scripts/utl.vim'
 
 " Follow links (paths & urls)
 " Run with `<leader>ww`, follow link with <leader>wo, back with `<c-o>`
-Plugin 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
+
+" Base plugin for syntax check
+Plug 'scrooloose/syntastic'
+
 
 " }}}
 
 " Plugins: Languages / Syntax {{{
 
-Plugin 'Quramy/tsuquyomi'              " TypeScript Language Server
+" Markdown
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
-Plugin 'scrooloose/syntastic'          " Base plugin for syntax check
+" JavaScript
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
-Plugin 'plasticboy/vim-markdown'       " Markdown
-Plugin 'pangloss/vim-javascript'       " JavaScript
-Plugin 'leafgarland/typescript-vim'    " TypeScript
-Plugin 'Quramy/vim-js-pretty-template' " JavaScript/TypeScript HTML templates
-Plugin 'jason0x43/vim-js-indent'       " JavaScript/TypeScript Indentation
-Plugin 'PProvost/vim-ps1'              " PowerShell
-Plugin 'elzr/vim-json'                 " JSON
-Plugin 'OrangeT/vim-csharp'            " C#/Razor
+" TypeScript Language Server
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+
+" TypeScript
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+
+" JavaScript/TypeScript HTML templates
+Plug 'Quramy/vim-js-pretty-template', { 'for': ['javascript', 'typescript'] }
+
+" JavaScript/TypeScript Indentation
+Plug 'jason0x43/vim-js-indent', { 'for': ['javascript', 'typescript'] }
+
+" JSON
+Plug 'elzr/vim-json', { 'for': 'json' }
+
+" PowerShell
+Plug 'PProvost/vim-ps1', { 'for': 'powershell' }
+
+" C#/Razor
+Plug 'OrangeT/vim-csharp', { 'for': ['csharp', 'razor'] }
 
 " }}}
 
@@ -192,31 +213,22 @@ Plugin 'OrangeT/vim-csharp'            " C#/Razor
 	" * Update `OmniSharp` submodules: `cd ~/.vim/bundle/omnisharp-vim` and `git submodule update --init --recursive`
 	" * Build the server with `cd server` and `msbuild` on Windows, or `cd roslyn` and `build.sh` on Linux
 
-let s:OmniSharp_enabled = 0
-if has("python") && has("win32") && filereadable("C:/Python27/python.exe")
-
-	Plugin 'OmniSharp/omnisharp-vim'
-
-	if filereadable(expand("~/.vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp") . ".exe")
-		let s:OmniSharp_enabled = 1
-	endif
-
-elseif has("python") && has("unix")
-
-	Plugin 'OmniSharp/omnisharp-vim'
-
-	if filereadable(expand("~/.vim/bundle/omnisharp-vim/omnisharp-roslyn/src/OmniSharp/bin/Release/netcoreapp1.0/linux-x64/OmniSharp") . ".exe")
-		let s:OmniSharp_enabled = 1
-	endif
-
+if has("python") && has("win32") && filereadable("C:/Python27/python.exe") && filereadable(expand("~/.vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp") . ".exe")
+	let s:OmniSharp_enabled = 1
+elseif has("python") && has("unix") && filereadable(expand("~/.vim/bundle/omnisharp-vim/omnisharp-roslyn/src/OmniSharp/bin/Release/netcoreapp1.0/linux-x64/OmniSharp") . ".exe")
+	let s:OmniSharp_enabled = 1
+else
+	let s:OmniSharp_enabled = 0
 endif
+
+let OmniSharp_plugcfg = (s:OmniSharp_enabled ? { 'for': ['csharp', 'razor'] } : { 'on': [] })
+Plug 'OmniSharp/omnisharp-vim', OmniSharp_plugcfg
 
 " }}}
 
-" Plugins: Vundle End {{{
+" Plugins: vim-plug end {{{
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
 " }}}
 
@@ -224,7 +236,6 @@ filetype plugin indent on
 
 " UI Settings {{{
 
-syntax on                          " Show syntax colors
 set hidden                         " Allows hidden buffers
 set laststatus=2                   " Always show status line
 set relativenumber                 " By default, show line numbers relative to the cursor
@@ -350,7 +361,6 @@ nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gf :Ggr<Space>
 nnoremap <leader>ev :e $HOME/.vim/_vimrc<CR>
-nnoremap <leader>sv :update<CR>:source %<CR>
 nnoremap <leader>u :GundoToggle<CR>
 nnoremap <silent> <leader>o :Utl<CR>
 vnoremap <silent> <leader>o "*y:Utl openLink visual edit<CR>
@@ -384,6 +394,8 @@ augroup filetype_vim
 	autocmd FileType vim setlocal foldmethod=marker
 	" Close folds by default
 	autocmd FileType vim setlocal foldlevel=0
+	" Save and run current script
+	nnoremap <leader>sv :update<CR>:source %<CR>
 augroup END
 
 " }}}
