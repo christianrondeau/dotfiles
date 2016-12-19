@@ -511,7 +511,7 @@ set completeopt=longest,menuone
 if s:OmniSharp_enabled
 
 	" OmniSharp
-	if has("unix")
+	if has("unix") && !has("win32unix")
 		let g:OmniSharp_server_type = 'roslyn'
 	endif
 
