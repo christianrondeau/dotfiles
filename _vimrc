@@ -226,6 +226,12 @@ Plug 'OmniSharp/omnisharp-vim', OmniSharp_plugcfg
 
 " }}}
 
+" Plugins: Fun & Games {{{
+
+Plug 'christianrondeau/vimcastle'
+
+" }}}
+
 " Plugins: vim-plug end {{{
 
 call plug#end()
