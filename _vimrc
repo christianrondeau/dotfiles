@@ -263,9 +263,37 @@ set list                           " Show whitespace
 let &showbreak="\u21aa "
 " Set listchars to '›', '·', '↲'
 let &listchars="tab:\u203a\ ,trail:\u00b7,extends:\u21b2"
-set foldlevelstart=99              " Open folds by default
 set splitbelow                     " Create splits below
 set splitright                     " Create vsplits on the right
+
+" UI Settings - Folding {{{
+
+set foldlevelstart=99              " Open folds by default
+set foldtext=CustomFoldText()
+
+function! CustomFoldText()
+	"get first non-blank line
+	let fs = v:foldstart
+	while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+	endwhile
+	if fs > v:foldend
+		let line = getline(v:foldstart)
+	else
+		let line = getline(fs)
+		let line = substitute(line, '{{{', '', 'g')
+		let line = substitute(line, '^" ', '', 'g')
+		" let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+	endif
+
+	let foldLevelStr = repeat("+", v:foldlevel)
+	let foldSize = 1 + v:foldend - v:foldstart
+	let foldSizeStr = foldSize . " lines"
+	return line . " {{{ " . foldLevelStr . " " . foldSizeStr . " }}}"
+endfunction
+
+" }}}
+
+" }}}
 
 " }}}
 
