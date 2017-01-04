@@ -334,6 +334,8 @@ set nolazyredraw                   " Avoids redrawing when running macros
 
 set undofile
 set undodir=$HOME/.vim/undo
+set backupdir=$TEMP,$TMP,.
+set directory=$TEMP,$TMP,.
 
 set undolevels=100
 set undoreload=10000
