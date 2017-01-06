@@ -313,6 +313,7 @@ let @/=""                          " Empty search on launch
 set incsearch                      " Show search result as you type
 set hlsearch                       " highlight all / search results
 set gdefault                       " Use /g by default
+set noignorecase                   " Make regex case sensitive (\C)
 " Use very magic regex everywhere
 nnoremap / /\v
 vnoremap / /\v
