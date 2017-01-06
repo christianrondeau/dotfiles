@@ -199,7 +199,7 @@ Plug 'jason0x43/vim-js-indent', { 'for': ['javascript', 'typescript'] }
 Plug 'elzr/vim-json', { 'for': 'json' }
 
 " PowerShell
-Plug 'PProvost/vim-ps1', { 'for': 'powershell' }
+Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 
 " C#/Razor
 Plug 'OrangeT/vim-csharp', { 'for': ['csharp', 'razor'] }
@@ -335,6 +335,8 @@ set nolazyredraw                   " Avoids redrawing when running macros
 
 set undofile
 set undodir=$HOME/.vim/undo
+set backupdir=$TEMP,$TMP,.
+set directory=$TEMP,$TMP,.
 
 set undolevels=100
 set undoreload=10000
