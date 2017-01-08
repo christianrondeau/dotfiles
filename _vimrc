@@ -391,6 +391,7 @@ nnoremap <silent> <leader>ll :NERDTreeFind<CR>
 nnoremap <silent> <leader>lq :NERDTreeClose<CR>
 nnoremap <silent> <leader>n :noh<CR>
 nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
+nnoremap <leader>g <NOP>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
@@ -432,6 +433,7 @@ augroup filetype_vim
 	" Close folds by default
 	autocmd FileType vim setlocal foldlevel=0
 	" Save and run current script
+	nnoremap <leader>s <NOP>
 	nnoremap <leader>sv :update<CR>:source %<CR>
 augroup END
 
