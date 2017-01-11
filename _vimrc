@@ -172,6 +172,9 @@ Plug 'vimwiki/vimwiki'
 " Base plugin for syntax check
 Plug 'scrooloose/syntastic'
 
+" Sums a list of numbers
+" Run with `<leader>su`
+Plug 'vim-scripts/visSum.vim'
 
 " }}}
 
