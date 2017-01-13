@@ -101,6 +101,10 @@ Plug 'tpope/vim-dispatch'
 " Use `<leader>gc` to commit, `gs` to stage, `gp` to push, `gu` to update
 Plug 'tpope/vim-fugitive'
 
+" Git browser
+" Use `<leader>gb` to open, `<leader>gh` for revisions only
+Plug 'junegunn/gv.vim'
+
 " Tree explorer
 " Use `<leader>ll` to open/close tree
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -401,6 +405,8 @@ nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gf :Ggr<Space>
+nnoremap <leader>gb :GV<CR>
+nnoremap <leader>gr :GV!<CR>
 nnoremap <leader>ev :e $HOME/.vim/_vimrc<CR>
 nnoremap <leader>u :GundoToggle<CR>
 nnoremap <silent> <leader>o :Utl<CR>
