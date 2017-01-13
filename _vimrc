@@ -625,6 +625,10 @@ augroup END
 
 " }}}
 
+" Vader Settings {{{
+command! -bang -nargs=* -range -complete=file Test exec '<line1>,<line2>Vader<bang>' <q-args> | cclose
+" }}}
+
 " UTL Settings {{{
 
 let g:utl_cfg_hdl_scm_http = "silent !termux-open-url %u"
