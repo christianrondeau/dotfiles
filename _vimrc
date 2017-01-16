@@ -672,3 +672,25 @@ endif
 
 " }}}
 
+" Utilities {{{
+
+" Compare JSON in tests {{{
+function! Utils_comparejsonintest()
+	" Expected buffer
+	e nunit_expected
+	" Paste
+	normal! "+pgg0
+	" Keep only 1st object, put 2nd in register
+	exec "normal! d/{\<cr>%lxjdG"
+	" Actual buffer
+	vsplit nunit_actual
+	" Paste
+	normal! Vp0
+	" Remove everything else
+	normal! dt{%lvG$x
+	" Run diff on both buffers
+	windo diffthis
+endfunction
+" }}}
+
+" }}}
