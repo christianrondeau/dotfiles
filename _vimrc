@@ -690,6 +690,8 @@ function! Utils_comparejsonintest()
 	normal! dt{%lvG$x
 	" Run diff on both buffers
 	windo diffthis
+	" Alloq quick quit with `q`
+	nnoremap q :qa!<CR>
 endfunction
 " }}}
 
