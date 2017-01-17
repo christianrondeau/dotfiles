@@ -20,7 +20,7 @@ nnoremap ; :
 nnoremap , ;
 nnoremap K i<CR><Esc> 
 nnoremap <leader>n :noh<CR>
-nnoremap gr p
+vnoremap gr p
 " }}}
 
 " Clipboard {{{
