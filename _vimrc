@@ -138,6 +138,10 @@ Plug 'sjl/gundo.vim'
 " Use <C-n> to move to next occurence of word
 Plug 'vim-multiple-cursors'
 
+" Search using The Silver Searcher (Ag)
+" Use <C-f> to search
+Plug 'dyng/ctrlsf.vim'
+
 " Automatically remove the search highlight when moving cursor
 Plug 'junegunn/vim-slash'
 
@@ -423,31 +427,11 @@ nnoremap <space> <NOP>
 inoremap jk <Esc>
 nnoremap K i<CR><Esc> 
 set pastetoggle=<F2>
-
-" }}}
-
-" Mappings: Leader shortcuts {{{
-
-nnoremap <silent> <leader>lo :NERDTreeToggle<CR>
-nnoremap <silent> <leader>ll :NERDTreeFind<CR>
-nnoremap <silent> <leader>lq :NERDTreeClose<CR>
-nnoremap <silent> <leader>n :noh<CR>
+inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
 nnoremap <silent> <leader>cd :cd %:p:h<CR>
+nnoremap <silent> <leader>n :noh<CR>
 nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
-nnoremap <leader>g <NOP>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit<CR>i
-nnoremap <leader>gp :Gpush<CR>
-nnoremap <leader>gu :Gpull<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gf :Ggr<Space>
-nnoremap <leader>gb :GV<CR>
-nnoremap <leader>gr :GV!<CR>
 nnoremap <leader>ev :e $HOME/.vim/_vimrc<CR>
-nnoremap <leader>u :GundoToggle<CR>
-nnoremap <silent> <leader>o :Utl<CR>
-vnoremap <silent> <leader>o "*y:Utl openLink visual edit<CR>
-nnoremap <silent> <leader>mru :CtrlPMRUFiles<CR>
 if s:term == "termux"
 	vnoremap <leader>y y:call system('termux-clipboard-set', @")<CR><CR>
 	nnoremap <silent><leader>p :set paste \| exe "read! termux-clipboard-get" \| set nopaste<CR>
@@ -458,10 +442,52 @@ endif
 
 " }}}
 
-" Mappings: Ctrl shortcuts {{{
+" Mappings: NERDTree Shortcuts {{{
+
+nnoremap <silent> <leader>lo :NERDTreeToggle<CR>
+nnoremap <silent> <leader>ll :NERDTreeFind<CR>
+nnoremap <silent> <leader>lq :NERDTreeClose<CR>
+
+" }}}
+
+" Mappings: Fugitive Shortcuts {{{
+
+nnoremap <leader>g <NOP>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>i
+nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gu :Gpull<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gf :Ggr<Space>
+nnoremap <leader>gb :GV<CR>
+nnoremap <leader>gr :GV!<CR>
+
+" }}}
+
+" Mappings: Gundo Shortcuts {{{
+
+nnoremap <leader>u :GundoToggle<CR>
+
+" }}}
+
+" Mappings: Utl Shortcuts {{{
+
+nnoremap <silent> <leader>o :Utl<CR>
+vnoremap <silent> <leader>o "*y:Utl openLink visual edit<CR>
+
+" }}}
+
+" Mappings: CtrlP shortcuts {{{
 
 noremap <C-b> :CtrlPBuffer<CR>
-inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
+nnoremap <silent> <leader>mru :CtrlPMRUFiles<CR>
+
+" }}}
+
+" Mappings: Ctrlsf (Ag) Shortcuts {{{
+
+nnoremap <C-f> <Plug>CtrlSFPrompt
+vnoremap <C-f> <Plug>CtrlSFVwordExec
 
 " }}}
 
@@ -556,9 +582,20 @@ augroup END
 set wildignore+=*/tmp/*,*.swp,*.zip,*.dll,*.exe,*.map
 let g:ctrlp_root_markers = ['package.json']
 let g:ctrlp_custom_ignore = {
-			\ 'dir':  '\v[\/](\.git|node_modules|typings|[Bb]in|[Oo]bj|dist|out|undo)$',
+			\ 'dir':  '\v[\/](\.git|node_modules|typings|vim80|bundle|[Bb]in|[Oo]bj|dist|out|undo)$',
 			\ 'file': '\v\.(exe|dll|map)$',
 			\ }
+
+" }}}
+
+" Ctrlsf (Ag) Settings {{{
+
+let g:ctrlsf_default_root = 'project'
+
+let g:ctrlsf_mapping = {
+    \ "next": "n",
+    \ "prev": "N",
+    \ }
 
 " }}}
 
