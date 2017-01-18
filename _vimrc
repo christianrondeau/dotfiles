@@ -408,6 +408,7 @@ nnoremap <space> <NOP>
 
 " Mappings: Custom shortcuts {{{
 
+inoremap jk <Esc>
 nnoremap K i<CR><Esc> 
 set pastetoggle=<F2>
 
@@ -419,6 +420,7 @@ nnoremap <silent> <leader>lo :NERDTreeToggle<CR>
 nnoremap <silent> <leader>ll :NERDTreeFind<CR>
 nnoremap <silent> <leader>lq :NERDTreeClose<CR>
 nnoremap <silent> <leader>n :noh<CR>
+nnoremap <silent> <leader>cd :cd %:p:h<CR>
 nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
 nnoremap <leader>g <NOP>
 nnoremap <leader>gs :Gstatus<CR>
