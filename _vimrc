@@ -95,7 +95,7 @@ Plug 'tpope/vim-dispatch'
 
 " }}}
 
-" Plugins: Common {{{
+" Plugins: Git {{{
 
 " Git commands
 " Use `<leader>gc` to commit, `gs` to stage, `gp` to push, `gu` to update
@@ -105,17 +105,39 @@ Plug 'tpope/vim-fugitive'
 " Use `<leader>gb` to open, `<leader>gh` for revisions only
 Plug 'junegunn/gv.vim'
 
+" }}}
+
+" Plugins: User Interface Addons {{{
+
 " Tree explorer
 " Use `<leader>ll` to open/close tree
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
-" Comment shortcuts
-" Use `<leader>cc` to comment, `<leader>cu` to uncomment
-Plug 'scrooloose/nerdcommenter'
-
 " CTRL+P shortcut to fuzzy find files
 " Use `<c-p>` for fuzzy search, `<c-b>` for buffers search
 Plug 'ctrlpvim/ctrlp.vim'
+
+" Switch from/to absolute line numbers
+" Absolute when unfocused, relative when focused
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
+" Improved status line
+Plug 'vim-airline/vim-airline'
+
+" Show the undo tree
+" Use `<leader>u` to open tree
+Plug 'sjl/gundo.vim'
+
+" Automatically remove the search highlight when moving cursor
+Plug 'junegunn/vim-slash'
+
+" }}}
+
+" Plugins: Text Processing {{{
+
+" Comment shortcuts
+" Use `<leader>cc` to comment, `<leader>cu` to uncomment
+Plug 'scrooloose/nerdcommenter'
 
 " Snippets
 " see ~/.vim/snippets, use `<Tab>` like autocomplete
@@ -130,24 +152,9 @@ Plug 'tpope/vim-surround'
 " Run `:Tabularize /<char>` to align text blocks
 Plug 'godlygeek/tabular'
 
-" Switch from/to absolute line numbers
-" Absolute when unfocused, relative when focused
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-
 " Omni complete w/ tab
 " Simply use `<Tab>` to autocomplete
 Plug 'ervandew/supertab'
-
-" Improved status line
-Plug 'vim-airline/vim-airline'
-
-" Pipes buffer to something's stdin
-" See b:vimpipe_command for usages
-Plug 'krisajenkins/vim-pipe'
-
-" Show the undo tree
-" Use `<leader>u` to open tree
-Plug 'sjl/gundo.vim'
 
 " Base64 conversion
 " Use `<leader>btoa` or `<leader>atob` on visually selected text
@@ -157,35 +164,48 @@ Plug 'christianrondeau/vim-base64'
 " Use `gr` to replace visually selected text
 Plug 'vim-scripts/ReplaceWithRegister'
 
+" }}}
+
+" Plugins: External Tools {{{
+
 " Search in  Loggly
 " Use <leader>loggly to search
 Plug 'christianrondeau/vim-loggly-search'
-
-" Automated vimscript tests
-" Run with `:Vader %`
-Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
-
-" Follow links (paths & urls)
-" Run with `<leader>o`, back with `<c-o>`
-Plug 'vim-scripts/utl.vim'
 
 " Follow links (paths & urls)
 " Run with `<leader>ww`, follow link with <leader>wo, back with `<c-o>`
 Plug 'vimwiki/vimwiki'
 
-" Base plugin for syntax check
-Plug 'scrooloose/syntastic'
+" }}}
+
+" Plugins: Testing {{{
+
+" Automated vimscript tests
+" Run with `:Vader %`
+Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
+
+"}}}
+
+" Plugins: Other {{{
+
+" Pipes buffer to something's stdin
+" See b:vimpipe_command for usages
+Plug 'krisajenkins/vim-pipe'
+
+" Follow links (paths & urls)
+" Run with `<leader>o`, back with `<c-o>`
+Plug 'vim-scripts/utl.vim'
 
 " Sums a list of numbers
 " Run with `<leader>su`
 Plug 'vim-scripts/visSum.vim'
 
-" Automatically remove the search highlight when moving cursor
-Plug 'junegunn/vim-slash'
-
 " }}}
 
 " Plugins: Languages / Syntax {{{
+
+" Base plugin for syntax check
+Plug 'scrooloose/syntastic'
 
 " Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -238,6 +258,8 @@ Plug 'OmniSharp/omnisharp-vim', OmniSharp_plugcfg
 
 " Plugins: Fun & Games {{{
 
+" A text-based roguelike
+" Launch with `:Vimcastle`
 Plug 'christianrondeau/vimcastle'
 
 " }}}
