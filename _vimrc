@@ -20,6 +20,7 @@ if has("gui_running")
 	au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
 	colors wombat
 	set lines=40 columns=140
+	set selection=inclusive
 	if has("unix")
 		set guifont=Hack\ 11
 	elseif has("win32")
@@ -128,6 +129,15 @@ Plug 'vim-airline/vim-airline'
 " Use `<leader>u` to open tree
 Plug 'sjl/gundo.vim'
 
+
+" }}}
+
+" Plugins: Searching and navigation {{{
+
+" Multiple cursors
+" Use <C-n> to move to next occurence of word
+Plug 'vim-multiple-cursors'
+
 " Automatically remove the search highlight when moving cursor
 Plug 'junegunn/vim-slash'
 
@@ -185,7 +195,7 @@ Plug 'vimwiki/vimwiki'
 
 " Automated vimscript tests
 " Run with `:Vader %`
-Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': 'vader' }
+Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': ['vader', 'vim'] }
 
 "}}}
 
@@ -357,6 +367,8 @@ cnoremap %s/ %sm/\v
 cnoremap \>s/ \>sm/\v
 cnoremap g/ g/\v
 cnoremap g!/ g!/\v
+" Search for tags recurisvely
+set tags=./tags;/
 
 " }}}
 
