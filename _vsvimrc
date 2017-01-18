@@ -18,6 +18,7 @@ set vsvim_cleanmacros
 " Shortcuts {{{
 nnoremap ; :
 nnoremap , ;
+inoremap jk <CR>
 nnoremap K i<CR><Esc> 
 nnoremap <leader>n :noh<CR>
 vnoremap gr p
