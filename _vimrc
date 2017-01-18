@@ -180,6 +180,9 @@ Plug 'scrooloose/syntastic'
 " Run with `<leader>su`
 Plug 'vim-scripts/visSum.vim'
 
+" Automatically remove the search highlight when moving cursor
+Plug 'junegunn/vim-slash'
+
 " }}}
 
 " Plugins: Languages / Syntax {{{
