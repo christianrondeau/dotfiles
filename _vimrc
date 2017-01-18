@@ -164,6 +164,9 @@ Plug 'christianrondeau/vim-base64'
 " Use `gr` to replace visually selected text
 Plug 'vim-scripts/ReplaceWithRegister'
 
+" Automatically add `endif` after typing `if`
+Plug 'tpope/vim-endwise', { 'for': ['vim'] }
+
 " }}}
 
 " Plugins: External Tools {{{
@@ -400,12 +403,6 @@ nnoremap , ;
 vnoremap , ;
 nnoremap q; q:
 nnoremap <space> <NOP>
-
-" }}}
-
-" Mappings: Remap Enter to Esc {{{
-
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<Esc>"
 
 " }}}
 
