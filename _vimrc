@@ -411,7 +411,7 @@ let maplocalleader = "\\"
 
 " }}}
 
-" Mappings: Defaults overrides {{{
+" Mappings: Defaults Overrides {{{
 
 nnoremap ; :
 vnoremap ; :
@@ -420,12 +420,12 @@ vnoremap , ;
 nnoremap q; q:
 " Avoid useless cursor movement with missed shortcuts
 nnoremap <space> <NOP>
-" When pressing <cr>, register an 'undo' step
-inoremap <expr> <silent> <cr> pumvisible() ? "<c-y>" : "<c-g>u<cr>"
+" When pressing <cr>, register an 'undo' step (conflicts with vim-endwise)
+" imap <expr> <silent> <CR> pumvisible() ? "<C-y>" : "<C-g>u<CR>"
 
 " }}}
 
-" Mappings: Custom shortcuts {{{
+" Mappings: Custom Shortcuts {{{
 
 inoremap jk <Esc>
 nnoremap K i<CR><Esc> 
