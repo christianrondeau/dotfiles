@@ -13,7 +13,7 @@ set rtp+=~/.vim/vimfiles
 " Terminal {{{
 
 let s:term = ''
-if has("gui_running") 
+if has("gui_running")
 	" Terminal: gVim {{{
 
 	let s:term = 'gvim'
@@ -42,7 +42,8 @@ else
 
 	colors wombat
 	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
-	set mouse=a " Allows mouse when using SSH from Termux
+	" Allows mouse when using SSH from Termux
+	set mouse=nv
 
 	" Vim on Termux
 	if stridx(expand('~/'), 'termux') != -1
@@ -136,7 +137,9 @@ Plug 'sjl/gundo.vim'
 
 " Multiple cursors
 " Use <C-n> to move to next occurence of word
-Plug 'vim-multiple-cursors'
+if has("gui_running")
+	Plug 'vim-multiple-cursors'
+endif
 
 " Search using The Silver Searcher (Ag)
 " Use <C-f> to search
@@ -291,6 +294,7 @@ call plug#end()
 
 " UI Settings {{{
 
+set shortmess+=I
 set hidden                         " Allows hidden buffers
 set laststatus=2                   " Always show status line
 set relativenumber                 " By default, show line numbers relative to the cursor
