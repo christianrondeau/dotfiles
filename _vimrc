@@ -418,7 +418,10 @@ vnoremap ; :
 nnoremap , ;
 vnoremap , ;
 nnoremap q; q:
+" Avoid useless cursor movement with missed shortcuts
 nnoremap <space> <NOP>
+" When pressing <cr>, register an 'undo' step
+inoremap <expr> <silent> <cr> pumvisible() ? "<c-y>" : "<c-g>u<cr>"
 
 " }}}
 
@@ -485,10 +488,10 @@ nnoremap <silent> <leader>mru :CtrlPMRUFiles<CR>
 
 " }}}
 
-" Mappings: Ctrlsf (Ag) Shortcuts {{{
+" Mappings: CtrlSF (Ag) Shortcuts {{{
 
-nnoremap <C-f> <Plug>CtrlSFPrompt
-vnoremap <C-f> <Plug>CtrlSFVwordExec
+nmap <C-f> <Plug>CtrlSFPrompt
+vmap <C-f> <Plug>CtrlSFVwordExec
 
 " }}}
 
