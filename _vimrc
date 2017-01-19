@@ -292,6 +292,8 @@ call plug#end()
 
 " }}}
 
+" VIM Settings {{{
+
 " UI Settings {{{
 
 set shortmess+=I
@@ -398,12 +400,6 @@ set undoreload=10000
 
 " }}}
 
-" Git Grep {{{
-
-if !exists(":Ggr")
-	command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
-endif
-
 " }}}
 
 " Mappings {{{
@@ -465,6 +461,7 @@ nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gf :Ggr<Space>
 nnoremap <leader>gb :GV<CR>
 nnoremap <leader>gr :GV!<CR>
+command! -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
 
 " }}}
 
@@ -581,9 +578,11 @@ augroup END
 
 " }}}
 
+" Plugin-Specific Settings {{{
+
 " CTRLP Settings {{{
 
-set wildignore+=*/tmp/*,*.swp,*.zip,*.dll,*.exe,*.map
+set wildignore+=*/tmp/*,*.swp,*.zip,*.dll,*.exe,*.map,tags
 let g:ctrlp_root_markers = ['package.json']
 let g:ctrlp_custom_ignore = {
 			\ 'dir':  '\v[\/](\.git|node_modules|typings|vim80|bundle|[Bb]in|[Oo]bj|dist|out|undo)$',
@@ -715,6 +714,8 @@ command! -bang -nargs=* -range -complete=file Test exec '<line1>,<line2>Vader<ba
 " UTL Settings {{{
 
 let g:utl_cfg_hdl_scm_http = "silent !termux-open-url %u"
+
+" }}}
 
 " }}}
 
