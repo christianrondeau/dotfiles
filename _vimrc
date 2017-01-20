@@ -455,16 +455,21 @@ nnoremap <silent> <leader>lq :NERDTreeClose<CR>
 
 " Mappings: Fugitive Shortcuts {{{
 
+command! GdiffTab tabedit %|Gvdiff
+command! -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
+
 nnoremap <leader>g <NOP>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gu :Gpull<CR>
-nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gd :GdiffTab<CR>
+" Git Grep
 nnoremap <leader>gf :Ggr<Space>
+" Git Browse
 nnoremap <leader>gb :GV<CR>
+" Git Revisions (current file)
 nnoremap <leader>gr :GV!<CR>
-command! -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
 
 " }}}
 
