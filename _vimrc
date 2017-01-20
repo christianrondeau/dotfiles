@@ -34,7 +34,7 @@ elseif stridx(&shell, 'cmd.exe') != -1
 	" Terminal: Windows cmd {{{
 
 	let s:term = 'cmd'
-	colors noctu
+	colors industry
 
 	" }}}
 else
@@ -304,7 +304,9 @@ set display=lastline               " Show wrapped last line, not just "@".
 set textwidth=0                    " Disables auto line breaks
 set showcmd                        " Show typed commands
 set scrolloff=2                    " Shows the next 2 lines after cursor when scrolling
-set cursorline                     " Highlight the current line
+if s:term != 'cmd'
+	set cursorline                   " Highlight the current line
+endif
 set showmode                       " Shows when in paste mode
 if s:OmniSharp_enabled
 	set noshowmatch                  " Disabled for OmniSharp
