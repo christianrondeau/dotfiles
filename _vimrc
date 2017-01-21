@@ -148,6 +148,10 @@ Plug 'dyng/ctrlsf.vim'
 " Automatically remove the search highlight when moving cursor
 Plug 'junegunn/vim-slash'
 
+" Find the project root folder (e.g. containing .git)
+" Use `<leader>cd`
+Plug 'dbakker/vim-projectroot'
+
 " }}}
 
 " Plugins: Text Processing {{{
@@ -433,6 +437,7 @@ inoremap jk <Esc>
 nnoremap K i<CR><Esc> 
 set pastetoggle=<F2>
 inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
+nnoremap <leader>cd :ProjectRootCD<CR>
 nnoremap <silent> <leader>cd :cd %:p:h<CR>
 nnoremap <silent> <leader>n :noh<CR>
 nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
