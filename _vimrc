@@ -438,7 +438,6 @@ nnoremap K i<CR><Esc>
 set pastetoggle=<F2>
 inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
 nnoremap <leader>cd :ProjectRootCD<CR>
-nnoremap <silent> <leader>cd :cd %:p:h<CR>
 nnoremap <silent> <leader>n :noh<CR>
 nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
 nnoremap <leader>ev :e $HOME/.vim/_vimrc<CR>
