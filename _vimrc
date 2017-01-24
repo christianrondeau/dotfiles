@@ -423,6 +423,8 @@ nnoremap ; :
 vnoremap ; :
 nnoremap , ;
 vnoremap , ;
+nnoremap K i<CR><Esc> 
+nnoremap Y y$
 nnoremap q; q:
 " Avoid useless cursor movement with missed shortcuts
 nnoremap <space> <NOP>
@@ -434,7 +436,6 @@ nnoremap <space> <NOP>
 " Mappings: Custom Shortcuts {{{
 
 inoremap jk <Esc>
-nnoremap K i<CR><Esc> 
 set pastetoggle=<F2>
 inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
 nnoremap <leader>cd :ProjectRootCD<CR>
