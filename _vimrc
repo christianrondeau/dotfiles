@@ -152,6 +152,10 @@ Plug 'junegunn/vim-slash'
 " Use `<leader>cd`
 Plug 'dbakker/vim-projectroot'
 
+" Find and replace variations
+" Use `:Subvert/address{,es}/reference{,s}`
+Plug 'tpope/vim-abolish'
+
 " }}}
 
 " Plugins: Text Processing {{{
