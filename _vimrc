@@ -156,6 +156,10 @@ Plug 'dbakker/vim-projectroot'
 " Use `:Subvert/address{,es}/reference{,s}`
 Plug 'tpope/vim-abolish'
 
+" Closes all buffers but the current one
+" Use `:BufOnly`
+Plug 'vim-scripts/BufOnly.vim'
+
 " }}}
 
 " Plugins: Text Processing {{{
