@@ -796,4 +796,25 @@ function! Utils_comparejsonintest()
 endfunction
 " }}}
 
+" JSON in tests {{{
+function! Utils_comparexmlintest()
+	" Expected buffer
+	e nunit_expected
+	" Paste
+	normal! "+pgg0
+	" Keep only 1st object, put 2nd in register
+	exec "normal! d/<\<cr>/But was\<cr>dG"
+	" Actual buffer
+	vsplit nunit_actual
+	" Paste
+	normal! Vp0
+	" Remove everything else
+	exec "normal! df</>>\<cr>lvG$x"
+	" Run diff on both buffers
+	windo diffthis
+	" Alloq quick quit with `q`
+	nnoremap q :qa!<CR>
+endfunction
+" }}}
+
 " }}}
