@@ -512,6 +512,7 @@ nnoremap <silent> <leader>mru :CtrlPMRUFiles<CR>
 
 nmap <C-f> <Plug>CtrlSFPrompt
 vmap <C-f> <Plug>CtrlSFVwordExec
+nmap <F3> :CtrlSFToggle<CR>
 
 " }}}
 
