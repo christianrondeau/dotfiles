@@ -414,6 +414,12 @@ set undoreload=10000
 
 " }}}
 
+" Clipboard {{{
+
+set clipboard=unnamed,unnamedplus
+
+" }}}
+
 " }}}
 
 " Mappings {{{
