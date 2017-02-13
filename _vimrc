@@ -306,6 +306,14 @@ call plug#end()
 
 " VIM Settings {{{
 
+" Macros {{{
+
+if !exists('g:loaded_matchit')
+	packadd matchit
+endif
+
+" }}}
+
 " UI Settings {{{
 
 set shortmess+=I
