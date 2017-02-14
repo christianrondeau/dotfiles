@@ -19,14 +19,16 @@ if has("gui_running")
 	let s:term = 'gvim'
 	au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
 	colors wombat
-	set lines=40 columns=140
-	set selection=inclusive
-	if has("unix")
-		set guifont=Hack\ 11
-	elseif has("win32")
-		set guifont=Hack:h11
+	if(!exists('s:vimrc_gui_set'))
+		set lines=40 columns=140
+		if has("unix")
+			set guifont=Hack\ 11
+		elseif has("win32")
+			set guifont=Hack:h11
+		endif
+		set guioptions-=T " Hide toolbar
+		let s:vimrc_gui_set = 1
 	endif
-	set guioptions-=T " Hide toolbar
 	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
 
 	" }}}
