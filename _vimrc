@@ -792,10 +792,18 @@ endif
 
 " Utilities {{{
 
+function! s:make_buffer_temporary()
+	setlocal buftype=nofile
+	setlocal bufhidden=hide
+	setlocal noswapfile
+	nnoremap <buffer> q :qa<CR>
+endfunction
+
 " Compare JSON in tests {{{
 function! Utils_comparejsonintest()
 	" Expected buffer
 	e nunit_expected.json
+	call s:make_buffer_temporary()
 	" Paste
 	normal! "+pgg0
 	set filetype=json
@@ -803,6 +811,7 @@ function! Utils_comparejsonintest()
 	exec "normal! d/{\<cr>%lxjdG"
 	" Actual buffer
 	vsplit nunit_actual.json
+	call s:make_buffer_temporary()
 	" Paste
 	normal! Vp0
 	set filetype=json
@@ -819,7 +828,7 @@ endfunction
 function! Utils_comparexmlintest()
 	" Expected buffer
 	e nunit_expected.xml
-	nnoremap <buffer> q :qa!<CR>
+	call s:make_buffer_temporary()
 	" Paste
 	normal! "+pgg0
 	set filetype=xml
@@ -839,7 +848,7 @@ function! Utils_comparexmlintest()
 	exec "normal! dG"
 	" Actual buffer
 	vsplit nunit_actual.xml
-	nnoremap <buffer> q :qa!<CR>
+	call s:make_buffer_temporary()
 	" Paste
 	normal! Vp0
 	set filetype=xml
