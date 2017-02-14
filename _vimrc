@@ -795,14 +795,14 @@ endif
 " Compare JSON in tests {{{
 function! Utils_comparejsonintest()
 	" Expected buffer
-	e nunit_expected
+	e nunit_expected.json
 	" Paste
 	normal! "+pgg0
 	set filetype=json
 	" Keep only 1st object, put 2nd in register
 	exec "normal! d/{\<cr>%lxjdG"
 	" Actual buffer
-	vsplit nunit_actual
+	vsplit nunit_actual.json
 	" Paste
 	normal! Vp0
 	set filetype=json
@@ -818,23 +818,42 @@ endfunction
 " Compare XML in tests {{{
 function! Utils_comparexmlintest()
 	" Expected buffer
-	e nunit_expected
+	e nunit_expected.xml
+	nnoremap <buffer> q :qa!<CR>
 	" Paste
 	normal! "+pgg0
 	set filetype=xml
-	" Keep only 1st object, put 2nd in register
-	exec "normal! d/<\<cr>/But was\<cr>dG"
+	" Remove <?xml ... ?>
+	g/\v\<\?xml/d
+	" Find beginning of XML
+	execute "normal! gg0d/Expected\<cr>dt<"
+	s/\v\<\</\</e
+	" Go to the end of the XML block
+	normal 0l%
+	s/\v\>\>/\>/e
+	s/\v\>"/\>/e
+	execute "normal! \<cr>0"
+	" Remove everything in between
+	exec "normal! dt<"
+	" Move everything else to new buffer
+	exec "normal! dG"
 	" Actual buffer
-	vsplit nunit_actual
+	vsplit nunit_actual.xml
+	nnoremap <buffer> q :qa!<CR>
 	" Paste
 	normal! Vp0
 	set filetype=xml
-	" Remove everything else
-	exec "normal! df</>>\<cr>lvG$x"
+	" Fix object-type display (<<xml .../>>)
+	s/\v\<\</\</e
+	" Go to the end of the XML block
+	normal 0l%
+	s/\v\>\>/\>/e
+	s/\v\>"/\>/e
+	" Remove everything after the XML block
+	normal! jdG
 	" Run diff on both buffers
 	windo diffthis
-	" Alloq quick quit with `q`
-	nnoremap q :qa!<CR>
+	" Allow quick quit with `q`
 endfunction
 " }}}
 
