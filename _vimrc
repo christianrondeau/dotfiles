@@ -728,6 +728,12 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#obsession#enabled = 0
 let g:airline#extensions#branch#format = 1
 
+if(!exists('s:vimrc_airline_loaded'))
+	let s:vimrc_airline_loaded = 1
+else
+	AirlineRefresh
+endif
+
 " }}}
 
 " Vimwiki Settings {{{
