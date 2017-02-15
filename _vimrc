@@ -13,7 +13,7 @@ set rtp+=~/.vim/vimfiles
 " Terminal {{{
 
 let s:term = ''
-if has("gui_running")
+if(has("gui_running"))
 	" Terminal: gVim {{{
 
 	let s:term = 'gvim'
@@ -132,6 +132,14 @@ Plug 'vim-airline/vim-airline'
 " Use `<leader>u` to open tree
 Plug 'sjl/gundo.vim'
 
+" Distraction-free writing
+" Use `:Goyo` to start
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+if(has('win32') && has("gui_running"))
+	Plug 'derekmcloughlin/gvimfullscreen_win32'
+	let s:vimrc_gvimfulscreen_installed = 1
+endif
 
 " }}}
 
@@ -760,6 +768,19 @@ command! -bang -nargs=* -range -complete=file Test exec '<line1>,<line2>Vader<ba
 " UTL Settings {{{
 
 let g:utl_cfg_hdl_scm_http = "silent !termux-open-url %u"
+
+" }}}
+
+" Goyo / Limelight Settings {{{
+
+function! s:togglefullscreen()
+	if(s:vimrc_gvimfulscreen_installed)
+		call libcallnr(expand("$VIM") . "/bundle/gvimfullscreen_win32/gvimfullscreen.dll", "ToggleFullScreen", 0)
+	endif
+endfunction
+
+autocmd! User GoyoEnter Limelight | set guioptions-=m | call s:togglefullscreen()
+autocmd! User GoyoLeave Limelight! | set guioptions+=m | call s:togglefullscreen()
 
 " }}}
 
