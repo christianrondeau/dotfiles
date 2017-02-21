@@ -470,9 +470,11 @@ nnoremap <silent> <leader>n :noh<CR>
 nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
 nnoremap <leader>ev :e $HOME/.vim/_vimrc<CR>
 if s:term == "termux"
+	nnoremap <leader>y ggyG:call system('termux-clipboard-set', @")<CR><CR>
 	vnoremap <leader>y y:call system('termux-clipboard-set', @")<CR><CR>
 	nnoremap <silent><leader>p :set paste \| exe "read! termux-clipboard-get" \| set nopaste<CR>
 else
+	nnoremap <silent> <leader>y <ESC>gg"+yG
 	vnoremap <silent> <leader>y "+y
 	nnoremap <silent> <leader>p :set paste<CR>"+p:set nopaste<CR>
 endif
