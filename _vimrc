@@ -404,11 +404,6 @@ set noignorecase                   " Make regex case sensitive (\C)
 " Use very magic regex everywhere
 nnoremap / /\v
 vnoremap / /\v
-cnoremap s/ sm/\v
-cnoremap %s/ %sm/\v
-cnoremap \>s/ \>sm/\v
-cnoremap g/ g/\v
-cnoremap g!/ g!/\v
 " Search for tags recurisvely
 set tags=./tags;/
 
