@@ -781,6 +781,12 @@ autocmd! User GoyoLeave Limelight! | set guioptions+=m | call s:togglefullscreen
 
 " }}}
 
+" vim-json Settings
+
+let g:vim_json_syntax_conceal = 0
+
+" }}}
+
 " }}}
 
 " PowerShell {{{
