@@ -343,6 +343,7 @@ if s:OmniSharp_enabled
 else
 	set showmatch                    " Highlight matching braces
 endif
+set completeopt=longest,menuone
 set wildmode=longest,list,full     " Bash-like, then cycle
 set wildmenu                       " Shows a menu when using Tab in command paths
 set list                           " Show whitespace
@@ -623,9 +624,9 @@ augroup END
 
 " }}}
 
-" Plugin-Specific Settings {{{
+" Plugin Settings {{{
 
-" CTRLP Settings {{{
+" Settings: ctrlp.vim {{{
 
 set wildignore+=*/tmp/*,*.swp,*.zip,*.dll,*.exe,*.map,tags
 let g:ctrlp_root_markers = ['package.json']
@@ -636,7 +637,7 @@ let g:ctrlp_custom_ignore = {
 
 " }}}
 
-" Ctrlsf (Ag) Settings {{{
+" Settings: ctrlsf.vim (ag) {{{
 
 let g:ctrlsf_default_root = 'project'
 
@@ -647,7 +648,7 @@ let g:ctrlsf_mapping = {
 
 " }}}
 
-" Syntastic Settings {{{
+" Settings: syntastic {{{
 
 if exists('g:syntastic_version')
 	set statusline+=%#warningmsg#
@@ -662,20 +663,14 @@ endif
 
 " }}}
 
-" Tsuquyomi {{{
+" Settings: tsuquyomi {{{
 
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " }}}
 
-" Omni Settings {{{
-
-set completeopt=longest,menuone
-
-" }}}
-
-" OmniSharp Settings {{{
+" Settings: omnisharp-vim {{{
 
 if s:OmniSharp_enabled
 
@@ -722,7 +717,7 @@ endif
 
 " }}}
 
-" Vim Airline Settings {{{
+" Settings: vim-airline {{{
 
 let g:airline#extensions#default#layout = [
 			\ [ 'a', 'c' ],
@@ -741,7 +736,7 @@ endif
 
 " }}}
 
-" Vimwiki Settings {{{
+" Settings: vimwiki {{{
 
 " Prevent CR override
 nnoremap łwf <Plug>VimwikiFollowLink
@@ -758,17 +753,19 @@ augroup END
 
 " }}}
 
-" Vader Settings {{{
+" Settings: vader.vim {{{
+
 command! -bang -nargs=* -range -complete=file Test exec '<line1>,<line2>Vader<bang>' <q-args> | cclose
+
 " }}}
 
-" UTL Settings {{{
+" Settings: utl.vim {{{
 
 let g:utl_cfg_hdl_scm_http = "silent !termux-open-url %u"
 
 " }}}
 
-" Goyo / Limelight Settings {{{
+" Settings: goyo.vim / limelight.vim {{{
 
 function! s:togglefullscreen()
 	if(s:vimrc_gvimfulscreen_installed)
@@ -781,9 +778,15 @@ autocmd! User GoyoLeave Limelight! | set guioptions+=m | call s:togglefullscreen
 
 " }}}
 
-" vim-json Settings
+" Settings: vim-json {{{
 
 let g:vim_json_syntax_conceal = 0
+
+" }}}
+
+" Settings: vim-markdown {{{
+
+let g:vim_markdown_new_list_item_indent = 2
 
 " }}}
 
