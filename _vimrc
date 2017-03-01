@@ -786,7 +786,7 @@ let g:vim_json_syntax_conceal = 0
 
 " Settings: vim-markdown {{{
 
-let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_new_list_item_indent = 0
 
 " }}}
 
