@@ -456,9 +456,10 @@ nnoremap Y y$
 nnoremap q; q:
 " Avoid useless cursor movement with missed shortcuts
 nnoremap <space> <NOP>
+" Prevent ex mode, I never use it and it conflicts with 'q:'
+nnoremap Q <NOP>
 " When pressing <cr>, register an 'undo' step (conflicts with vim-endwise)
 " imap <expr> <silent> <CR> pumvisible() ? "<C-y>" : "<C-g>u<CR>"
-
 " }}}
 
 " Mappings: Custom Shortcuts {{{
