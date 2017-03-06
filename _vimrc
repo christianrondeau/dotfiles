@@ -306,6 +306,15 @@ Plug 'christianrondeau/vimcastle'
 
 " }}}
 
+" Plugins: Machine-specific {{{
+
+" Plugins I don't want in GitHub for a reason or another.
+if filereadable(expand("~/.vimrc_plugins"))
+	source ~/.vimrc_plugins
+endif
+
+" }}}
+
 " Plugins: vim-plug end {{{
 
 call plug#end()
