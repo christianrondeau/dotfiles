@@ -12,18 +12,16 @@ set rtp+=~/.vim/vimfiles
 
 " Terminal {{{
 
-let s:term = ''
 if(has("gui_running"))
 	" Terminal: gVim {{{
 
-	let s:term = 'gvim'
 	au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
 	colors wombat
 	if(!exists('s:vimrc_gui_set'))
 		set lines=40 columns=140
-		if has("unix")
+		if(has("unix"))
 			set guifont=Hack\ 11
-		elseif has("win32")
+		elseif(has("win32"))
 			set guifont=Hack:h11
 		endif
 		set guioptions-=T " Hide toolbar
@@ -32,34 +30,27 @@ if(has("gui_running"))
 	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
 
 	" }}}
-elseif stridx(&shell, 'cmd.exe') != -1
-	" Terminal: Windows cmd {{{
+elseif(stridx(&shell, 'cmd.exe') != -1)
+	" Terminal: Windows Cmd {{{
 
-	let s:term = 'cmd'
 	colors industry
 
 	" }}}
 else
-	" Terminal: Linux bash {{{
+	" Terminal: Bash {{{
 
 	colors wombat
-	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
+	" Enables vim-airline pretty separators
+	let g:airline_powerline_fonts = 1
 	" Allows mouse when using SSH from Termux
 	set mouse=nv
 
-	" Vim on Termux
-	if stridx(expand('~/'), 'termux') != -1
-
-		let s:term = 'termux'
-  	set title 
-  	set titleold="" 
+	" Termux
+	if(stridx(expand('~/'), 'termux') != -1)
+  	set title
+  	set titleold=""
   	set titlestring=VIM:\ %F
-
-	else
-
-		let s:term = 'bash'
-		'
-	endif	
+	endif
 
 	" }}}
 endif
@@ -88,7 +79,7 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 
 " Dependency for tsuquyomi
-if has("unix")
+if(has("unix"))
 	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 else
 	" Download DLL files from: https://github.com/Shougo/vimproc.vim/releases
@@ -147,7 +138,7 @@ endif
 
 " Multiple cursors
 " Use <C-n> to move to next occurence of word
-if has("gui_running")
+if(has("gui_running"))
 	Plug 'vim-multiple-cursors'
 endif
 
@@ -285,9 +276,9 @@ Plug 'OrangeT/vim-csharp', { 'for': ['csharp', 'razor'] }
 	" * Update `OmniSharp` submodules: `cd ~/.vim/bundle/omnisharp-vim` and `git submodule update --init --recursive`
 	" * Build the server with `cd server` and `msbuild` on Windows, or `cd roslyn` and `build.sh` on Linux
 
-if has("python") && has("win32") && filereadable("C:/Python27/python.exe") && filereadable(expand("~/.vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp") . ".exe")
+if(has("python") && has("win32") && filereadable("C:/Python27/python.exe") && filereadable(expand("~/.vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp") . ".exe"))
 	let s:OmniSharp_enabled = 1
-elseif has("python") && has("unix") && filereadable(expand("~/.vim/bundle/omnisharp-vim/omnisharp-roslyn/src/OmniSharp/bin/Release/netcoreapp1.0/linux-x64/OmniSharp") . ".exe")
+elseif(has("python") && has("unix") && filereadable(expand("~/.vim/bundle/omnisharp-vim/omnisharp-roslyn/src/OmniSharp/bin/Release/netcoreapp1.0/linux-x64/OmniSharp") . ".exe"))
 	let s:OmniSharp_enabled = 1
 else
 	let s:OmniSharp_enabled = 0
@@ -309,7 +300,7 @@ Plug 'christianrondeau/vimcastle'
 " Plugins: Machine-specific {{{
 
 " Plugins I don't want in GitHub for a reason or another.
-if filereadable(expand("~/.vimrc_plugins"))
+if(filereadable(expand("~/.vimrc_plugins")))
 	source ~/.vimrc_plugins
 endif
 
@@ -327,7 +318,7 @@ call plug#end()
 
 " Macros {{{
 
-if !exists('g:loaded_matchit')
+if(!exists('g:loaded_matchit'))
 	packadd matchit
 endif
 
@@ -343,11 +334,11 @@ set display=lastline               " Show wrapped last line, not just "@".
 set textwidth=0                    " Disables auto line breaks
 set showcmd                        " Show typed commands
 set scrolloff=2                    " Shows the next 2 lines after cursor when scrolling
-if s:term != 'cmd'
+if(stridx(&shell, 'cmd.exe') != -1)
 	set cursorline                   " Highlight the current line
 endif
 set showmode                       " Shows when in paste mode
-if s:OmniSharp_enabled
+if(s:OmniSharp_enabled)
 	set noshowmatch                  " Disabled for OmniSharp
 else
 	set showmatch                    " Highlight matching braces
@@ -373,7 +364,7 @@ function! CustomFoldText()
 	let fs = v:foldstart
 	while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
 	endwhile
-	if fs > v:foldend
+	if(fs > v:foldend)
 		let line = getline(v:foldstart)
 	else
 		let line = getline(fs)
@@ -460,7 +451,7 @@ nnoremap ; :
 vnoremap ; :
 nnoremap , ;
 vnoremap , ;
-nnoremap K i<CR><Esc> 
+nnoremap K i<CR><Esc>
 nnoremap Y y$
 nnoremap q; q:
 " Avoid useless cursor movement with missed shortcuts
@@ -480,7 +471,7 @@ nnoremap <leader>cd :ProjectRootCD<CR>
 nnoremap <silent> <leader>n :noh<CR>
 nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
 nnoremap <leader>ev :e $HOME/.vim/_vimrc<CR>
-if s:term == "termux"
+if(stridx(expand('~/'), 'termux') != -1)
 	nnoremap <leader>y ggyG:call system('termux-clipboard-set', @")<CR><CR>
 	vnoremap <leader>y y:call system('termux-clipboard-set', @")<CR><CR>
 	nnoremap <silent><leader>p :set paste \| exe "read! termux-clipboard-get" \| set nopaste<CR>
@@ -627,7 +618,7 @@ augroup END
 augroup DisableAutoCommentNewLines
 	autocmd!
 	" Never autocomment on new lines
-	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o 
+	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
 
 " }}}
@@ -660,11 +651,11 @@ let g:ctrlsf_mapping = {
 
 " Settings: syntastic {{{
 
-if exists('g:syntastic_version')
+if(exists('g:syntastic_version'))
 	set statusline+=%#warningmsg#
 	set statusline+=%{SyntasticStatuslineFlag()}
 	set statusline+=%*
-	
+
 	let g:syntastic_always_populate_loc_list = 1
 	let g:syntastic_auto_loc_list = 1
 	let g:syntastic_check_on_open = 1
@@ -682,10 +673,10 @@ let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " Settings: omnisharp-vim {{{
 
-if s:OmniSharp_enabled
+if(s:OmniSharp_enabled)
 
 	" OmniSharp
-	if has("unix") && !has("win32unix")
+	if(has("unix") && !has("win32unix"))
 		let g:OmniSharp_server_type = 'roslyn'
 	endif
 
@@ -804,12 +795,12 @@ let g:vim_markdown_new_list_item_indent = 0
 
 " PowerShell {{{
 
-if has("win32")
+if(has("win32"))
 	let g:curshell = &shell
 	let g:curshellcmdflag = &shellcmdflag
 
 	function! TogglePowerShell()
-		if &shell ==# "powershell"
+		if(&shell ==# "powershell")
 			let &shell = g:curshell
 			let &shellcmdflag = g:curshellcmdflag
 			echom "shell reset to default shell"
@@ -827,7 +818,7 @@ endif
 
 " Machine Config {{{
 
-if filereadable(expand("~/.vimrc_private"))
+if(filereadable(expand("~/.vimrc_private")))
 	source ~/.vimrc_private
 endif
 
