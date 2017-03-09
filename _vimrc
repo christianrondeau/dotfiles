@@ -12,11 +12,27 @@ set rtp+=~/.vim/vimfiles
 
 " Terminal {{{
 
-if(has("gui_running"))
-	" Terminal: gVim {{{
+" Terminal: Colors {{{
 
-	au GuiEnter * set visualbell t_vb= " No screen flash (GVim)
+if(!has('gui_running') && stridx(&shell, 'cmd.exe') != -1)
+	colors industry
+else
 	colors wombat
+endif
+
+" }}}
+
+" Terminal: GVim {{{
+
+if(has("gui_running"))
+
+	augroup gvim_noscreenflash
+		autocmd!
+		au GuiEnter * set visualbell t_vb=
+	augroup END
+
+
+	" Prevent resetting gvim when sourcing vimrc
 	if(!exists('s:vimrc_gui_set'))
 		set lines=40 columns=140
 		if(has("unix"))
@@ -27,21 +43,14 @@ if(has("gui_running"))
 		set guioptions-=T " Hide toolbar
 		let s:vimrc_gui_set = 1
 	endif
-	let g:airline_powerline_fonts = 1 " Enables vim-airline pretty separators
 
-	" }}}
-elseif(stridx(&shell, 'cmd.exe') != -1)
-	" Terminal: Windows Cmd {{{
+endif
 
-	colors industry
+" }}}
 
-	" }}}
-else
-	" Terminal: Bash {{{
+" Terminal: Bash {{{
 
-	colors wombat
-	" Enables vim-airline pretty separators
-	let g:airline_powerline_fonts = 1
+if(stridx(&shell, 'cmd.exe') == -1 && !has('gui_running'))
 	" Allows mouse when using SSH from Termux
 	set mouse=nv
 
@@ -52,11 +61,9 @@ else
   	set titlestring=VIM:\ %F
 	endif
 
-	" }}}
 endif
 
-set visualbell t_vb=               " No screen flash
-set noerrorbells                   " No error sounds
+" }}}
 
 " }}}
 
@@ -129,7 +136,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 if(has('win32') && has("gui_running"))
 	Plug 'derekmcloughlin/gvimfullscreen_win32'
-	let s:vimrc_gvimfulscreen_installed = 1
+	let s:vimrc_gvimfullscreen_installed = 1
 endif
 
 " }}}
@@ -160,6 +167,10 @@ Plug 'tpope/vim-abolish'
 " Closes all buffers but the current one
 " Use `:BufOnly`
 Plug 'vim-scripts/BufOnly.vim'
+
+" Follow links (paths & urls)
+" Run with `<leader>o`, back with `<c-o>`
+Plug 'vim-scripts/utl.vim'
 
 " }}}
 
@@ -224,10 +235,6 @@ Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': ['vader', 'vim'] }
 " Pipes buffer to something's stdin
 " See b:vimpipe_command for usages
 Plug 'krisajenkins/vim-pipe'
-
-" Follow links (paths & urls)
-" Run with `<leader>o`, back with `<c-o>`
-Plug 'vim-scripts/utl.vim'
 
 " Sums a list of numbers
 " Run with `<leader>su`
@@ -316,16 +323,26 @@ call plug#end()
 
 " VIM Settings {{{
 
-" Macros {{{
+" VIM: Macros {{{
 
 if(!exists('g:loaded_matchit'))
+	" Allows using `%` to jump to a matching <xml> tag
 	packadd matchit
 endif
 
 " }}}
 
-" UI Settings {{{
+" VIM: General {{{
 
+set visualbell t_vb=               " No screen flash
+set noerrorbells                   " No error sounds
+set clipboard=unnamed,unnamedplus  " Use system register
+
+" }}}
+
+" VIM: UI Settings {{{
+
+" Do not show vim intro message
 set shortmess+=I
 set hidden                         " Allows hidden buffers
 set laststatus=2                   " Always show status line
@@ -385,7 +402,7 @@ endfunction
 
 " }}}
 
-" Text Settings {{{
+" VIM: Text Settings {{{
 
 set backspace=indent,eol,start     " Allow backspace on autoindent
 set tabstop=2                      " Tab Width
@@ -395,7 +412,7 @@ set iskeyword-=-
 
 " }}}
 
-" Search Settings {{{
+" VIM: Search Settings {{{
 
 let @/=""                          " Empty search on launch
 set incsearch                      " Show search result as you type
@@ -405,32 +422,24 @@ set noignorecase                   " Make regex case sensitive (\C)
 " Use very magic regex everywhere
 nnoremap / /\v
 vnoremap / /\v
-" Search for tags recurisvely
+" Search for tags recursively
 set tags=./tags;/
 
 " }}}
 
-" Swap files, backup & undo {{{
+" VIM: Swap files, backup & undo {{{
 
 set nobackup                       " Prevents creating <filename>~ files
 set nowritebackup                  " Prevents creating <filename>~ files
 set nolazyredraw                   " Avoids redrawing when running macros
 
-" Persistent undo
-
-set undofile
+set undofile                       " Create a persistent undo file
 set undodir=$HOME/.vim/undo
 set backupdir=$TEMP,$TMP,.
 set directory=$TEMP,$TMP,.
 
 set undolevels=100
 set undoreload=10000
-
-" }}}
-
-" Clipboard {{{
-
-set clipboard=unnamed,unnamedplus
 
 " }}}
 
@@ -539,6 +548,38 @@ nmap <F3> :CtrlSFToggle<CR>
 
 " }}}
 
+" Mappings: *.vim Shortcuts {{{
+
+nnoremap <leader>s <NOP>
+augroup filetype_vim_shortcuts
+	autocmd!
+	" Save and run current script
+	autocmd FileType vim nnoremap <buffer> <leader>sv :update<CR>:source %<CR>
+augroup END
+
+" }}}
+
+" Mappings: *.ts Shortcuts {{{
+
+augroup filetype_typescript_shortcuts
+	autocmd!
+	" <leader>r to rename
+	autocmd FileType typescript nnoremap <buffer> <Leader>r <Plug>(TsuquyomiRenameSymbol)
+	" <leader>t to run tests
+	autocmd filetype typescript nnoremap <buffer> <leader>t :wa<CR>:!npm test<CR>
+	" }}}
+
+" Mappings: *.json Shortcuts {{{
+
+augroup filetype_json
+	autocmd!
+	" <localleader>f to format json
+	let b:vimpipe_command="python -m json.tool"
+	nnoremap <localleader>f :%!python -m json.tool<cr>
+augroup END
+
+" }}}
+
 " }}}
 
 " Languages {{{
@@ -551,9 +592,6 @@ augroup filetype_vim
 	autocmd FileType vim setlocal foldmethod=marker
 	" Close folds by default
 	autocmd FileType vim setlocal foldlevel=0
-	" Save and run current script
-	nnoremap <leader>s <NOP>
-	nnoremap <leader>sv :update<CR>:source %<CR>
 augroup END
 
 " }}}
@@ -577,38 +615,13 @@ augroup END
 
 " }}}
 
-" Languages: JavaScript {{{
-
-augroup filetype_javascript
-	autocmd!
-	" <leader>t to run tests
-	autocmd filetype javascript nnoremap <buffer> <leader>t :wa<CR>:!npm test<CR>
-
-augroup END
-" }}}
-
 " Languages: TypeScript {{{
 
 augroup filetype_typescript
 	autocmd!
-	" <leader>r to rename
-	autocmd FileType typescript nnoremap <buffer> <Leader>r <Plug>(TsuquyomiRenameSymbol)
-	" <leader>t to run tests
-	autocmd filetype typescript nnoremap <buffer> <leader>t :wa<CR>:!npm test<CR>
 	" Highlight html templates
 	autocmd FileType typescript JsPreTmpl html
 	autocmd FileType typescript syn clear foldBraces
-augroup END
-
-" }}}
-
-" Languages: JSON {{{
-
-augroup filetype_json
-	autocmd!
-	" <localleader>f to format json
-	let b:vimpipe_command="python -m json.tool"
-	nnoremap <localleader>f :%!python -m json.tool<cr>
 augroup END
 
 " }}}
@@ -720,6 +733,8 @@ endif
 
 " Settings: vim-airline {{{
 
+let g:airline_powerline_fonts = has('gui_running') || stridx(&shell, 'cmd.exe') == -1
+
 let g:airline#extensions#default#layout = [
 			\ [ 'a', 'c' ],
 			\ [ 'b', 'error', 'warning' ]
@@ -762,14 +777,16 @@ command! -bang -nargs=* -range -complete=file Test exec '<line1>,<line2>Vader<ba
 
 " Settings: utl.vim {{{
 
-let g:utl_cfg_hdl_scm_http = "silent !termux-open-url %u"
+if(stridx(expand('~/'), 'termux') != -1)
+	let g:utl_cfg_hdl_scm_http = "silent !termux-open-url %u"
+endif
 
 " }}}
 
 " Settings: goyo.vim / limelight.vim {{{
 
 function! s:togglefullscreen()
-	if(s:vimrc_gvimfulscreen_installed)
+	if(s:vimrc_gvimfullscreen_installed)
 		call libcallnr(expand("$VIM") . "/bundle/gvimfullscreen_win32/gvimfullscreen.dll", "ToggleFullScreen", 0)
 	endif
 endfunction
@@ -812,14 +829,6 @@ if(has("win32"))
 	endfunction
 	nnoremap <F9> :call TogglePowerShell()<cr>
 	cnoremap <F9> <c-c>:call TogglePowerShell()<cr>:
-endif
-
-" }}}
-
-" Machine Config {{{
-
-if(filereadable(expand("~/.vimrc_private")))
-	source ~/.vimrc_private
 endif
 
 " }}}
@@ -899,5 +908,13 @@ function! Utils_comparexmlintest()
 	" Allow quick quit with `q`
 endfunction
 " }}}
+
+" }}}
+
+" Machine Config {{{
+
+if(filereadable(expand("~/.vimrc_private")))
+	source ~/.vimrc_private
+endif
 
 " }}}
