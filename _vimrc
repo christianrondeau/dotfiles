@@ -818,6 +818,17 @@ let g:vim_markdown_new_list_item_indent = 0
 
 " }}}
 
+" Settings: netwrw {{{
+
+" Note: I use NERDtree, but when opening a folder it opens netrw by default
+let g:netrw_liststyle = 3 " Tree View
+let g:netrw_banner = 0 " Remove useless banner
+let g:netrw_winsize = 25 " % width
+let g:netrw_browse_split = 4 " Open files in previous window
+let g:netrw_altv = 1 " Open in vertical split
+
+" }}}
+
 " }}}
 
 " PowerShell {{{
