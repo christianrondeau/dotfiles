@@ -504,7 +504,7 @@ nnoremap <silent> <leader>lq :NERDTreeClose<CR>
 
 " }}}
 
-" Mappings: Fugitive Shortcuts {{{
+" Mappings: Git Shortcuts {{{
 
 command! GdiffTab tabedit %|Gvdiff
 command! -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
@@ -523,6 +523,10 @@ nnoremap <leader>gb :GV<CR>
 nnoremap <leader>gr :GV!<CR>
 " Git Branches
 nnoremap <leader>go :Merginal<CR>
+" Git Extensions
+if(has('win32'))
+	nnoremap <leader>gx :silent !gitex<CR>
+endif
 
 " }}}
 
