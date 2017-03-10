@@ -103,9 +103,13 @@ Plug 'tpope/vim-dispatch'
 " Use `<leader>gc` to commit, `gs` to stage, `gp` to push, `gu` to update
 Plug 'tpope/vim-fugitive'
 
-" Git browser
+" Git browse
 " Use `<leader>gb` to open, `<leader>gh` for revisions only
 Plug 'junegunn/gv.vim'
+
+" Git branches
+" Use `<leader>go` to open
+Plug 'idanarye/vim-merginal'
 
 " }}}
 
@@ -517,6 +521,8 @@ nnoremap <leader>gf :Ggr<Space>
 nnoremap <leader>gb :GV<CR>
 " Git Revisions (current file)
 nnoremap <leader>gr :GV!<CR>
+" Git Branches
+nnoremap <leader>go :Merginal<CR>
 
 " }}}
 
