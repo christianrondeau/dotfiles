@@ -14,3 +14,6 @@ undo/*
 vim[7-9][0-9]/
 # vim-plug
 bundle/
+" vimproc
+vimfiles/autoload/vimproc_win32.dll
+vimfiles/autoload/vimproc_win64.dll
