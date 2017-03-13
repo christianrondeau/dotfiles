@@ -561,7 +561,7 @@ nmap <F3> :CtrlSFToggle<CR>
 " Mappings: *.vim Shortcuts {{{
 
 nnoremap <leader>s <NOP>
-nnoremap <leader>sv <NOP>
+nnoremap <leader>sv :update<CR>
 augroup filetype_vim_shortcuts
 	autocmd!
 	" Save and run current script

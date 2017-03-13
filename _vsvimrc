@@ -21,6 +21,7 @@ nnoremap , ;
 inoremap jk <CR>
 nnoremap K i<CR><Esc> 
 nnoremap <leader>n :noh<CR>
+nnoremap <leader>sv :update<CR>
 vnoremap gr p
 " }}}
 
