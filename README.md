@@ -16,19 +16,21 @@ Checkout this repo: `git clone https://github.com/christianrondeau/.vim ~/.vim`
 1. Start VIM and run `:PlugInstall`
 
 ## Linux-specific
-1. Create a symlink to the `vimrc` file": `ln -s ~/.vim/_vimrc ~/.vimrc`
+1. Create a symlink to the `vimrc` file: `ln -s ~/.vim/_vimrc ~/.vimrc`
 1. Install [The Silver Searcher (Ag)](http://geoff.greer.fm/ag/): `sudo apt-get install silversearcher-ag`
 1. Install the Hack font: `sudo apt-get install fonts-hack-ttf`
+1. Make Get [vimproc.vim](https://github.com/Shougo/vimproc.vim): `sudo apt-get install gcc make` and run `:VimProcInstall` inside vim
 
 ## Cygwin-specific
-1. Create a symlink to the `vimrc` file": `ln -s ~/.vim/_vimrc ~/.vimrc`
+1. Create a symlink to the `vimrc` file: `ln -s ~/.vim/_vimrc ~/.vimrc`
 1. Add the content of the [cygwin bashrc template](templates/.bashrc_cygwin) to `~/.bashrc` and [gitconfig template](templates/.gitconfig_cygwin) to `~/.gitconfig`
 1. Start VIM and run `:PlugInstall`
 
 ## Termux-specific
-1. Create a symlink to the `vimrc` file": `ln -s ~/.vim/_vimrc ~/.vimrc`
+1. Create a symlink to the `vimrc` file: `ln -s ~/.vim/_vimrc ~/.vimrc`
 1. Install [The Silver Searcher (Ag)](http://geoff.greer.fm/ag/): `apt install silversearcher-ag`
 1. Install the Hack font: Buy https://play.google.com/store/apps/details?id=com.termux.styling&hl=en
+1. Make Get [vimproc.vim](https://github.com/Shougo/vimproc.vim): `sudo apt-get install gcc make` and run `:VimProcInstall` inside vim
 
 # Usage
 
