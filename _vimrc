@@ -883,21 +883,36 @@ endfunction
 " Compare JSON in tests {{{
 function! Utils_comparejsonintest()
 	" Expected buffer
-	e nunit_expected.json
+	e nunit_expected
 	call s:make_buffer_temporary()
 	" Paste
 	normal! "+pgg0
-	set filetype=json
 	" Keep only 1st object, put 2nd in register
 	exec "normal! d/{\<cr>%lxjdG"
+  " Return to top of buffer
+	normal! gg
+	" Format as JSON if it is a JSON
+	if(search('\"[a-zA-Z0-9_]\"\:', 'n') > 0)
+		set filetype=json
+	else
+		set filetype=cs
+	endif
+
 	" Actual buffer
-	vsplit nunit_actual.json
+	vsplit nunit_actual
 	call s:make_buffer_temporary()
 	" Paste
 	normal! Vp0
-	set filetype=json
 	" Remove everything else
 	normal! dt{%lvG$x
+  " Return to top of buffer
+	normal! gg
+	" Format as JSON if it is a JSON
+	if(search('\"[a-zA-Z0-9_]\"\:', 'n') > 0)
+		set filetype=json
+	else
+		set filetype=cs
+	endif
 	" Run diff on both buffers
 	windo diffthis
 	" Alloq quick quit with `q`
