@@ -134,6 +134,9 @@ Plug 'vim-airline/vim-airline'
 " Use `<leader>u` to open tree
 Plug 'sjl/gundo.vim'
 
+" Launch with a useful startup screen
+Plug 'mhinz/vim-startify'
+
 " Distraction-free writing
 " Use `:Goyo` to start
 Plug 'junegunn/goyo.vim'
