@@ -558,14 +558,21 @@ nmap <F3> :CtrlSFToggle<CR>
 
 " }}}
 
-" Mappings: *.vim Shortcuts {{{
+" Mappings: *.vim and *.vader Shortcuts {{{
 
 nnoremap <leader>s <NOP>
 nnoremap <leader>sv :update<CR>
+
 augroup filetype_vim_shortcuts
 	autocmd!
-	" Save and run current script
 	autocmd FileType vim nnoremap <buffer> <leader>sv :update<CR>:source %<CR>
+	autocmd FileType vim nnoremap <buffer> <leader>ul :update<CR>:Vader tests/**<CR>
+augroup END
+
+augroup filetype_vader_shortcuts
+	autocmd!
+	autocmd FileType vader nnoremap <buffer> <leader>ur :update<CR>:Test<CR>
+	autocmd FileType vader nnoremap <buffer> <leader>ul :update<CR>:Vader tests/**<CR>
 augroup END
 
 " }}}
