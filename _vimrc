@@ -543,7 +543,7 @@ vnoremap <silent> <leader>o "*y:Utl openLink visual edit<CR>
 
 " }}}
 
-" Mappings: CtrlP shortcuts {{{
+" Mappings: CtrlP Shortcuts {{{
 
 noremap <C-b> :CtrlPBuffer<CR>
 nnoremap <silent> <leader>mru :CtrlPMRUFiles<CR>
@@ -594,6 +594,15 @@ augroup filetype_json
 	" <localleader>f to format json
 	let b:vimpipe_command="python -m json.tool"
 	nnoremap <localleader>f :%!python -m json.tool<cr>
+augroup END
+
+" }}}
+
+" Mappings: Help Files Shortcuts {{{
+
+augroup filetype_help
+	autocmd!
+	autocmd FileType help noremap <buffer> q :q<cr>
 augroup END
 
 " }}}
