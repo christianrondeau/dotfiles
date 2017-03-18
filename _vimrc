@@ -14,7 +14,7 @@ set rtp+=~/.vim/vimfiles
 
 " Terminal: Colors {{{
 
-if(!has('gui_running') && stridx(&shell, 'cmd.exe') != -1)
+if(!has('gui_running') && !has('nvim') && stridx(&shell, 'cmd.exe') != -1)
 	colors industry
 else
 	colors wombat

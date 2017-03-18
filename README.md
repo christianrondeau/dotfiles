@@ -36,8 +36,9 @@ Checkout this repo: `git clone https://github.com/christianrondeau/.vim ~/.vim`
 
 ## Windows
 
-* Create a file `%APPDATA%\..\Local\nvim\init.vim` with this content:
-    let &rtp .= '$VIM'
+Create a file `%APPDATA%\..\Local\nvim\init.vim` with this content:
+
+    let &rtp .= ',$VIM'
     source $VIM/_vimrc
 
 # Usage
