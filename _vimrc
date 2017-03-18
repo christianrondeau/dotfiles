@@ -487,6 +487,7 @@ nnoremap <leader>cd :ProjectRootCD<CR>
 nnoremap <silent> <leader>n :noh<CR>
 nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
 nnoremap <leader>ev :e $HOME/.vim/_vimrc<CR>
+nnoremap <C-F4> :bd<cr>
 if(stridx(expand('~/'), 'termux') != -1)
 	nnoremap <leader>y ggyG:call system('termux-clipboard-set', @")<CR><CR>
 	vnoremap <leader>y y:call system('termux-clipboard-set', @")<CR><CR>
