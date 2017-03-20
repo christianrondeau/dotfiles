@@ -530,6 +530,7 @@ nnoremap <leader>go :Merginal<CR>
 " Git Extensions
 if(has('win32'))
 	nnoremap <leader>gx :silent !gitex<CR>
+	nnoremap <leader>ge :silent !explorer .<CR>
 endif
 
 " }}}
