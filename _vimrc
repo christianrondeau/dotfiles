@@ -784,6 +784,12 @@ endif
 
 " }}}
 
+" Settings: startify {{{
+
+let g:startify_session_dir = '~/.vim/session'
+
+" }}}
+
 " Settings: vimwiki {{{
 
 " Prevent CR override
