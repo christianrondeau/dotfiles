@@ -787,6 +787,7 @@ endif
 " Settings: startify {{{
 
 let g:startify_session_dir = '~/.vim/session'
+let g:startify_custom_header = 'map(startify#fortune#boxed(), "\"   \".v:val")'
 
 " }}}
 
