@@ -900,7 +900,9 @@ function! Utils_comparejsonintest()
 	" Paste
 	normal! "+pgg0
 	" Keep only 1st object, put 2nd in register
-	exec "normal! d/{\<cr>%lxjdG"
+	exec "normal! d/{\<cr>%"
+	s/>//e
+	normal! jdG
   " Return to top of buffer
 	normal! gg
 	" Format as JSON if it is a JSON
@@ -916,7 +918,9 @@ function! Utils_comparejsonintest()
 	" Paste
 	normal! Vp0
 	" Remove everything else
-	normal! dt{%lvG$x
+	normal! dt{%
+	s/>//e
+	normal! jdG
   " Return to top of buffer
 	normal! gg
 	" Format as JSON if it is a JSON
