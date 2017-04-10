@@ -788,6 +788,15 @@ endif
 
 let g:startify_session_dir = '~/.vim/session'
 let g:startify_custom_header = 'map(startify#fortune#boxed(), "\"   \".v:val")'
+let g:startify_skiplist = [
+      \ 'COMMIT_EDITMSG',
+			\ 'bundle[/\\].*[/\\]doc',
+      \ '[/\\].vim[/\\]vim80',
+      \ 'TextEditorAnywhere_',
+      \ '[/\\]vimwiki',
+      \ '[/\\].vim[/\\]_vimrc',
+      \ '[/\\].git[/\\]',
+      \ ]
 
 " }}}
 
