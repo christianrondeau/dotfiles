@@ -41,6 +41,10 @@ Create a file `%APPDATA%\..\Local\nvim\init.vim` with this content:
     let &rtp .= ',$VIM'
     source $VIM/_vimrc
 
+Create a file `%APPDATA%\..\Local\nvim\ginit.vim` with this content:
+
+    GuiFont! Hack:h12
+
 # Usage
 
 See [_vimrc](https://github.com/christianrondeau/.vim/blob/master/_vimrc) for all shortcuts and overrides
