@@ -332,7 +332,7 @@ call plug#end()
 
 " VIM: Macros {{{
 
-if(!exists('g:loaded_matchit'))
+if(!has('nvim') && !exists('g:loaded_matchit'))
 	" Allows using `%` to jump to a matching <xml> tag
 	packadd matchit
 endif
