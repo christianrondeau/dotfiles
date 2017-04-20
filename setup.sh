@@ -1,16 +1,35 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]; then
-	echo "Please run as root" 2>&1
+if [[ "$OSTYPE" == "linux-android" ]]; then
+	PKG=apt
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+	PKG=apt-get
+elif [[ "$OSTYPE" == "cygwin" ]]; then
+	PKG=apt-cyg
+else
+  echo "Unknown OS: '$OSTYPE'" 2>&1
 	exit 1
 fi
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	# Require root
+	if [ "$EUID" -ne 0 ]; then
+		echo "Please run as root" 2>&1
+		exit 2
+	fi
+fi
+
+
 ######################################### Prepare
 
-apt-get update
-apt-get upgrade -y
+$PKG update
+$PKG upgrade -y
 
 cd $(dirname "$0")
+
+if [ hash stow 2>/dev/null ]; then
+	$PKG install stow -y
+fi
 
 ######################################### Bash
 
@@ -20,7 +39,7 @@ stow bash
 
 stow git
 if [ hash vim 2>/dev/null ]; then
-	apt-get install git -y
+	$PKG install git -y
 fi
 #TODO: autocrlf = true on cygwin
 #TODO: different email on different machines (env variables?)
@@ -29,6 +48,6 @@ fi
 
 stow vim
 if [ hash vim 2>/dev/null ]; then
-	apt-get install vim -y
+	$PKG install vim -y
 fi
 
