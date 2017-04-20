@@ -1,0 +1,15 @@
+[user]
+	email = christian.rondeau@gmail.com
+	name = Christian Rondeau
+[merge]
+  tool = diffconflicts
+[mergetool]
+	prompt = false
+	keepBackup = false
+	trustExitCode = true
+[mergetool "diffconflicts"]
+	cmd = "~/bin/diffconflicts vim $BASE $LOCAL $REMOTE $MERGED"
+[core]
+	editor = vim
+[push]
+	default = simple

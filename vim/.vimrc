@@ -787,7 +787,7 @@ endif
 " Settings: startify {{{
 
 let g:startify_session_dir = '~/.vim/session'
-let g:startify_custom_header = 'map(startify#fortune#boxed(), "\"   \".v:val")'
+let g:startify_custom_header = 'winwidth(0) > 64 ? map(startify#fortune#boxed(), "\"   \".v:val") : startify#fortune#quote()'
 let g:startify_skiplist = [
       \ 'COMMIT_EDITMSG',
 			\ 'bundle[/\\].*[/\\]doc',
