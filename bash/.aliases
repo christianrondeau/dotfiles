@@ -1,9 +1,15 @@
 # Configure often-used aliases
-alias ls='ls -A --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias posh="powershell -File "
+if [[ "$OSTYPE" == "linux-android" ]]; then
+	alias ls='ls -A'
+else
+	alias ls='ls -A --color=auto'
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
+fi
+if [[ "$OSTYPE" == "cygwin" ]]; then
+	alias posh="powershell -File "
+fi
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"

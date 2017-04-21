@@ -18,7 +18,7 @@ is_os() {
 
 ############ Identify OS
 
-if is_os "linux_android"; then
+if is_os "linux-android"; then
 	PKG=apt
 	PKGARGS="-y"
 elif is_os "linux-gnu"; then
@@ -69,6 +69,7 @@ if is_os "cygwin"; then
 	stow bash-cygwin
 elif is_os "linux-android"; then
 	stow bash-termux
+	stow termux
 fi
 source ~/.bash_profile
 

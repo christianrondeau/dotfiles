@@ -3,12 +3,10 @@ TMP="/data/data/com.termux/files/home/.bak"
 SSH_ENV="$HOME/.ssh/environment"
 
 function start_agent {
-	echo "Initialising new SSH agent..."
 	/data/data/com.termux/files/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-	echo succeeded
 	chmod 600 "${SSH_ENV}"
 	. "${SSH_ENV}" > /dev/null
-	/data/data/com.termux/files/usr/bin/ssh-add;
+	/data/data/com.termux/files/usr/bin/ssh-add > /dev/null 2>&1
 }
 
 # Source SSH settings, if applicable
