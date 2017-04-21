@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ $0 != "/proc"* ]]; then
+	cd $(dirname "$0")
+fi
+
 ############ Functions
 
 is_installed() {
@@ -27,6 +31,12 @@ elif is_os "linux-gnu"; then
 elif is_os "cygwin"; then
 	PKG=apt-cyg
 	PKGARGS=""
+elif is_os "msys"; then
+	ln -s -f `realpath bash/.bash_profile` `realpath ~/.bash_profile`
+	ln -s -f `realpath bash/.bash_aliases` `realpath ~/.bash_aliases`
+	ln -s -f `realpath bash/.bash_prompt` `realpath ~/.bash_prompt`
+	echo "Environment ready!"
+	exit 0
 else
   echo "Unknown OS: '$OSTYPE'" 2>&1
 	exit 1
@@ -55,10 +65,6 @@ if is_os "cygwin"; then
 		install ~/apt-cyg /bin
 		rm ~/apt-cyg
 	fi
-fi
-
-if [[ $0 != "/proc"* ]]; then
-	cd $(dirname "$0")
 fi
 
 install stow
