@@ -3,7 +3,11 @@ function fish_prompt
 	
 	printf "\n\033[K"
 	set_color $fish_prompt_hostname
-	echo -n (hostname)
+	if [ $COMPUTERNAME ]
+		echo -n $COMPUTERNAME
+	else
+		echo -n (hostname)
+	end
 	set_color brblack
 	echo -n ':'
 	set_color $fish_color_cwd
