@@ -2,7 +2,7 @@
 export PATH="$HOME/bin:$PATH";
 
 # Source all dotfiles
-for file in ~/.{bash_prompt,bash_os,aliases}; do
+for file in ~/.bash_{prompt,os,aliases}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
