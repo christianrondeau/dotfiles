@@ -57,7 +57,9 @@ if is_os "cygwin"; then
 	fi
 fi
 
-cd $(dirname "$0")
+if [[ $0 != "/proc"* ]]; then
+	cd $(dirname "$0")
+fi
 
 install stow
 install curl
@@ -87,6 +89,11 @@ install vim
 
 stow tmux
 install tmux
+
+############ Fish
+
+stow fish
+install fish
 
 ############ Complete
 
