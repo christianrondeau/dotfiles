@@ -1,6 +1,9 @@
 #!/bin/bash
 
-if [[ $0 != "/proc"* ]]; then
+shopt -s nullglob
+shopt -s dotglob
+
+if [[ "$0" != "/proc"* ]]; then
 	cd $(dirname "$0")
 fi
 
@@ -11,16 +14,33 @@ is_installed() {
 }
 
 install() {
-	if ! is_installed $1; then
+	if [[ "$PKG" != "" ]] && ! is_installed $1; then
 		$PKG install $1 $PKGARGS
 	fi
 }
 
 is_os() {
-	[[ "$OSTYPE" == "$1" ]];
+	if [[ " $1 " =~ " $OSTYPE " ]]; then
+		return 0
+	else
+		return 1
+	fi
 }
 
-############ Identify OS
+if is_os "msys"; then
+	# stub stow
+	function stow() {
+		cd $1
+		for f in *; do
+			if ! [ -d "$f" ]; then
+				ln -s -f `realpath $f` `realpath ~/$f`
+			fi
+		done
+		cd ..
+	}
+fi
+
+############ OS configuration
 
 if is_os "linux-android"; then
 	PKG=apt
@@ -32,11 +52,8 @@ elif is_os "cygwin"; then
 	PKG=apt-cyg
 	PKGARGS=""
 elif is_os "msys"; then
-	ln -s -f `realpath bash/.bash_profile` `realpath ~/.bash_profile`
-	ln -s -f `realpath bash/.bash_aliases` `realpath ~/.bash_aliases`
-	ln -s -f `realpath bash/.bash_prompt` `realpath ~/.bash_prompt`
-	echo "Environment ready!"
-	exit 0
+	PKG=""
+	PKGARGS=""
 else
   echo "Unknown OS: '$OSTYPE'" 2>&1
 	exit 1
@@ -52,19 +69,18 @@ if is_os "linux-gnu"; then
 	fi
 fi
 
+if is_os "cygwin" && ! is_installed "curl"; then
+	echo "Please install curl using setup.exe" 2>&1
+	exit 3
+fi
+
 ############ Prepare
 
-if is_os "cygwin"; then
-	if ! is_installed "curl"; then
-		echo "Please install curl using setup.exe" 2>&1
-		exit 3
-	fi
-	if ! is_installed "apt-cyg"; then
-		echo "Installing apt-cyg"
-		curl https://raw.githubusercontent.com/transcode-open/apt-cyg/master/apt-cyg > ~/apt-cyg
-		install ~/apt-cyg /bin
-		rm ~/apt-cyg
-	fi
+if is_os "cygwin" && ! is_installed "apt-cyg"; then
+	echo "Installing apt-cyg"
+	curl https://raw.githubusercontent.com/transcode-open/apt-cyg/master/apt-cyg > ~/apt-cyg
+	install ~/apt-cyg /bin
+	rm ~/apt-cyg
 fi
 
 install stow
@@ -81,6 +97,12 @@ elif is_os "linux-android"; then
 fi
 source ~/.bash_profile
 
+############ Mintty
+
+if is_os "msys"; then
+	stow git
+fi
+
 ############ Git
 
 stow git
@@ -93,13 +115,17 @@ install vim
 
 ############ Tmux
 
-stow tmux
-install tmux
+if ! is_os "msys"; then
+	stow tmux
+	install tmux
+fi
 
 ############ Fish
 
-stow fish
-install fish
+if ! is_os "msys"; then
+	stow fish
+	install fish
+fi
 
 ############ Complete
 

@@ -1,0 +1,4 @@
+BoldAsFont=-1
+Font=Hack
+FontHeight=12
+Term=xterm-256color
