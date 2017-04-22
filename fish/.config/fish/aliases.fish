@@ -23,4 +23,5 @@ alias gc="git commit"
 alias gca="git commit --amend"
 alias gp="git push"
 alias gu="git pull"
+alias gd="git diff"
 
