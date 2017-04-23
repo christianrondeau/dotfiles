@@ -7,7 +7,7 @@ if [[ "$0" != "/proc"* ]]; then
 	cd $(dirname "$0")
 fi
 
-############ Functions
+############ functions
 
 is_installed() {
 	hash $1 2> /dev/null;
@@ -59,7 +59,7 @@ else
 	exit 1
 fi
 
-############ Sanity check
+############ sanity check
 
 if is_os "linux-gnu"; then
 	# Require root
@@ -74,7 +74,7 @@ if is_os "cygwin" && ! is_installed "curl"; then
 	exit 3
 fi
 
-############ Prepare
+############ prepare
 
 if is_os "cygwin" && ! is_installed "apt-cyg"; then
 	echo "Installing apt-cyg"
@@ -86,7 +86,7 @@ fi
 install stow
 install curl
 
-############ Bash
+############ bash
 
 stow bash
 if is_os "cygwin"; then
@@ -97,36 +97,42 @@ elif is_os "linux-android"; then
 fi
 source ~/.bash_profile
 
-############ Mintty
+############ mintty
 
 if is_os "msys"; then
-	stow git
+	stow mintty
 fi
 
-############ Git
+############ git
 
 stow git
 install git
 
-############ Vim
+############ vim
 
 stow vim
 install vim
+vim -c "PlugInstall" -c "qa!"
 
-############ Tmux
+############ neovim
+
+stow neovim
+# install neovim
+
+############ tmux
 
 if ! is_os "msys"; then
 	stow tmux
 	install tmux
 fi
 
-############ Fish
+############ fish
 
 if ! is_os "msys"; then
 	stow fish
 	install fish
 fi
 
-############ Complete
+############ done
 
 echo "Environment setup complete!"
