@@ -1,6 +1,6 @@
 function fish_prompt
 	set -l last_status $status
-	set -l fish_prompt_dim 473F35
+	set -l fish_prompt_dim 946638
 	
 	printf "\n\033[K"
 	if test $last_status -ne 0
