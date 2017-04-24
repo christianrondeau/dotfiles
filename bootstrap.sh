@@ -75,7 +75,7 @@ while getopts 'hi:v' flag; do
 			echo
 			echo "  -h             Help"
 			echo "  -v             Verbose"
-			echo "  -i \"pkg1,pkg2\" Install extra packages"
+			echo "  -i \"pkg1 pkg2\" Install extra packages"
 			exit 0
 			;;
 		*) error "Unexpected option ${flag}" ;;
@@ -183,7 +183,7 @@ fi
 
 if [[ "$install" != "" ]]; then
 	log "Installing extra packages $install"
-	install "$install"
+	install $install
 fi
 
 ############ done
