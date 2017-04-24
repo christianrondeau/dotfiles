@@ -7,15 +7,44 @@ if [[ "$0" != "/proc"* ]]; then
 	cd $(dirname "$0")
 fi
 
+############ arguments
+
+verbose='false'
+install=''
+
+while getopts 'hi:v' flag; do
+	echo "flag ${flag}"
+  case "${flag}" in
+    i) install="${OPTARG}" ;;
+		v) verbose='true' ;;
+		h)
+			echo "Christian Rondeau's cross-platfrom environment bootstrap script"
+			echo "Usage:"
+			echo "  sudo ./bootstrap.sh"
+			exit 0
+			;;
+		*) error "Unexpected option ${flag}" ;;
+  esac
+done
+
 ############ functions
+
+log() {
+	if [[ "$verbose" == "true" ]]; then
+		echo $1
+	fi
+}
 
 is_installed() {
 	hash $1 2> /dev/null;
 }
 
 install() {
+	log "installing $1"
 	if [[ "$PKG" != "" ]] && ! is_installed $1; then
 		$PKG install $1 $PKGARGS
+	else
+		log "$1 already installed or no package manager"
 	fi
 }
 
@@ -42,6 +71,7 @@ fi
 
 ############ OS configuration
 
+log "os: $OSTYPE, package script: $PKG (NAME) $PKGARGS"
 if is_os "linux-android"; then
 	PKG=apt
 	PKGARGS="-y"
@@ -73,6 +103,8 @@ if is_os "cygwin" && ! is_installed "curl"; then
 	echo "Please install curl using setup.exe" 2>&1
 	exit 3
 fi
+
+log "checks: ok"
 
 ############ prepare
 
@@ -131,6 +163,13 @@ fi
 if ! is_os "msys"; then
 	stow fish
 	install fish
+fi
+
+############ other
+
+if [[ "$install" != "" ]]; then
+	log "Installing extra packages $install"
+	install "$install" 
 fi
 
 ############ done
