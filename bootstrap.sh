@@ -20,11 +20,23 @@ is_installed() {
 }
 
 install() {
-	log "installing $1"
-	if [[ "$PKG" != "" ]] && ! is_installed $1; then
-		$PKG install $1 $PKGARGS
+	if [[ "$PKG" == "" ]]; then
+		return 1
+	fi
+
+	pkgname=$1
+	execname=$2
+	if [[ "$execname" == "" ]]; then
+		execname="$pkgname"
+	fi
+
+	if ! is_installed $execname; then
+		log "Could not find $execname, installing $pkgname"
+		$PKG install $pkgname $PKGARGS
+		return 0
 	else
-		log "$1 already installed or no package manager"
+		log "$pkgname already installed or no package manager"
+		return 1
 	fi
 }
 
@@ -129,6 +141,11 @@ if is_os "cygwin" && ! is_installed "apt-cyg"; then
 	rm ~/apt-cyg
 fi
 
+if is_os "linux-android linux-gnu"; then
+	install clang gcc
+	install make
+fi
+
 install stow
 install curl
 
@@ -158,7 +175,12 @@ install git
 
 stow vim
 install vim
-vim -c "PlugInstall" -c "qa!"
+if [ ! -d ~/.vim/bundle/vimproc.vim ]; then
+	log "Installing vim plugins"
+	vim -c "PlugInstall vimproc.vim" -c "qa!"
+	vim -c "silent VimProcInstall" -c "qa!"
+	vim -c "PlugInstall" -c "qa!"
+fi
 
 ############ neovim
 
