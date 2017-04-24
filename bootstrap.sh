@@ -7,26 +7,6 @@ if [[ "$0" != "/proc"* ]]; then
 	cd $(dirname "$0")
 fi
 
-############ arguments
-
-verbose='false'
-install=''
-
-while getopts 'hi:v' flag; do
-	echo "flag ${flag}"
-  case "${flag}" in
-    i) install="${OPTARG}" ;;
-		v) verbose='true' ;;
-		h)
-			echo "Christian Rondeau's cross-platfrom environment bootstrap script"
-			echo "Usage:"
-			echo "  sudo ./bootstrap.sh"
-			exit 0
-			;;
-		*) error "Unexpected option ${flag}" ;;
-  esac
-done
-
 ############ functions
 
 log() {
@@ -69,9 +49,41 @@ if is_os "msys"; then
 	}
 fi
 
+############ arguments
+
+verbose='false'
+install=''
+
+while getopts 'hi:v' flag; do
+  case "${flag}" in
+    i) install="${OPTARG}" ;;
+		v) verbose='true' ;;
+		h)
+			echo "Christian Rondeau's cross-platfrom environment bootstrap script"
+			echo
+			echo "Usage:"
+			if is_os "linux-gnu"; then
+				printf "  sudo ./bootstrap.sh"
+			elif is_os "linux-android [-hv] [-i \"packages\"]"; then
+				printf "  ./termux-bootstrap.sh"
+			else
+				printf "  ./bootstrap.sh"
+			fi
+			echo " [-hv] [-i:\"packages\"]"
+			echo
+			echo "Arguments:"
+			echo
+			echo "  -h             Help"
+			echo "  -v             Verbose"
+			echo "  -i \"pkg1,pkg2\" Install extra packages"
+			exit 0
+			;;
+		*) error "Unexpected option ${flag}" ;;
+  esac
+done
+
 ############ OS configuration
 
-log "os: $OSTYPE, package script: $PKG (NAME) $PKGARGS"
 if is_os "linux-android"; then
 	PKG=apt
 	PKGARGS="-y"
@@ -88,6 +100,8 @@ else
   echo "Unknown OS: '$OSTYPE'" 2>&1
 	exit 1
 fi
+
+log "os: $OSTYPE, package script: $PKG (NAME) $PKGARGS"
 
 ############ sanity check
 
@@ -169,7 +183,7 @@ fi
 
 if [[ "$install" != "" ]]; then
 	log "Installing extra packages $install"
-	install "$install" 
+	install "$install"
 fi
 
 ############ done
