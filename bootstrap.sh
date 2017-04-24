@@ -19,6 +19,14 @@ is_installed() {
 	hash $1 2> /dev/null;
 }
 
+has_level() {
+	if [ "$1" -le "$LEVEL" ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 install() {
 	if [[ "$PKG" == "" ]]; then
 		return 1
@@ -65,11 +73,13 @@ fi
 
 verbose='false'
 install=''
+profile='minimal'
 
-while getopts 'hi:v' flag; do
+while getopts 'hi:vp:' flag; do
   case "${flag}" in
     i) install="${OPTARG}" ;;
 		v) verbose='true' ;;
+		p) profile="${OPTARG}" ;;
 		h)
 			echo "Christian Rondeau's cross-platfrom environment bootstrap script"
 			echo
@@ -88,11 +98,32 @@ while getopts 'hi:v' flag; do
 			echo "  -h             Help"
 			echo "  -v             Verbose"
 			echo "  -i \"pkg1 pkg2\" Install extra packages"
+			echo "  -p \"profile\"   Selects which packages to install"
+			echo
+			echo "Profiles:"
+			echo
+			echo "  minimal  Just enough to work; symlinks, vim... [default]"
+			echo "  basic    Basic setup, vim plugins, clang, fish, tmux, ag..."
+			echo "  full     Full environment; node, etc."
 			exit 0
 			;;
 		*) error "Unexpected option ${flag}" ;;
   esac
 done
+
+LEVEL_MINIMAL=1
+LEVEL_BASIC=10
+LEVEL_FULL=100
+LEVEL=$LEVEL_MINIMAL
+
+case "${profile}" in
+	minimal) LEVEL=$LEVEL_MINIMAL ;;
+	basic) LEVEL=$LEVEL_BASIC ;;
+	full) LEVEL=LEVEL_FULL ;;
+	*) error "Unexpected profile ${profile}" ;;
+esac
+
+log "Profile: $profile ($LEVEL)"
 
 ############ OS configuration
 
@@ -141,7 +172,7 @@ if is_os "cygwin" && ! is_installed "apt-cyg"; then
 	rm ~/apt-cyg
 fi
 
-if is_os "linux-android linux-gnu"; then
+if is_os "linux-android linux-gnu" && has_level $LEVEL_BASIC; then
 	install clang gcc
 	install make
 fi
@@ -151,52 +182,66 @@ install curl
 
 ############ bash
 
-stow bash
-if is_os "cygwin"; then
-	stow bash-cygwin
-elif is_os "linux-android"; then
-	stow bash-termux
-	stow termux
+if has_level $LEVEL_MINIMAL; then
+	stow bash
+	if is_os "cygwin"; then
+		stow bash-cygwin
+	elif is_os "linux-android"; then
+		stow bash-termux
+		stow termux
+	fi
 fi
-source ~/.bash_profile
 
 ############ mintty
 
-if is_os "msys"; then
+if has_level $LEVEL_MINIMAL && is_os "msys"; then
 	stow mintty
 fi
 
 ############ git
 
-stow git
-install git
+if has_level $LEVEL_MINIMAL; then
+	stow git
+	install git
+fi
 
 ############ vim
 
-stow vim
-install vim
-if [ ! -d ~/.vim/bundle/vimproc.vim ]; then
+if has_level $LEVEL_MINIMAL; then
+	stow vim
+	install vim
+fi
+
+if has_level $LEVEL_BASIC && [ ! -d ~/.vim/bundle/vimproc.vim ]; then
 	log "Installing vim plugins"
 	vim -c "PlugInstall vimproc.vim" -c "qa!"
 	vim -c "silent VimProcInstall" -c "qa!"
 	vim -c "PlugInstall" -c "qa!"
 fi
 
+############ silversearcher-ag
+
+if has_level $LEVEL_BASIC; then
+	install silversearcher-ag ag
+fi
+
 ############ neovim
 
-stow neovim
-# install neovim
+if has_level $LEVEL_FULL; then
+	stow neovim
+	# install neovim
+fi
 
 ############ tmux
 
-if ! is_os "msys"; then
+if has_level $LEVEL_BASIC && ! is_os "msys"; then
 	stow tmux
 	install tmux
 fi
 
 ############ fish
 
-if ! is_os "msys"; then
+if has_level $LEVEL_BASIC && ! is_os "msys"; then
 	stow fish
 	install fish
 fi
