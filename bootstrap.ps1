@@ -17,8 +17,8 @@ function StowFile([string]$link, [string]$target) {
 		}
 	}
 
-	echo "Creating link $link"
- New-Item -Path $link -ItemType SymbolicLink -Value $target
+	echo "Creating link"
+	(New-Item -Path $link -ItemType SymbolicLink -Value $target).Target
 }
 
 function Stow([string]$package, [string]$target) {
@@ -34,7 +34,7 @@ function Stow([string]$package, [string]$target) {
 $DotFilesPath = Split-Path $MyInvocation.MyCommand.Path
 pushd $DotFilesPath
 try {
-	Stow powershell (Get-Item $PROFILE).Directory
+	Stow powershell (Split-Path -Path $PROFILE)
 } finally {
 	popd
 }
