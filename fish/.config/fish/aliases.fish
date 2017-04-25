@@ -1,6 +1,6 @@
 # Common
 alias ..="cd .."
-if [ "$OSTYPE" = "linux-android" ]
+if [ "$HOME" = "/data/data/com.termux/files/home" ]
 	alias ls="ls -A"
 else
 	alias ls='ls -A --color=auto'
