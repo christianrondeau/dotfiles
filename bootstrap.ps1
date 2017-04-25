@@ -36,14 +36,22 @@ $DotFilesPath = Split-Path $MyInvocation.MyCommand.Path
 pushd $DotFilesPath
 try {
 	Stow powershell (Split-Path -Path $PROFILE)
+	Stow conemu ($env:APPDATA)
 } finally {
 	popd
 }
 
-choco install ag hackfont vim poshgit -y
+choco install ag hackfont vim poshgit clink far conemu everything curl 7zip fiddler4 git gitextensions GoogleChrome greenshot launchy paint.net putty sharpkeys -y
 
 # TODO:
 # * Setup environment variables
 # * Check chocolatey
 # * Profiles
 # * Download vimproc, fullscreen
+# * Install sharpkeys CapsLock
+# * Setup putty at startup
+# * configure launchy with chocolatey
+# * configure conemu ConEmu.xml to APPDATA one
+# * Configure python for Vim (can we use python 3 now?)
+# * Group by profiles, like the .sh version
+# * Add other softwre, like Skype
