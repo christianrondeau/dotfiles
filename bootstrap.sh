@@ -43,7 +43,7 @@ install() {
 		$PKG install $pkgname $PKGARGS
 		return 0
 	else
-		log "$pkgname already installed or no package manager"
+		log "$pkgname already installed"
 		return 1
 	fi
 }
@@ -119,7 +119,7 @@ LEVEL=$LEVEL_MINIMAL
 case "${profile}" in
 	minimal) LEVEL=$LEVEL_MINIMAL ;;
 	basic) LEVEL=$LEVEL_BASIC ;;
-	full) LEVEL=LEVEL_FULL ;;
+	full) LEVEL=$LEVEL_FULL ;;
 	*) error "Unexpected profile ${profile}" ;;
 esac
 
@@ -144,7 +144,8 @@ else
 	exit 1
 fi
 
-log "os: $OSTYPE, package script: $PKG (NAME) $PKGARGS"
+log "os: $OSTYPE"
+log "install command: $PKG install ... $PKGARGS"
 
 ############ sanity check
 
@@ -221,7 +222,7 @@ fi
 
 ############ silversearcher-ag
 
-if has_level $LEVEL_BASIC; then
+if has_level $LEVEL_MINIMAL; then
 	install silversearcher-ag ag
 fi
 
@@ -229,7 +230,7 @@ fi
 
 if has_level $LEVEL_FULL; then
 	stow neovim
-	# install neovim
+	install neovim nvim
 fi
 
 ############ tmux
@@ -244,6 +245,10 @@ fi
 if has_level $LEVEL_BASIC && ! is_os "msys"; then
 	stow fish
 	install fish
+fi
+
+if has_level $LEVEL_FULL && is_os "linux-gnu"; then
+	$PKG install fonts-hack-ttf $PKGARGS
 fi
 
 ############ other

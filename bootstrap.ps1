@@ -1,4 +1,5 @@
-﻿Set-StrictMode -version Latest
+﻿#Requires -RunAsAdministrator
+Set-StrictMode -version Latest
 
 # Functions
 
@@ -39,10 +40,10 @@ try {
 	popd
 }
 
+choco install silversearcher-ag hackfont vim poshgit -y
+
 # TODO:
-# 3. Setup environment variables
-# 4. Check if admin
-# 5. Check chocolatey
-# 6. Install packages
-# 7. Install posh-git: `choco install poshgit`
-# 8. Set ReadLine for CTRL+R
+# * Setup environment variables
+# * Check chocolatey
+# * Profiles
+# * Download vimproc, fullscreen
