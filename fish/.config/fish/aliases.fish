@@ -24,4 +24,4 @@ alias gca="git commit --amend"
 alias gp="git push"
 alias gu="git pull"
 alias gd="git diff"
-
+alias gl="git log --oneline --graph --color --all --decorate"
