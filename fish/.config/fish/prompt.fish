@@ -46,6 +46,9 @@ function fish_prompt
 		case visual
 			set_color --bold yellow
 			printf "λ"
+		case replace-one
+			set_color --bold brred
+			printf "λ"
 		end
 		set_color normal
 	else
