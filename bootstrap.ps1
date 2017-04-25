@@ -40,7 +40,7 @@ try {
 	popd
 }
 
-choco install silversearcher-ag hackfont vim poshgit -y
+choco install ag hackfont vim poshgit -y
 
 # TODO:
 # * Setup environment variables
