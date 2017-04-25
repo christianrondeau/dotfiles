@@ -1,3 +1,5 @@
+function fish_mode_prompt; end
+
 function fish_prompt
 	set -l last_status $status
 	set -l fish_prompt_dim 946638
@@ -31,8 +33,26 @@ function fish_prompt
 		end
 	end
 
-	set_color $fish_prompt_dim
-	printf "\nλ "
+	printf "\n"
+
+	if set -q __fish_vi_mode
+		switch $fish_bind_mode
+		case default
+			set_color --bold red
+			printf "λ"
+		case insert
+			set_color $fish_prompt_dim
+			printf "λ"
+		case visual
+			set_color --bold yellow
+			printf "λ"
+		end
+		set_color normal
+	else
+		set_color $fish_prompt_dim
+		printf "λ"
+	end
 
 	set_color $fish_prompt_normal
+	printf " "
 end
