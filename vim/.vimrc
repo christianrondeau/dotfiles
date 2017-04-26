@@ -41,6 +41,7 @@ if(has("gui_running"))
 			set guifont=Hack:h11
 		endif
 		set guioptions-=T " Hide toolbar
+		set guioptions-=m  "remove menu bar
 		let s:vimrc_gui_set = 1
 	endif
 
