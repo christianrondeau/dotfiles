@@ -38,16 +38,16 @@ function fish_prompt
 	if set -q __fish_vi_mode
 		switch $fish_bind_mode
 		case default
-			set_color --bold red
+			set_color black --background green
 			printf "λ"
 		case insert
 			set_color $fish_prompt_dim
 			printf "λ"
 		case visual
-			set_color --bold yellow
+			set_color black --background blue
 			printf "λ"
 		case replace-one
-			set_color --bold brred
+			set_color black --background red
 			printf "λ"
 		end
 		set_color normal
