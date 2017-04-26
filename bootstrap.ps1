@@ -15,10 +15,10 @@ function StowFile([String]$link, [String]$target) {
 
 	if($file) {
 		if ($file.LinkType -ne "SymbolicLink") {
-			throw "$($file.FullName) already exists and is not a symbolic link"
+			Write-Error "$($file.FullName) already exists and is not a symbolic link"
 		}
 		if ($file.Target -ne $target) {
-			throw "$($file.FullName) already exists and points to '$($file.Target)', it should point to '$target'"
+			Write-Error "$($file.FullName) already exists and points to '$($file.Target)', it should point to '$target'"
 		} else {
 			Write-Verbose "$($file.FullName) already linked"
 			return
@@ -26,31 +26,12 @@ function StowFile([String]$link, [String]$target) {
 	}
 
 	Write-Verbose "Creating link $($link)"
-	(New-Item -Path $link -ItemType SymbolicLink -Value $target).Target
-}
-
-function StowFolder([String]$link, [String]$target) {
-	$folder = Get-Item $link -ErrorAction SilentlyContinue
-
-	if($folder) {
-		if ($folder.LinkType -ne "SymbolicLink") {
-			throw "$($folder.FullName) already exists and is not a symbolic link"
-		}
-		if ($folder.Target -ne $target) {
-			throw "$($folder.FullName) already exists and points to '$($folder.Target)', it should point to '$target'"
-		} else {
-			Write-Verbose "$($folder.FullName) already linked"
-			return
-		}
-	}
-
-	Write-Verbose "Creating link $($link)"
-	(New-Item -Path $link -ItemType SymbolicLink -Value $target).Target
+	(New-Item -Path $link -ItemType SymbolicLink -Value $target -ErrorAction Continue).Target
 }
 
 function Stow([String]$package, [String]$target) {
 	if(-not $target) {
-		throw "Could not define the target link folder of $package"
+		Write-Error "Could not define the target link folder of $package"
 	}
 
 	ls $DotFilesPath\$package | % {
@@ -115,7 +96,7 @@ try {
 
 	# Vim
 	if($Level -ge $LevelMinimal) {
-		StowFolder "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
+		StowFile "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
 		StowFile "$env:HOME\_vimrc" (Get-Item "vim\.vimrc").FullName
 		StowFile "$env:HOME\_vsvimrc" (Get-Item "vim\.vsvimrc").FullName
 		Install vim
