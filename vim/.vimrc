@@ -322,7 +322,11 @@ endif
 
 " Plugins: vim-plug end {{{
 
-call plug#end()
+try
+	call plug#end()
+catch /E484:/
+	" Ignore. This may happen when vim syntax cannot be found
+endtry
 
 " }}}
 
@@ -332,9 +336,13 @@ call plug#end()
 
 " VIM: Macros {{{
 
+" Allows using `%` to jump to a matching <xml> tag
 if(!has('nvim') && !exists('g:loaded_matchit'))
-	" Allows using `%` to jump to a matching <xml> tag
-	packadd matchit
+	try
+		packadd matchit
+	catch /E919:/
+		" Too bad...
+	endtry
 endif
 
 " }}}
@@ -486,7 +494,7 @@ inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
 nnoremap <leader>cd :ProjectRootCD<CR>
 nnoremap <silent> <leader>n :noh<CR>
 nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
-nnoremap <leader>ev :e $HOME/.vim/_vimrc<CR>
+nnoremap <leader>ev :e $HOME/dotfiles/vim/.vimrc<CR>
 nnoremap <C-F4> :bd<cr>
 if(stridx(expand('~/'), 'termux') != -1)
 	nnoremap <leader>y ggyG:call system('termux-clipboard-set', @")<CR><CR>
