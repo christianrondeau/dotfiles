@@ -1,8 +1,14 @@
-Instructions to get a pretty and functional VIM setup!
+Get a nice and clean environment in a few seconds!
+
+# Overview
+
+I am using vim, git, and all sorts of tools on Windows as well as multiple Linux distributions, and I got tired of synchronizing all my configurations, so here you go: a cross-platform bootstrapping script (using `apt` on Linux and `choco` on Windows), and a set of nice symlinked prompts and configuration files (using `stow` on Linux and home-made symlinks on Windows).
+
+Optimized for `PowerShell` on Windows and `Fish` on Linux, but it also provides settings for `bash`.
 
 # Installation
 
-Clone this repo: `git clone https://github.com/christianrondeau/.vim ~/dotfiles` and run `bootstrap` with your desired profile.
+Clone this repo: `git clone https://github.com/christianrondeau/.vim ~/dotfiles` and run `bootstrap`.
 
 ## Profiles
 
