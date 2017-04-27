@@ -49,3 +49,7 @@ Some additional software can help make the experience more "keyboard-friendly" o
 * [Launchy](https://www.launchy.net/) allows searching when using <kbd>Alt</kbd> + <kbd>Space</kbd> (instead of Start menu)
 * [SharpKeys](https://github.com/randyrants/sharpkeys) allows remapping <kbd>CapsLock</kbd> to <kbd>Esc</kbd>
 * [ConEmu](https://conemu.github.io/) allows split panes and shortcuts for all console needs!
+
+## Linux
+
+* [Fish](https://fishshell.com/) by default with `chsh -s /usr/bin/fish`

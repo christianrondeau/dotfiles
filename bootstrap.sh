@@ -155,6 +155,12 @@ if is_os "linux-gnu"; then
 		echo "Please run as root" 2>&1
 		exit 2
 	fi
+
+	# Wait for dpkg to complete pending tasks
+	if pgrep -x dpkg > /dev/null; then
+		echo "Please wait for dpkg to finish" 2>&1
+		exit 2
+	fi
 fi
 
 if is_os "cygwin" && ! is_installed "curl"; then
