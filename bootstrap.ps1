@@ -57,6 +57,33 @@ function Install([String]$package) {
 	}
 }
 
+function DownloadFile([string]$url, [string]$target, [string]$hash) {
+		if(Test-Path $target) {
+			Write-Verbose "$target already downloaded"
+		} else {
+			Write-Verbose "Downloading $target"
+			Invoke-WebRequest -Uri $url -OutFile $target
+			$targethash = Get-FileHash $target -Algorithm "SHA256"
+
+			$diff = 0
+			Compare-Object -Referenceobject $hash -Differenceobject $targethash.Hash | % { If ($_.Sideindicator -ne " ==") { $diff += 1 } }
+
+			if ($diff -ne 0) {
+				Write-Error "Downloaded file '$target' from url '$url' does not match expected hash!`nExpected: $hash`nActual  : $($targethash.Hash)"
+			}
+		}
+}
+
+function SetEnvVariable([string]$target, [string]$name, [string]$value) {
+	$existing = [Environment]::GetEnvironmentVariable($name,$target)
+	if($existing) {
+		Write-Verbose "Environment variable $name already set to '$existing'"
+	} else {
+		Write-Verbose "Adding the $name environment variable to '$value'"
+		[Environment]::SetEnvironmentVariable($name, $value, $target)
+	}
+}
+
 # Arguments
 
 $LevelMinimal = 1
@@ -103,30 +130,24 @@ try {
 
 	# Vim
 	if($Level -ge $LevelMinimal) {
-		if(-not [Environment]::GetEnvironmentVariable("VIM","User")) {
-			[Environment]::SetEnvironmentVariable("VIM", (Get-Item"$env:HOME\.vim").FullName, "User")
-		}
+		SetEnvVariable "User" "VIM" (Get-Item "$env:HOME\.vim").FullName
 
 		StowFile "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
 		StowFile "$env:HOME\_vimrc" (Get-Item "vim\.vimrc").FullName
 		StowFile "$env:HOME\_vsvimrc" (Get-Item "vim\.vsvimrc").FullName
 		Install vim
+
+		SetEnvVariable "Machine" "VIMRUNTIME" (Split-Path (Get-Command vim).Path)
 	}
 
 	if($Level -ge $LevelBasic) {
-		$vimprocdll ="$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll"
-		if(Test-Path $vimprocdll) {
-			Write-Verbose "vimproc_win64.dll already installed."
-		} else {
-			Write-Verbose "vimproc_win64.dll not installed. Installing."
-			$vimprocurl = "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.2/vimproc_win64.dll"
-			Invoke-WebRequest -Uri $vimprocurl -OutFile $vimprocdll
-		}
+		DownloadFile "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.2/vimproc_win64.dll" "$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll" "D96CA8904D4485A7C9BDED019B5EB2EA688EE803E211F0888AB0FD099095FB55"
+		DownloadFile "https://github.com/derekmcloughlin/gvimfullscreen_win32/blob/master/gvimfullscreen.dll" "$env:VIMRUNTIME\gvimfullscreen.dll" "D0DBCD34FFAAA1C5374227C87A1EB734496F2B38F14FE90E1F8CCD539B30A77F"
 
 		if(Test-Path "$env:HOME\.vim\bundle\vimproc.vim") {
 			Write-Verbose "Vim plugins already installed. Update with 'vim -c `"PlugUpdate`" -c `"qa!`"'"
 		} else {
-			Write-Verbose "Vim plugins not installed. Installing."
+			Write-Verbose "Installing Vim plugins"
 			vim -c "PlugInstall vimproc.vim" -c "qa!"
 			vim -c "silent VimProcInstall" -c "qa!"
 			vim -c "PlugInstall" -c "qa!"
