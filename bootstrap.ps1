@@ -10,15 +10,22 @@ Set-StrictMode -version Latest
 
 # Functions
 
+function Write-Error([string]$message) {
+    [Console]::ForegroundColor = 'red'
+    [Console]::Error.WriteLine($message)
+    [Console]::ResetColor()
+}
+
 function StowFile([String]$link, [String]$target) {
 	$file = Get-Item $link -ErrorAction SilentlyContinue
 
 	if($file) {
 		if ($file.LinkType -ne "SymbolicLink") {
 			Write-Error "$($file.FullName) already exists and is not a symbolic link"
-		}
-		if ($file.Target -ne $target) {
+			return
+		} elseif ($file.Target -ne $target) {
 			Write-Error "$($file.FullName) already exists and points to '$($file.Target)', it should point to '$target'"
+			return
 		} else {
 			Write-Verbose "$($file.FullName) already linked"
 			return
@@ -108,12 +115,18 @@ try {
 
 	if($Level -ge $LevelBasic) {
 		$vimprocdll ="$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll"
-		if(-not Test-Path $vimprocdll) {
+		if(Test-Path $vimprocdll) {
+			Write-Verbose "vimproc_win64.dll already installed."
+		} else {
+			Write-Verbose "vimproc_win64.dll not installed. Installing."
 			$vimprocurl = "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.2/vimproc_win64.dll"
-			Invoke-WebRequest -Uri $vimprocurl -OutFile $output
+			Invoke-WebRequest -Uri $vimprocurl -OutFile $vimprocdll
 		}
 
-		if(-not Test-Path "$env:HOME\.vim\bundle\vimproc.vim") {
+		if(Test-Path "$env:HOME\.vim\bundle\vimproc.vim") {
+			Write-Verbose "Vim plugins already installed. Update with 'vim -c `"PlugUpdate`" -c `"qa!`"'"
+		} else {
+			Write-Verbose "Vim plugins not installed. Installing."
 			vim -c "PlugInstall vimproc.vim" -c "qa!"
 			vim -c "silent VimProcInstall" -c "qa!"
 			vim -c "PlugInstall" -c "qa!"
