@@ -96,10 +96,28 @@ try {
 
 	# Vim
 	if($Level -ge $LevelMinimal) {
+		if(-not [Environment]::GetEnvironmentVariable("VIM","User")) {
+			[Environment]::SetEnvironmentVariable("VIM", (Get-Item"$env:HOME\.vim").FullName, "User")
+		}
+
 		StowFile "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
 		StowFile "$env:HOME\_vimrc" (Get-Item "vim\.vimrc").FullName
 		StowFile "$env:HOME\_vsvimrc" (Get-Item "vim\.vsvimrc").FullName
 		Install vim
+	}
+
+	if($Level -ge $LevelBasic) {
+		$vimprocdll ="$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll"
+		if(-not Test-Path $vimprocdll) {
+			$vimprocurl = "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.2/vimproc_win64.dll"
+			Invoke-WebRequest -Uri $vimprocurl -OutFile $output
+		}
+
+		if(-not Test-Path "$env:HOME\.vim\bundle\vimproc.vim") {
+			vim -c "PlugInstall vimproc.vim" -c "qa!"
+			vim -c "silent VimProcInstall" -c "qa!"
+			vim -c "PlugInstall" -c "qa!"
+		}
 	}
 } finally {
 	popd
