@@ -38,8 +38,6 @@ Install the Hack font: https://play.google.com/store/apps/details?id=com.termux.
 ## Gotchas
 
 * If a config file exists, `bootstrap` will complain; you'll have to manually delete those files. This is by design.
-* Chocolatey installs vim in `~/.vim/vim80`... sometimes. Create a `VIMRUNTIME` environment variable.
-* Get [Python 2.7 x86](https://www.python.org/) using `choco install choco install python2-x86_32 -y`, or download it from https://www.python.org/downloads/ if 32bit vim is used. Set the `PYTHONHOME` environment variable to `C:\tools\python2-x86_32` if using Python 2.7.11 ([fixed in 2.7.12](https://github.com/vim/vim/issues/526))
 
 # Tools Descriptions
 
@@ -50,4 +48,4 @@ Some additional software can help make the experience more "keyboard-friendly" o
 * [GoToWindow](https://github.com/christianrondeau/GoToWindow) allows searching when using <kbd>Win</kbd> + <kbd>Tab</kbd>
 * [Launchy](https://www.launchy.net/) allows searching when using <kbd>Alt</kbd> + <kbd>Space</kbd> (instead of Start menu)
 * [SharpKeys](https://github.com/randyrants/sharpkeys) allows remapping <kbd>CapsLock</kbd> to <kbd>Esc</kbd>
-* [ConEmu](https://conemu.github.io/) allows split panes and shortcuts for all console needs
+* [ConEmu](https://conemu.github.io/) allows split panes and shortcuts for all console needs!

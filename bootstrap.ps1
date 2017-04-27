@@ -99,6 +99,13 @@ switch($Profile) {
 
 Write-Verbose "Profile: $Profile ($Level)"
 
+# Sanity Check
+
+if(-not [environment]::Is64BitOperatingSystem) {
+	Write-Error "Only 64 bit Windows is supported"
+	exit
+}
+
 # Prepare
 
 # TODO:
@@ -135,6 +142,7 @@ try {
 		StowFile "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
 		StowFile "$env:HOME\_vimrc" (Get-Item "vim\.vimrc").FullName
 		StowFile "$env:HOME\_vsvimrc" (Get-Item "vim\.vsvimrc").FullName
+		Install python2
 		Install vim
 
 		SetEnvVariable "Machine" "VIMRUNTIME" (Split-Path (Get-Command vim).Path)
