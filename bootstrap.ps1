@@ -62,7 +62,7 @@ function DownloadFile([string]$url, [string]$target, [string]$hash) {
 			Write-Verbose "$target already downloaded"
 		} else {
 			Write-Verbose "Downloading $target"
-			Invoke-WebRequest -Uri $url -OutFile $target
+			(New-Object System.Net.WebClient).DownloadFile($url, $target)
 			$targethash = Get-FileHash $target -Algorithm "SHA256"
 
 			$diff = 0
@@ -150,7 +150,7 @@ try {
 
 	if($Level -ge $LevelBasic) {
 		DownloadFile "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.2/vimproc_win64.dll" "$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll" "D96CA8904D4485A7C9BDED019B5EB2EA688EE803E211F0888AB0FD099095FB55"
-		DownloadFile "https://github.com/derekmcloughlin/gvimfullscreen_win32/blob/master/gvimfullscreen.dll" "$env:VIMRUNTIME\gvimfullscreen.dll" "D0DBCD34FFAAA1C5374227C87A1EB734496F2B38F14FE90E1F8CCD539B30A77F"
+		DownloadFile "https://github.com/derekmcloughlin/gvimfullscreen_win32/blob/master/gvimfullscreen.dll" "$env:VIMRUNTIME\gvimfullscreen.dll" "137E49F0BF8B685072561F560651E90A42DCA971005E2BEE077BCBA8DB608CB8"
 
 		if(Test-Path "$env:HOME\.vim\bundle\vimproc.vim") {
 			Write-Verbose "Vim plugins already installed. Update with 'vim -c `"PlugUpdate`" -c `"qa!`"'"
