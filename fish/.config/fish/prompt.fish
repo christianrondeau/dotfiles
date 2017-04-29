@@ -10,7 +10,7 @@ function fish_prompt
 		printf "[E$last_status] "
 	end
 
-	set_color $fish_prompt_normal
+	set_color normal
 	if [ $COMPUTERNAME ]
 		echo -n $COMPUTERNAME
 	else
