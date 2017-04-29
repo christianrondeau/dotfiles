@@ -7,7 +7,7 @@ function fish_prompt
 	printf "\n\033[K"
 	if test $last_status -ne 0
 		set_color $fish_color_error
-		printf "[E$status] "
+		printf "[E$last_status] "
 	end
 
 	set_color $fish_prompt_normal
