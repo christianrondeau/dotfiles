@@ -24,3 +24,7 @@ Set-Alias -Name ggd -Value Git-Diff
 
 function Git-Log  { git log --oneline --graph --color --all --decorate }
 Set-Alias -Name ggl -Value Git-Log
+
+function Git-Current  { git show -s --format='%Cgreen%h %Cblue%an %Cred%cr%Creset%n%s' }
+Set-Alias -Name ggx -Value Git-Current
+
