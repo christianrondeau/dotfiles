@@ -526,7 +526,7 @@ nnoremap <leader>g <NOP>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>i
 nnoremap <leader>gp :Gpush<CR>
-nnoremap <leader>gu :Gpull<CR>
+nnoremap <leader>gu :Gpull --ff-only<CR>
 nnoremap <leader>gd :GdiffTab<CR>
 " Git Grep
 nnoremap <leader>gf :Ggr<Space>
