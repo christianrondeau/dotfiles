@@ -161,6 +161,17 @@ try {
 			vim -c "PlugInstall" -c "qa!"
 		}
 	}
+
+	# PowerShell Modules
+	if($Level -ge $LevelBasic) {
+		if(!(Get-Module z)) {
+			Install-Module z -AllowClobber -Scope CurrentUser -Force
+		}
+
+		if(!(Get-Command z -ErrorAction SilentlyContinue)) {
+			Install-Module posh-git -Scope CurrentUser -Force
+		}
+	}
 } finally {
 	popd
 }
