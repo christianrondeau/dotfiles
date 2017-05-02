@@ -11,7 +11,8 @@ if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
 
-Import-Module posh-git
+Import-Module posh-git -ErrorAction SilentlyContinue
+Import-Module z -ErrorAction SilentlyContinue
 
 if (Test-Path("$PSScriptRoot\Microsoft.PowerShell_prompt.ps1")) {
 	. "$PSScriptRoot\Microsoft.PowerShell_prompt.ps1"
