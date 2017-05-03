@@ -154,6 +154,7 @@ try {
 
 		Install python2
 		Install vim
+		refreshenv
 
 		SetEnvVariable "Machine" "VIMRUNTIME" (Split-Path (Get-Command vim).Path)
 	}
