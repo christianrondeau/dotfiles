@@ -51,7 +51,7 @@ function Stow([String]$package, [String]$target) {
 function Install([String]$package) {
 	if(-not ((choco list $package --exact --local-only --limitoutput) -like "$package*")) {
 		Write-Verbose "Installing package $package"
-		choco install $package
+		choco install $package -y
 	} else {
 		Write-Verbose "Package $package already installed"
 	}
