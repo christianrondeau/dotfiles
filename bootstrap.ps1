@@ -164,7 +164,9 @@ try {
 		DownloadFile "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.2/vimproc_win64.dll" "$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll" "D96CA8904D4485A7C9BDED019B5EB2EA688EE803E211F0888AB0FD099095FB55"
 		DownloadFile "https://github.com/derekmcloughlin/gvimfullscreen_win32/blob/master/gvimfullscreen.dll" "$env:VIMRUNTIME\gvimfullscreen.dll" "137E49F0BF8B685072561F560651E90A42DCA971005E2BEE077BCBA8DB608CB8"
 
-		if(Test-Path "$env:HOME\.vim\bundle\vimproc.vim") {
+		if(-not (Get-Command vim -ErrorAction SilentlyContinue)) {
+			Write-Verbose "Vim is not in the PATH. Cannot install plugins."
+		} elseif(Test-Path "$env:HOME\.vim\bundle\vimproc.vim") {
 			Write-Verbose "Vim plugins already installed. Update with 'vim -c `"PlugUpdate`" -c `"qa!`"'"
 		} else {
 			Write-Verbose "Installing Vim plugins"
