@@ -18,7 +18,12 @@ Clone this repo: `git clone https://github.com/christianrondeau/.vim ~/dotfiles`
 
 ## Windows
 
-    Set-ExecutionPolicy RemoteSigned
+In a PowerShell window:
+
+    Set-ExecutionPolicy RemoteSigned -Force
+    iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    choco install git putty -y
+    git clone https://github.com/christianrondeau/.vim ~/dotfiles
     ~/bootstrap.ps1
 
 ## Linux
