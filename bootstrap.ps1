@@ -146,11 +146,12 @@ try {
 
 	# Vim
 	if($Level -ge $LevelMinimal) {
-		SetEnvVariable "User" "VIM" (Get-Item "$env:HOME\.vim").FullName
-
 		StowFile "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
 		StowFile "$env:HOME\_vimrc" (Get-Item "vim\.vimrc").FullName
 		StowFile "$env:HOME\_vsvimrc" (Get-Item "vim\.vsvimrc").FullName
+
+		SetEnvVariable "User" "VIM" (Get-Item "$env:HOME\.vim").FullName
+
 		Install python2
 		Install vim
 
@@ -183,7 +184,7 @@ try {
 	}
 	
 	# Common Tools
-	if($Level -ge $Basic) {
+	if($Level -ge $LevelBasic) {
 		Install GoogleChrome
 		Install 7zip
 		Install curl
