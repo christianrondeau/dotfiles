@@ -183,7 +183,7 @@ try {
 		}
 
 		if(!(Get-Module posh-git)) {
-			Install posh-git
+			Install poshgit
 		}
 	}
 	
