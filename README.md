@@ -25,6 +25,10 @@ In a PowerShell window:
     choco install git putty -y
     git clone https://github.com/christianrondeau/dotfiles $env:HOMEDRIVE$env:HOMEPATH/dotfiles
     ~/bootstrap.ps1
+    
+* Now, create a SSH key with puttygen in `~/.ssh/id_rsa`, and add a startup link in `%AppData%\Microsoft\Windows\Start Menu\Programs\Startup` to `C:\ProgramData\chocolatey\lib\putty.portable\tools\pageant.exe "%HOMEDRIVE%%HOMEPATH%\.ssh\id_rsa.ppk"`
+* Add an environment variable `GIT_SSH` pointing to `C:\ProgramData\chocolatey\lib\putty.portable\tools\plink.exe`
+* Add `C:\Program Files\Git\usr\bin\` to the `PATH`
 
 ## Linux
 
