@@ -23,7 +23,7 @@ In a PowerShell window:
     Set-ExecutionPolicy RemoteSigned -Force
     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     choco install git putty -y
-    git clone https://github.com/christianrondeau/dotfiles ~/dotfiles
+    git clone https://github.com/christianrondeau/dotfiles $env:HOMEDRIVE$env:HOMEPATH/dotfiles
     ~/bootstrap.ps1
 
 ## Linux
