@@ -135,6 +135,11 @@ try {
 		Install git
 	}
 
+	# Git
+	if($Level -ge $LevelBasic) {
+		Install ag
+	}
+
 	# Vim
 	if($Level -ge $LevelMinimal) {
 		SetEnvVariable "User" "VIM" (Get-Item "$env:HOME\.vim").FullName
@@ -164,25 +169,46 @@ try {
 
 	# PowerShell Modules
 	if($Level -ge $LevelBasic) {
-		if(!(Get-Module z)) {
+		if(!(Get-Command z -ErrorAction SilentlyContinue)) {
 			Install-Module z -AllowClobber -Scope CurrentUser -Force
 		}
 
-		if(!(Get-Command z -ErrorAction SilentlyContinue)) {
-			Install-Module posh-git -Scope CurrentUser -Force
+		if(!(Get-Module posh-git)) {
+			Install posh-git
 		}
 	}
+	
+	# Common Tools
+	if($Level -ge $Basic) {
+		Install GoogleChrome
+		Install 7zip
+		Install curl
+		Install python2
+	}
+	
+	# Full Setup
+	if($Level -ge $LevelFull) {
+		Install Firefox
+		Install steam
+		Install lastpass
+		Install hackfont
+		Install ConEmu
+		Install fiddler4
+		Install gitextensions
+		Install greenshot
+		Install launchy
+		Install paint.net
+		Install sharpkeys
+		Install Skype
+		Install nodejs
+		Install slack
+	}
+	
 } finally {
 	popd
 }
 
-# choco install ag hackfont vim poshgit clink far conemu everything curl 7zip fiddler4 git gitextensions GoogleChrome greenshot launchy paint.net putty sharpkeys -y
-
 # TODO:
-# * Download vimproc, fullscreen
 # * Install sharpkeys CapsLock
 # * Setup putty at startup
 # * configure launchy with chocolatey
-# * configure conemu ConEmu.xml to APPDATA one
-# * Configure python for Vim (can we use python 3 now?)
-# * Add other software, like Skype
