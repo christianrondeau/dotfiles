@@ -8,7 +8,7 @@ Optimized for `PowerShell` on Windows and `Fish` on Linux, but it also provides 
 
 # Installation
 
-Clone this repo: `git clone https://github.com/christianrondeau/.vim ~/dotfiles` and run `bootstrap`.
+Clone this repo: `git clone https://github.com/christianrondeau/dotfiles ~/dotfiles` and run `bootstrap`.
 
 ## Profiles
 
@@ -23,7 +23,7 @@ In a PowerShell window:
     Set-ExecutionPolicy RemoteSigned -Force
     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     choco install git putty -y
-    git clone https://github.com/christianrondeau/.vim ~/dotfiles
+    git clone https://github.com/christianrondeau/dotfiles ~/dotfiles
     ~/bootstrap.ps1
 
 ## Linux

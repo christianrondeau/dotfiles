@@ -106,6 +106,10 @@ if(-not [environment]::Is64BitOperatingSystem) {
 	exit
 }
 
+if(-not $env:HOME) {
+	$env:HOME = "$($env:HOMEDRIVE)$($env:HOMEPATH)"
+}
+
 # Prepare
 
 # TODO:
