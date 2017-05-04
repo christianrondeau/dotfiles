@@ -139,7 +139,7 @@ try {
 		Install git
 	}
 
-	# Git
+	# SilverSearcher (ag)
 	if($Level -ge $LevelBasic) {
 		Install ag
 	}
@@ -183,7 +183,7 @@ try {
 		}
 
 		if(!(Get-Module posh-git)) {
-			Install poshgit
+			Install-Module posh-git -Scope CurrentUser -Force
 		}
 	}
 	
@@ -211,6 +211,11 @@ try {
 		Install Skype
 		Install nodejs
 		Install slack
+	}
+
+	# SSH Keys 
+	if($Level -ge $LevelBasic) {
+		# TODO: Generate a id_rsa if none exist
 	}
 	
 } finally {
