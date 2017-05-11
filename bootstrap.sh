@@ -189,7 +189,7 @@ fi
 ############ fish
 
 if has_level $LEVEL_BASIC && ! is_os "msys"; then
-	stow fish
+	stow fish --no-folding
 	install fish
 fi
 
