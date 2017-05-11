@@ -191,7 +191,17 @@ fi
 if has_level $LEVEL_BASIC && ! is_os "msys"; then
 	stow fish --no-folding
 	install fish
+
+	if has_level $LEVEL_FULL && [ ! -e ~/.config/fish/functions/fisher.fish ]; then
+		log "Installing fisher"
+		curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+		fisher
+	else
+		log "fisher already installed"
+	fi
 fi
+
+############ hack font
 
 if has_level $LEVEL_FULL && is_os "linux-gnu"; then
 	$PKG install fonts-hack-ttf $PKGARGS
