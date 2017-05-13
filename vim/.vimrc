@@ -154,7 +154,7 @@ endif
 " Multiple cursors
 " Use <C-n> to move to next occurence of word
 if(has("gui_running"))
-	Plug 'vim-multiple-cursors'
+	Plug 'terryma/vim-multiple-cursors'
 endif
 
 " Search using The Silver Searcher (Ag)
