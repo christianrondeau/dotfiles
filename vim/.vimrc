@@ -621,6 +621,13 @@ augroup END
 
 " }}}
 
+" Mappings: Functions {{{
+
+command! -bang Wq execute "wq" . ((<bang>0) ? "!" : "")
+command! -bang Q execute "q" . ((<bang>0) ? "!" : "")
+
+" }}}
+
 " }}}
 
 " Languages {{{
@@ -803,7 +810,7 @@ let g:startify_skiplist = [
       \ '[/\\].vim[/\\]vim80',
       \ 'TextEditorAnywhere_',
       \ '[/\\]vimwiki',
-      \ '[/\\].vim[/\\]_vimrc',
+      \ '.vimrc',
       \ '[/\\].git[/\\]',
       \ ]
 
