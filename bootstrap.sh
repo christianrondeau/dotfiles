@@ -190,7 +190,14 @@ fi
 
 if has_level $LEVEL_BASIC && ! is_os "msys"; then
 	stow fish --no-folding
-	install fish
+	if is_os "linux-gnu"; then
+		sudo apt-add-repository ppa:fish-shell/release-2
+		sudo apt-get update
+		sudo apt-get install fish
+	else
+		install fish
+	fi
+	log "Use chsh /usr/bin/fish to change your shell"
 
 	if has_level $LEVEL_FULL && [ ! -e ~/.config/fish/functions/fisher.fish ]; then
 		log "Installing fisher"
