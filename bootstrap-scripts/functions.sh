@@ -8,6 +8,14 @@ is_installed() {
 	hash $1 2> /dev/null;
 }
 
+is_force() {
+	if [[ "$force" == "true" ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 has_level() {
 	if [ "$1" -le "$LEVEL" ]; then
 		return 0

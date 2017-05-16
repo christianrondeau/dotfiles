@@ -30,9 +30,9 @@ In a PowerShell window:
 * Add an environment variable `GIT_SSH` pointing to `C:\ProgramData\chocolatey\lib\putty.portable\tools\plink.exe`
 * Add `C:\Program Files\Git\usr\bin\` to the `PATH`
 
-## Linux
+## Linux (Ubuntu/Mint)
 
-    sudo ~/bootstrap.sh -p basic
+    ~/bootstrap.sh -p basic
 
 ## Cygwin
 

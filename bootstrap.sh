@@ -12,13 +12,15 @@ source bootstrap-scripts/functions.sh
 ############ arguments
 
 verbose='false'
+force='false'
 install=''
 profile='minimal'
 
-while getopts 'hi:vp:' flag; do
+while getopts 'hfvi:p:' flag; do
   case "${flag}" in
     i) install="${OPTARG}" ;;
 		v) verbose='true' ;;
+		f) force='true' ;;
 		p) profile="${OPTARG}" ;;
 		h)
 			echo "Christian Rondeau's cross-platfrom environment bootstrap script"
@@ -31,12 +33,13 @@ while getopts 'hi:vp:' flag; do
 			else
 				printf "  ./bootstrap.sh"
 			fi
-			echo " [-hv] [-i:\"packages\"]"
+			echo " [-hvf] [-i:\"packages\"]"
 			echo
 			echo "Arguments:"
 			echo
 			echo "  -h             Help"
 			echo "  -v             Verbose"
+			echo "  -f             Force"
 			echo "  -i \"pkg1 pkg2\" Install extra packages"
 			echo "  -p \"profile\"   Selects which packages to install"
 			echo
@@ -47,7 +50,10 @@ while getopts 'hi:vp:' flag; do
 			echo "  full     Full environment; node, etc."
 			exit 0
 			;;
-		*) error "Unexpected option ${flag}" ;;
+		*)
+			echo "Unexpected option -${flag}"
+			exit 3
+		 	;;
   esac
 done
 
@@ -71,7 +77,7 @@ if is_os "linux-android"; then
 	PKG=apt
 	PKGARGS="-y"
 elif is_os "linux-gnu"; then
-	PKG=apt-get
+	PKG="sudo apt-get"
 	PKGARGS="-y"
 elif is_os "cygwin"; then
 	PKG=apt-cyg
@@ -91,8 +97,8 @@ log "install command: $PKG install ... $PKGARGS"
 
 if is_os "linux-gnu"; then
 	# Require root
-	if [ "$EUID" -ne 0 ]; then
-		echo "Please run as root" 2>&1
+	if [ "$EUID" -eq 0 ] && ! is_force; then
+		echo "Do not run as root, to avoid folders being owned by root. Use -f to force." 2>&1
 		exit 2
 	fi
 
@@ -191,9 +197,9 @@ fi
 if has_level $LEVEL_BASIC && ! is_os "msys"; then
 	stow fish --no-folding
 	if ! is_installed fish && is_os "linux-gnu"; then
-		sudo apt-add-repository ppa:fish-shell/release-2
+		sudo apt-add-repository ppa:fish-shell/release-2 -y
 		sudo apt-get update
-		sudo apt-get install fish
+		sudo apt-get install fish -y
 	else
 		install fish
 	fi
