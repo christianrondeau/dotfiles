@@ -161,7 +161,7 @@ fi
 ############ vim
 
 if has_level $LEVEL_MINIMAL; then
-	stow vim
+	stow vim --no-folding
 	install vim
 fi
 
@@ -181,7 +181,7 @@ fi
 ############ neovim
 
 if has_level $LEVEL_FULL; then
-	stow neovim
+	stow neovim --no-folding
 	install neovim nvim
 fi
 
