@@ -196,14 +196,20 @@ fi
 
 if has_level $LEVEL_BASIC && ! is_os "msys"; then
 	stow fish --no-folding
-	if ! is_installed fish && is_os "linux-gnu"; then
-		sudo apt-add-repository ppa:fish-shell/release-2 -y
-		sudo apt-get update
-		sudo apt-get install fish -y
-	else
-		install fish
+	if ! is_installed fish; then
+		if is_os "linux-gnu"; then
+			sudo apt-add-repository ppa:fish-shell/release-2 -y
+			sudo apt-get update
+			sudo apt-get install fish -y
+		else
+			install fish
+		fi
 	fi
-	log "Use chsh /usr/bin/fish to change your shell"
+
+	current_shell=$(getent passwd $LOGNAME | cut -d: -f7)
+	if [ ! $current_shell = "/usr/bin/fish" ]; then
+		echo "Your current shell is $current_shell. To use fish, run chsh -s /usr/bin/fish"
+	fi
 
 	if has_level $LEVEL_FULL && [ ! -e ~/.config/fish/functions/fisher.fish ]; then
 		log "Installing fisher"
