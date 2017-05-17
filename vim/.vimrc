@@ -180,6 +180,10 @@ Plug 'vim-scripts/BufOnly.vim'
 " Run with `<leader>o`, back with `<c-o>`
 Plug 'vim-scripts/utl.vim'
 
+" Fuzzy finding
+" Run with `:FZF` and more: https://github.com/junegunn/fzf.vim
+Plug 'junegunn/fzf.vim'
+
 " }}}
 
 " Plugins: Text Processing {{{
