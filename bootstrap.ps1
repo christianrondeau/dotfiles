@@ -144,6 +144,11 @@ try {
 		Install ag
 	}
 
+	# Fzf
+	if($Level -ge $LevelBasic) {
+		Install fzf
+	}
+
 	# Vim
 	if($Level -ge $LevelMinimal) {
 		StowFile "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
@@ -184,6 +189,10 @@ try {
 
 		if(!(Get-Module posh-git)) {
 			Install-Module posh-git -Scope CurrentUser -Force
+		}
+
+		if(!(Get-Module PSFzf)) {
+			Install-Module -Name PSFzf
 		}
 	}
 	

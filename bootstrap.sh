@@ -147,7 +147,7 @@ fi
 
 ############ mintty
 
-if has_level $LEVEL_MINIMAL && is_os "msys"; then
+if has_level $LEVEL_BASIC && is_os "msys"; then
 	stow mintty
 fi
 
@@ -174,8 +174,14 @@ fi
 
 ############ silversearcher-ag
 
-if has_level $LEVEL_MINIMAL; then
+if has_level $LEVEL_BASIC; then
 	install silversearcher-ag ag
+fi
+
+############ fzf
+
+if has_level $LEVEL_BASIC; then
+	install fzf
 fi
 
 ############ neovim
@@ -200,7 +206,7 @@ fi
 
 ############ ranger
 
-if has_level $LEVEL_FULL && ! is_os "msys"; then
+if has_level $LEVEL_BASIC && ! is_os "msys"; then
 	stow ranger --no-folding
 	install ranger
 fi
