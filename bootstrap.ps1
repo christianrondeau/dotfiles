@@ -149,6 +149,11 @@ try {
 		Install fzf
 	}
 
+	# Hub (GitHub Git wrapper)
+	if($Level -ge $LevelFull) {
+		Install hub
+	}
+
 	# Vim
 	if($Level -ge $LevelMinimal) {
 		StowFile "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
