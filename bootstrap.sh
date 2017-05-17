@@ -138,10 +138,10 @@ install curl
 if has_level $LEVEL_MINIMAL; then
 	stow bash
 	if is_os "cygwin"; then
-		stow bash-cygwin
+		stow bash-cygwin --no-folding
 	elif is_os "linux-android"; then
-		stow bash-termux
-		stow termux
+		stow bash-termux --no-folding
+		stow termux --no-folding
 	fi
 fi
 
@@ -154,7 +154,7 @@ fi
 ############ git
 
 if has_level $LEVEL_MINIMAL; then
-	stow git
+	stow git --no-folding
 	install git
 fi
 
@@ -188,7 +188,7 @@ fi
 ############ tmux
 
 if has_level $LEVEL_BASIC && ! is_os "msys"; then
-	stow tmux
+	stow tmux --no-folding
 	install tmux
 fi
 
@@ -196,6 +196,13 @@ fi
 
 if has_level $LEVEL_FULL && ! is_os "msys"; then
 	install mosh
+fi
+
+############ ranger
+
+if has_level $LEVEL_FULL && ! is_os "msys"; then
+	stow ranger --no-folding
+	install ranger
 fi
 
 ############ fish
@@ -212,14 +219,17 @@ if has_level $LEVEL_BASIC && ! is_os "msys"; then
 		fi
 	fi
 
-	current_shell=$(getent passwd $LOGNAME | cut -d: -f7)
-	if [ ! $current_shell = "/usr/bin/fish" ]; then
-		echo "Your current shell is $current_shell. To use fish, run chsh -s /usr/bin/fish"
+	if is_os "linux-gnu"; then
+		current_shell=$(getent passwd $LOGNAME | cut -d: -f7)
+		if [ ! $current_shell = "/usr/bin/fish" ]; then
+			echo "Your current shell is $current_shell. To use fish, run chsh -s /usr/bin/fish"
+		fi
 	fi
 
 	if has_level $LEVEL_FULL && [ ! -e ~/.config/fish/functions/fisher.fish ]; then
 		log "Installing fisher"
 		curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+		source ~/.config/fish/functions/fisher.fish
 		fisher
 	else
 		log "fisher already installed"
