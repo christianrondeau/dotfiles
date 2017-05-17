@@ -192,6 +192,12 @@ if has_level $LEVEL_BASIC && ! is_os "msys"; then
 	install tmux
 fi
 
+############ mosh
+
+if has_level $LEVEL_FULL && ! is_os "msys"; then
+	install mosh
+fi
+
 ############ fish
 
 if has_level $LEVEL_BASIC && ! is_os "msys"; then
