@@ -217,7 +217,6 @@ try {
 		Install launchy
 		Install paint.net
 		Install sharpkeys
-		Install Skype
 		Install nodejs
 		Install slack
 	}
