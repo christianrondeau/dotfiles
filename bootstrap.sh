@@ -181,7 +181,17 @@ fi
 ############ fzf
 
 if has_level $LEVEL_BASIC; then
-	install fzf
+	if ! is_installed fzf; then
+		if is_os "linux-android"; then
+			install fzf
+		elif is_os "linux-gnu"; then
+			log "Installing fzf"
+			git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+			~/.fzf/install
+		fi
+	else
+		log "fzf already installed"
+	fi
 fi
 
 ############ neovim
