@@ -244,7 +244,7 @@ if has_level $LEVEL_BASIC && ! is_os "msys"; then
 
 	if has_level $LEVEL_FULL && [ ! -e ~/.config/fish/functions/fisher.fish ]; then
 		log "Installing fisher"
-		curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+		curl git.io/fisher -L > ~/.config/fish/functions/fisher.fish
 		source ~/.config/fish/functions/fisher.fish
 		fisher
 	else

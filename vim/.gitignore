@@ -1,0 +1,18 @@
+# session
+Session.vim
+session/
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
+.vim/undo/*
+!.vim/undo/.gitinclude
+# Vim Runtime
+.vim/vim[7-9][0-9]/
+# vim-plug
+.vim/bundle/
+" vimproc
+.vim/vimfiles/autoload/vimproc_win32.dll
+.vim/vimfiles/autoload/vimproc_win64.dll
+*.old
