@@ -347,6 +347,8 @@ if(!has('nvim') && !exists('g:loaded_matchit'))
 		packadd matchit
 	catch /E919:/
 		" Too bad...
+	catch /E492:/
+		" TODO: Find out why this happens (E492: Not an editor command: ^I^Ipackadd matchit)
 	endtry
 endif
 

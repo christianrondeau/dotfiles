@@ -126,7 +126,7 @@ if is_os "cygwin" && ! is_installed "apt-cyg"; then
 fi
 
 if is_os "linux-android linux-gnu" && has_level $LEVEL_BASIC; then
-	install clang gcc
+	install clang
 	install make
 fi
 
