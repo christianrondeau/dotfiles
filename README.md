@@ -20,10 +20,12 @@ Clone this repo: `git clone https://github.com/christianrondeau/dotfiles ~/dotfi
 
 In a PowerShell window:
 
+    cd ~/
     Set-ExecutionPolicy RemoteSigned -Force
     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     choco install git putty -y
     git clone https://github.com/christianrondeau/dotfiles $env:HOMEDRIVE$env:HOMEPATH/dotfiles
+    cd dotfiles
     ~/bootstrap.ps1
     
 * Now, create a SSH key with puttygen in `~/.ssh/id_rsa`, and add a startup link in `%AppData%\Microsoft\Windows\Start Menu\Programs\Startup` to `C:\ProgramData\chocolatey\lib\putty.portable\tools\pageant.exe "%HOMEDRIVE%%HOMEPATH%\.ssh\id_rsa.ppk"`
@@ -32,17 +34,19 @@ In a PowerShell window:
 
 ## Linux (Ubuntu/Mint)
 
-    ~/bootstrap.sh -p basic
+    cd ~/
+    sudo apt-get update && sudo apt-get upgrade
+    ssh-keygen -t rsa -C $(read -p "Email: " emailvar && echo $emailvar)
+    sudo apt-get install git -y
+    git clone git@github.com:christianrondeau/dotfiles.git
+    cd dotfiles
+    ./bootstrap.sh -p basic
 
-## Cygwin
+### Termux
 
-    ~/bootstrap.sh -p basic
-
-## Termux
+Same instructions as linux, but instead run `./termux-bootstrap.sh`
 
 Install the Hack font: https://play.google.com/store/apps/details?id=com.termux.styling&hl=en
-
-    ~/termux-bootstrap.sh -p basic
 
 ## Gotchas
 
