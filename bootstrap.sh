@@ -198,7 +198,15 @@ fi
 
 if has_level $LEVEL_FULL; then
 	stow neovim --no-folding
-	install neovim nvim
+	if ! is_installed nvim; then
+		if is_os "linux-gnu"; then
+			sudo add-apt-repository ppa:neovim-ppa/stable
+			sudo apt-get update
+			sudo apt-get install neovim -y
+		else
+			install neovim nvim
+		fi
+	fi
 fi
 
 ############ tmux
