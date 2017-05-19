@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2017-04-28 15:17:51" build="170402">
+		<key name=".Vanilla" modified="2017-05-18 22:09:59" build="170402">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -59,7 +59,7 @@
 			<value name="FontSize" type="ulong" data="16"/>
 			<value name="StatusFontHeight" type="long" data="12"/>
 			<value name="TabFontHeight" type="long" data="11"/>
-			<key name="HotKeys" modified="2017-04-28 15:17:51" build="170402">
+			<key name="HotKeys" modified="2017-05-18 22:09:59" build="170402">
 				<value name="MinimizeRestore" type="dword" data="00000000"/>
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="0000005b"/>
@@ -253,7 +253,7 @@
 			<value name="WindowMode" type="dword" data="0000051f"/>
 			<value name="ConWnd X" type="long" data="220"/>
 			<value name="ConWnd Y" type="long" data="60"/>
-			<value name="LastMonitor" type="string" data="0,0,1920,1040"/>
+			<value name="LastMonitor" type="string" data="0,0,1680,1010"/>
 			<value name="ConWnd Width" type="dword" data="0000008c"/>
 			<value name="ConWnd Height" type="dword" data="0000002e"/>
 			<value name="16bit Height" type="ulong" data="0"/>
@@ -586,9 +586,9 @@
 			<value name="Update.DownloadPath" type="string" data="%TEMP%\ConEmu"/>
 			<value name="Update.LeavePackages" type="hex" data="00"/>
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
-			<key name="Tasks" modified="2017-04-28 15:17:51" build="170402">
+			<key name="Tasks" modified="2017-05-18 22:09:59" build="170402">
 				<value name="Count" type="long" data="7"/>
-				<key name="Task1" modified="2017-04-28 15:17:51" build="170402">
+				<key name="Task1" modified="2017-05-18 22:09:59" build="170402">
 					<value name="Name" type="string" data="{cmd::cmd}"/>
 					<value name="Flags" type="dword" data="00000002"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -597,7 +597,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task2" modified="2017-04-28 15:17:51" build="170402">
+				<key name="Task2" modified="2017-05-18 22:09:59" build="170402">
 					<value name="Name" type="string" data="{cmd::cmd (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -606,7 +606,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task3" modified="2017-04-28 15:17:51" build="170402">
+				<key name="Task3" modified="2017-05-18 22:09:59" build="170402">
 					<value name="Name" type="string" data="{PowerShell::PowerShell}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -615,7 +615,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task4" modified="2017-04-28 15:17:51" build="170402">
+				<key name="Task4" modified="2017-05-18 22:09:59" build="170402">
 					<value name="Name" type="string" data="{PowerShell::PowerShell (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -625,16 +625,16 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task5" modified="2017-04-28 15:17:51" build="170402">
-					<value name="Name" type="string" data="{Bash::Cygwin}"/>
+				<key name="Task5" modified="2017-05-18 22:09:59" build="170402">
+					<value name="Name" type="string" data="{Bash::Bash (lxss)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="set CHERE_INVOKING=1 &amp; %ConEmuDrive%\cygwin64\bin\bash.exe --login -i -new_console:m:/cygdrive -new_console:C:&quot;%ConEmuDrive%\cygwin64\Cygwin.ico&quot;"/>
+					<value name="GuiArgs" type="string" data="-icon &quot;%USERPROFILE%\AppData\Local\lxss\bash.ico&quot;"/>
+					<value name="Cmd1" type="string" data="%windir%\system32\bash.exe -cur_console:pm:/mnt"/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task6" modified="2017-04-28 15:17:51" build="170402">
+				<key name="Task6" modified="2017-05-18 22:09:59" build="170402">
 					<value name="Name" type="string" data="{Bash::Git}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -643,7 +643,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task7" modified="2017-04-28 15:17:51" build="170402">
+				<key name="Task7" modified="2017-05-18 22:09:59" build="170402">
 					<value name="Name" type="string" data="{Editors::GVim}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -707,10 +707,10 @@
 					<value name="Count" type="long" data="1"/>
 				</key>
 			</key>
-			<key name="Apps" modified="2017-04-28 15:17:51" build="170402">
+			<key name="Apps" modified="2017-05-18 22:09:59" build="170402">
 				<value name="Count" type="long" data="0"/>
 			</key>
-			<key name="Colors" modified="2017-04-28 15:17:51" build="170402">
+			<key name="Colors" modified="2017-05-18 22:09:59" build="170402">
 				<value name="Count" type="long" data="0"/>
 			</key>
 			<value name="CmdLineHistory" type="multi"/>
