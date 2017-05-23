@@ -212,7 +212,7 @@ try {
 	# Full Setup
 	if($Level -ge $LevelFull) {
 		Install Firefox
-		Install steam
+		Install gotowindow
 		Install lastpass
 		Install hackfont
 		Install ConEmu
