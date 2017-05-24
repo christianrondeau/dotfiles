@@ -260,6 +260,15 @@ if has_level $LEVEL_BASIC && ! is_os "msys"; then
 	fi
 fi
 
+############ lastpass-cli
+
+if has_level $LEVEL_FULL && ! is_installed lpass; then
+	git clone git@github.com:lastpass/lastpass-cli.git ~/.lastpass-cli
+	pushd ~/.lastpass-cli
+	cmake . && make && sudo make install
+	popd
+fi
+
 ############ hack font
 
 if has_level $LEVEL_FULL && is_os "linux-gnu"; then
