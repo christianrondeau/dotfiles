@@ -1,0 +1,15 @@
+#!/bin/bash
+if ! lpass status -q; then
+	echo "Login with lpass first (lpass login [email])"
+	exit 1
+fi
+lpass_id=$(lpass ls | fzf --color | grep -E -o '\[id: [0-9]+'  | sed 's/\[id: //')
+if [[ -z "$lpass_id" ]]; then
+	echo "Nothing selected, moving on"
+	exit 1
+fi
+lpass show -p $lpass_id | clip.exe 2>/dev/null
+read -p "Username copied to clipboard. Press any key to copy the password..."
+lpass show -u $lpass_id | clip.exe 2>/dev/null
+read -p "Password copied to clipboard. Press any key to clear your clipboard..."
+echo -n "" | clip.exe 2>/dev/null
