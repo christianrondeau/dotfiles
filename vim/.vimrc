@@ -358,7 +358,9 @@ endif
 
 set visualbell t_vb=               " No screen flash
 set noerrorbells                   " No error sounds
-set clipboard=unnamed,unnamedplus  " Use system register
+if(stridx(expand('~/'), 'termux') == -1)
+	set clipboard=unnamed,unnamedplus  " Use system register
+end
 
 " }}}
 
