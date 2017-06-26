@@ -23,5 +23,6 @@ alias gca="git commit --amend"
 alias gp="git push"
 alias gu="git pull"
 alias gd="git diff"
-alias gl="git log --oneline --graph --color --all --decorate"
+alias gl='git log --graph --color --all --decorate --format="%C(auto)%d %s"'
+alias gll='git log --graph --color --all --decorate --format="%C(auto)%h %d %s %Cblue %ar %an"'
 alias gx="git show -s --format='%Cgreen%h %Cblue%an %Cred%cr%Creset%n%s'"
