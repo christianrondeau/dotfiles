@@ -33,7 +33,7 @@ if(has("gui_running"))
 
 
 	" Prevent resetting gvim when sourcing vimrc
-	if(!exists('s:vimrc_gui_set'))
+	if(!exists('g:vimrc_gui_set'))
 		set lines=40 columns=140
 		if(has("unix"))
 			set guifont=Hack\ 11
@@ -42,7 +42,7 @@ if(has("gui_running"))
 		endif
 		set guioptions-=T " Hide toolbar
 		set guioptions-=m  "remove menu bar
-		let s:vimrc_gui_set = 1
+		let g:vimrc_gui_set = 1
 	endif
 
 endif
