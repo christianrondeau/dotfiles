@@ -218,7 +218,9 @@ Plug 'christianrondeau/vim-base64'
 Plug 'vim-scripts/ReplaceWithRegister'
 
 " Automatically add `endif` after typing `if`
-Plug 'tpope/vim-endwise', { 'for': ['vim'] }
+" Note: This additional mapping allows doing "undo" between linebreaks
+inoremap <CR> <C-G>u<CR>
+Plug 'tpope/vim-endwise'
 
 " }}}
 
