@@ -288,6 +288,11 @@ Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 " C#/Razor
 Plug 'OrangeT/vim-csharp', { 'for': ['csharp', 'razor'] }
 
+" Go Lang
+" Install with :GoInstallBinaries
+" Doc: https://github.com/fatih/vim-go/blob/master/README.md
+Plug 'fatih/vim-go'
+
 " }}}
 
 " Plugins: OmniSharp {{{
