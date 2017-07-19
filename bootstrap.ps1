@@ -30,8 +30,14 @@ function StowFile([String]$link, [String]$target) {
 			Write-Verbose "$($file.FullName) already linked"
 			return
 		}
+	} else {
+	$folder = Split-Path $link
+		if(-not (Test-Path $folder)) {
+			Write-Verbose "Creating folder $folder"
+			New-Item -Type Directory -Path $folder
+		}
 	}
-
+	
 	Write-Verbose "Creating link $link to $target"
 	(New-Item -Path $link -ItemType SymbolicLink -Value $target -ErrorAction Continue).Target
 }
@@ -168,6 +174,11 @@ try {
 		if((Get-Command vim -ErrorAction SilentlyContinue)) {
 			SetEnvVariable "Machine" "VIMRUNTIME" (Split-Path (Get-Command vim).Path)
 		}
+	}
+
+	if($Level -ge $LevelFull) {
+		Stow neovim-windows $env:LOCALAPPDATA/nvim
+		Install neovim
 	}
 
 	if($Level -ge $LevelBasic) {
