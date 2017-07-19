@@ -32,7 +32,7 @@ function StowFile([String]$link, [String]$target) {
 		}
 	}
 
-	Write-Verbose "Creating link $($link)"
+	Write-Verbose "Creating link $link to $target"
 	(New-Item -Path $link -ItemType SymbolicLink -Value $target -ErrorAction Continue).Target
 }
 
@@ -124,7 +124,7 @@ try {
 
 	# PowerShell
 	if($Level -ge $LevelMinimal) {
-		Stow powershell (Split-Path -Path $global:PROFILE)
+		StowFile $Global:PROFILE (Get-Item "powershell\Microsoft.PowerShell_profile.ps1").FullName
 	}
 
 	# ConEmu
@@ -197,7 +197,7 @@ try {
 		}
 
 		if(!(Get-Module PSFzf)) {
-			Install-Module -Name PSFzf
+			Install-Module -Name PSFzf -Force
 		}
 	}
 	

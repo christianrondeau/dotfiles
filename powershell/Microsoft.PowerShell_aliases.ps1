@@ -1,6 +1,4 @@
-﻿Set-Alias -Name which -Value Get-Command
-
-function Git-Status { git status }
+﻿function Git-Status { git status }
 Set-Alias -Name ggs -Value Git-Status
 
 function Git-Add { git add }

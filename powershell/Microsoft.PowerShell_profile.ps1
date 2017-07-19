@@ -14,14 +14,25 @@ if (Test-Path($ChocolateyProfile)) {
 Import-Module posh-git -ErrorAction SilentlyContinue
 Import-Module z -ErrorAction SilentlyContinue
 
-if (Test-Path("$PSScriptRoot\Microsoft.PowerShell_prompt.ps1")) {
-	. "$PSScriptRoot\Microsoft.PowerShell_prompt.ps1"
+$ProfileInfo = Get-Item $PROFILE
+if(($ProfileInfo).LinkType -eq "SymbolicLink") {
+	$ProfileScriptsPath = Split-Path $ProfileInfo.Target
+} else {
+	$ProfileScriptsPath = Split-Path $ProfileInfo.FullName
 }
 
-if (Test-Path("$PSScriptRoot\Microsoft.PowerShell_aliases.ps1")) {
-	. "$PSScriptRoot\Microsoft.PowerShell_aliases.ps1"
+if (Test-Path("$ProfileScriptsPath\Microsoft.PowerShell_functions.ps1")) {
+	. "$ProfileScriptsPath\Microsoft.PowerShell_functions.ps1"
 }
 
-if (Test-Path("$PSScriptRoot\Microsoft.PowerShell_local.ps1")) {
-	. "$PSScriptRoot\Microsoft.PowerShell_local.ps1"
+if (Test-Path("$ProfileScriptsPath\Microsoft.PowerShell_prompt.ps1")) {
+	. "$ProfileScriptsPath\Microsoft.PowerShell_prompt.ps1"
+}
+
+if (Test-Path("$ProfileScriptsPath\Microsoft.PowerShell_aliases.ps1")) {
+	. "$ProfileScriptsPath\Microsoft.PowerShell_aliases.ps1"
+}
+
+if (Test-Path("$ProfileScriptsPath\Microsoft.PowerShell_local.ps1")) {
+	. "$ProfileScriptsPath\Microsoft.PowerShell_local.ps1"
 }
