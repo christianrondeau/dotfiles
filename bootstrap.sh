@@ -61,7 +61,7 @@ done
 LEVEL_MINIMAL=1
 LEVEL_BASIC=10
 LEVEL_FULL=100
-LEVEL_FULL=1000
+LEVEL_DEV=1000
 LEVEL=$LEVEL_MINIMAL
 
 case "${profile}" in
@@ -283,6 +283,14 @@ fi
 if has_level $LEVEL_DEV && ! is_os "msys"; then
 	install golang go
 fi
+
+############ i3
+
+# /usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb keyring.deb SHA256:4c3c6685b1181d83efe3a479c5ae38a2a44e23add55e16a328b8c8560bf05e5f
+# apt install ./keyring.deb
+# echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list
+# apt update
+# apt install i3
 
 ############ other
 
