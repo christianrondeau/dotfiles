@@ -48,6 +48,7 @@ while getopts 'hfvi:p:' flag; do
 			echo "  minimal  Just enough to work; symlinks, vim... [default]"
 			echo "  basic    Basic setup, vim plugins, clang, fish, tmux, ag..."
 			echo "  full     Full environment; node, etc."
+			echo "  dev      Experimental things"
 			exit 0
 			;;
 		*)
@@ -60,12 +61,14 @@ done
 LEVEL_MINIMAL=1
 LEVEL_BASIC=10
 LEVEL_FULL=100
+LEVEL_FULL=1000
 LEVEL=$LEVEL_MINIMAL
 
 case "${profile}" in
 	minimal) LEVEL=$LEVEL_MINIMAL ;;
 	basic) LEVEL=$LEVEL_BASIC ;;
 	full) LEVEL=$LEVEL_FULL ;;
+	dev) LEVEL=$LEVEL_DEV ;;
 	*) error "Unexpected profile ${profile}" ;;
 esac
 
@@ -273,6 +276,12 @@ fi
 
 if has_level $LEVEL_FULL && is_os "linux-gnu"; then
 	$PKG install fonts-hack-ttf $PKGARGS
+fi
+
+############ go
+
+if has_level $LEVEL_DEV && ! is_os "msys"; then
+	install golang go
 fi
 
 ############ other
