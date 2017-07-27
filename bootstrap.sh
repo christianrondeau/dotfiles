@@ -181,7 +181,16 @@ fi
 ############ silversearcher-ag
 
 if has_level $LEVEL_BASIC; then
-	install silversearcher-ag ag
+	if ! is_installed ag && is_os "linux-alpine"; then
+		sudo apk --update add automake autoconf make g++ pcre-dev xz-dev
+		if [ $(git clone https://github.com/ggreer/the_silver_searcher.git ~/the_silver_searcher) ]; then
+			pushd ~/the_silver_searcher && 
+			./build.sh && ln -s ~/the_silver_searcher/ag ~/bin/ag
+			popd
+		fi
+	else
+		install silversearcher-ag ag
+	fi
 fi
 
 ############ fzf
@@ -230,7 +239,7 @@ fi
 
 ############ ranger
 
-if has_level $LEVEL_BASIC && ! is_os "msys"; then
+if has_level $LEVEL_DEV && ! is_os "msys"; then
 	stow ranger --no-folding
 	install ranger
 fi
@@ -245,6 +254,9 @@ if has_level $LEVEL_BASIC && ! is_os "msys"; then
 			sudo apt-get update
 			sudo apt-get install fish -y
 		else
+			if is_os "linux-alpine"; then
+				install ncurses tput
+			fi
 			install fish
 		fi
 	fi

@@ -1,3 +1,5 @@
+set PATH ~/bin $PATH
+
 . "$HOME/.config/fish/prompt.fish"
 . "$HOME/.config/fish/aliases.fish"
 
