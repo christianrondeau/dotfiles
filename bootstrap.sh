@@ -77,16 +77,19 @@ log "Profile: $profile ($LEVEL)"
 ############ OS configuration
 
 if is_os "linux-android"; then
-	PKG=apt
+	PKGCMD="apt install"
 	PKGARGS="-y"
 elif is_os "linux-gnu"; then
-	PKG="sudo apt-get"
+	PKGCMD="sudo apt-get install"
 	PKGARGS="-y"
+elif is_os "linux-alpine"; then
+	PKGCMD="sudo apk add"
+	PKGARGS=""
 elif is_os "cygwin"; then
-	PKG=apt-cyg
+	PKGCMD="apt-cyg install"
 	PKGARGS=""
 elif is_os "msys"; then
-	PKG=""
+	PKGCMD=""
 	PKGARGS=""
 else
   echo "Unknown OS: '$OSTYPE'" 2>&1
@@ -94,7 +97,7 @@ else
 fi
 
 log "os: $OSTYPE"
-log "install command: $PKG install ... $PKGARGS"
+log "install command: $PKGCMD {package} $PKGARGS"
 
 ############ sanity check
 
@@ -275,7 +278,7 @@ fi
 ############ hack font
 
 if has_level $LEVEL_FULL && is_os "linux-gnu"; then
-	$PKG install fonts-hack-ttf $PKGARGS
+	$PKGCMD fonts-hack-ttf $PKGARGS
 fi
 
 ############ go

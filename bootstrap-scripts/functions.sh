@@ -25,7 +25,7 @@ has_level() {
 }
 
 install() {
-	if [[ "$PKG" == "" ]]; then
+	if [[ "$PKGCMD" == "" ]]; then
 		return 1
 	fi
 
@@ -37,7 +37,7 @@ install() {
 
 	if ! is_installed $execname; then
 		log "Could not find $execname, installing $pkgname"
-		$PKG install $pkgname $PKGARGS
+		$PKGCMD $pkgname $PKGARGS
 		return 0
 	else
 		log "$pkgname already installed"
@@ -47,6 +47,8 @@ install() {
 
 is_os() {
 	if [[ " $1 " =~ " $OSTYPE " ]]; then
+		return 0
+	elif [[ " $1 " == " linux-alpine " && -f /etc/alpine-release ]]; then
 		return 0
 	else
 		return 1
