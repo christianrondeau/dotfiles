@@ -1,4 +1,4 @@
-set PATH ~/bin $PATH
+set PATH ~/bin /usr/local/bin $PATH
 
 . "$HOME/.config/fish/prompt.fish"
 . "$HOME/.config/fish/aliases.fish"
