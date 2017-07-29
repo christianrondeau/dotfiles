@@ -48,6 +48,13 @@ Same instructions as linux, but instead run `./termux-bootstrap.sh`
 
 Install the Hack font: https://play.google.com/store/apps/details?id=com.termux.styling&hl=en
 
+### Docker
+
+You can also run a mini development environment in Docker:
+
+    docker-compose devel run fish
+    ./bootstrap.sh -p basic
+
 ## Gotchas
 
 * If a config file exists, `bootstrap` will complain; you'll have to manually delete those files. This is by design.
