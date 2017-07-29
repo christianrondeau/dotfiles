@@ -11,6 +11,7 @@ source bootstrap-scripts/functions.sh
 
 ############ arguments
 
+# defaults
 verbose='false'
 force='false'
 install=''
@@ -26,29 +27,27 @@ while getopts 'hfvi:p:' flag; do
 			echo "Christian Rondeau's cross-platfrom environment bootstrap script"
 			echo
 			echo "Usage:"
-			if is_os "linux-gnu"; then
-				printf "  sudo ./bootstrap.sh"
-			elif is_os "linux-android [-hv] [-i \"packages\"]"; then
+			if is_os "linux-android [-hv] [-i \"packages\"]"; then
 				printf "  ./termux-bootstrap.sh"
 			else
 				printf "  ./bootstrap.sh"
 			fi
-			echo " [-hvf] [-i:\"packages\"]"
+			echo " -p basic [-hvf] [-i \"packages\"]"
 			echo
 			echo "Arguments:"
 			echo
+			echo "  -p \"profile\"   Selects which packages to install"
 			echo "  -h             Help"
 			echo "  -v             Verbose"
 			echo "  -f             Force"
 			echo "  -i \"pkg1 pkg2\" Install extra packages"
-			echo "  -p \"profile\"   Selects which packages to install"
 			echo
 			echo "Profiles:"
 			echo
 			echo "  minimal  Just enough to work; symlinks, vim... [default]"
 			echo "  basic    Basic setup, vim plugins, clang, fish, tmux, ag..."
 			echo "  full     Full environment; node, etc."
-			echo "  dev      Experimental things"
+			echo "  experimental Things that might not stay there"
 			exit 0
 			;;
 		*)
@@ -61,48 +60,60 @@ done
 LEVEL_MINIMAL=1
 LEVEL_BASIC=10
 LEVEL_FULL=100
-LEVEL_DEV=1000
-LEVEL=$LEVEL_MINIMAL
+LEVEL_EXPERIMENTAL=1000
+LEVEL=0
 
 case "${profile}" in
 	minimal) LEVEL=$LEVEL_MINIMAL ;;
 	basic) LEVEL=$LEVEL_BASIC ;;
 	full) LEVEL=$LEVEL_FULL ;;
-	dev) LEVEL=$LEVEL_DEV ;;
+	experimental) LEVEL=$LEVEL_EXPERIMENTAL ;;
 	*) error "Unexpected profile ${profile}" ;;
 esac
 
 log "Profile: $profile ($LEVEL)"
 
+############ mintty
+
+if has_level $LEVEL_MINIMAL && is_os "msys"; then
+	log "Cannot install anything on mintty; setting up profile and exiting. "
+	stow bash
+	stow mintty
+	stow git --no-folding
+	exit 0
+fi
+
 ############ OS configuration
 
-if is_os "linux-android"; then
-	PKGCMD="apt install"
+if $(hash packages); then # termux
+	PKGCMD="packages install"
 	PKGARGS="-y"
-elif is_os "linux-gnu"; then
+elif $(hash apt-get); then # ubuntu
 	PKGCMD="sudo apt-get install"
 	PKGARGS="-y"
-elif is_os "linux-alpine"; then
+elif $(hash apk); then # alpine
 	PKGCMD="sudo apk add"
-	PKGARGS=""
-elif is_os "cygwin"; then
+	PKGARGS="--update"
+elif is_os "cygwin"; then # cygwin
 	PKGCMD="apt-cyg install"
 	PKGARGS=""
-elif is_os "msys"; then
+else
 	PKGCMD=""
 	PKGARGS=""
-else
-  echo "Unknown OS: '$OSTYPE'" 2>&1
-	exit 1
 fi
 
 log "os: $OSTYPE"
-log "install command: $PKGCMD {package} $PKGARGS"
+if [ "$PKGCMD" = "" ]; then
+	log "no package manager detected. no package will be installed. "
+	exit 1
+else
+	log "install command: $PKGCMD {package} $PKGARGS"
+fi
 
 ############ sanity check
 
 if is_os "linux-gnu"; then
-	# Require root
+	# Avoid root
 	if [ "$EUID" -eq 0 ] && ! is_force; then
 		echo "Do not run as root, to avoid folders being owned by root. Use -f to force." 2>&1
 		exit 2
@@ -149,12 +160,6 @@ if has_level $LEVEL_MINIMAL; then
 		stow bash-termux --no-folding
 		stow termux --no-folding
 	fi
-fi
-
-############ mintty
-
-if has_level $LEVEL_BASIC && is_os "msys"; then
-	stow mintty
 fi
 
 ############ git
@@ -226,27 +231,20 @@ fi
 
 ############ tmux
 
-if has_level $LEVEL_BASIC && ! is_os "msys"; then
+if has_level $LEVEL_FULL; then
 	stow tmux --no-folding
 	install tmux
 fi
 
 ############ mosh
 
-if has_level $LEVEL_FULL && ! is_os "msys"; then
+if has_level $LEVEL_EXPERIMENTAL; then
 	install mosh
-fi
-
-############ ranger
-
-if has_level $LEVEL_DEV && ! is_os "msys"; then
-	stow ranger --no-folding
-	install ranger
 fi
 
 ############ fish
 
-if has_level $LEVEL_BASIC && ! is_os "msys"; then
+if has_level $LEVEL_BASIC; then
 	stow fish --no-folding
 	if ! is_installed fish; then
 		if is_os "linux-gnu"; then
@@ -272,7 +270,7 @@ if has_level $LEVEL_BASIC && ! is_os "msys"; then
 		log "Installing fisher"
 		curl git.io/fisher -L > ~/.config/fish/functions/fisher.fish
 		source ~/.config/fish/functions/fisher.fish
-		fisher
+		fish -c fisher
 	else
 		log "fisher already installed"
 	fi
@@ -283,7 +281,7 @@ fi
 if has_level $LEVEL_FULL && ! is_installed lpass; then
 	git clone git@github.com:lastpass/lastpass-cli.git ~/.lastpass-cli
 	pushd ~/.lastpass-cli
-	cmake . && make && sudo make install
+	make && sudo make install
 	popd
 fi
 
@@ -295,17 +293,9 @@ fi
 
 ############ go
 
-if has_level $LEVEL_DEV && ! is_os "msys"; then
+if has_level $LEVEL_EXPERIMENTAL; then
 	install golang go
 fi
-
-############ i3
-
-# /usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb keyring.deb SHA256:4c3c6685b1181d83efe3a479c5ae38a2a44e23add55e16a328b8c8560bf05e5f
-# apt install ./keyring.deb
-# echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list
-# apt update
-# apt install i3
 
 ############ other
 

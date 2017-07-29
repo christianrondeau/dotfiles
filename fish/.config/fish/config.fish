@@ -1,4 +1,14 @@
-set PATH ~/bin /usr/local/bin $PATH
+if test -d /usr/local/bin
+	set PATH /usr/local/bin $PATH
+end
+
+if test -d /usr/local/bin
+	set PATH ~/bin $PATH
+end
+
+if test -d /usr/local/bin
+	set PATH ~/dotfiles/bin $PATH
+end
 
 . "$HOME/.config/fish/prompt.fish"
 . "$HOME/.config/fish/aliases.fish"
