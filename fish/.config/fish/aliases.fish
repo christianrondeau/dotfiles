@@ -1,12 +1,13 @@
 # Common
 alias ..="cd .."
-if [ "$HOME" = "/data/data/com.termux/files/home" ]
-	alias ls="ls -A"
-else
-	alias ls='ls -A --color=auto'
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
+switch (realpath (which grep))
+	case '*busybox'
+		alias ls="ls -A"
+	case '*'
+		alias ls='ls -A --color=auto'
+		alias grep='grep --color=auto'
+		alias fgrep='fgrep --color=auto'
+		alias egrep='egrep --color=auto'
 end
 
 # PowerShell

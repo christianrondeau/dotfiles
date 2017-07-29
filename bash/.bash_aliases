@@ -1,12 +1,15 @@
 # Common
-if [[ "$OSTYPE" == "linux-android" ]]; then
-	alias ls='ls -A'
-else
-	alias ls='ls -A --color=auto'
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
-fi
+case "$(realpath $(which grep))" in
+	*/busybox)
+		alias ls='ls -A'
+		;;
+	*)
+		alias ls='ls -A --color=auto'
+		alias grep='grep --color=auto'
+		alias fgrep='fgrep --color=auto'
+		alias egrep='egrep --color=auto'
+		;;
+esac
 
 # PowerShell
 if [[ "$OSTYPE" == "cygwin" ]]; then
