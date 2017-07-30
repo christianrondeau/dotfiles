@@ -85,13 +85,13 @@ fi
 
 ############ OS configuration
 
-if $(hash packages); then # termux
+if $(hash packages 2>/dev/null); then # termux
 	PKGCMD="packages install"
 	PKGARGS="-y"
-elif $(hash apt-get); then # ubuntu
+elif $(hash apt-get 2>/dev/null); then # ubuntu
 	PKGCMD="sudo apt-get install"
 	PKGARGS="-y"
-elif $(hash apk); then # alpine
+elif $(hash apk 2>/dev/null); then # alpine
 	PKGCMD="sudo apk add"
 	PKGARGS="--update"
 elif is_os "cygwin"; then # cygwin
