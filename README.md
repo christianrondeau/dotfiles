@@ -52,7 +52,7 @@ Install the Hack font: https://play.google.com/store/apps/details?id=com.termux.
 
 You can also run a mini development environment in Docker:
 
-    docker-compose devel run fish
+    docker-compose run devel fish
     ./bootstrap.sh -p basic
 
 ## Gotchas
