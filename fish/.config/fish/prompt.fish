@@ -1,6 +1,15 @@
 function fish_mode_prompt; end
 
+switch $PREFIX
+	case "*termux*"
+		set fish_prompt_char ">"
+	case "*"
+		set fish_prompt_char "λ"
+end
+
 function fish_prompt
+	# Error notice
+
 	set -l last_status $status
 	set -l fish_prompt_dim 946638
 	
@@ -9,6 +18,8 @@ function fish_prompt
 		set_color $fish_color_error
 		printf "[E$last_status] "
 	end
+
+	# host:cwd
 
 	set_color normal
 	if [ $COMPUTERNAME ]
@@ -20,6 +31,8 @@ function fish_prompt
 	echo -n ':'
 	set_color $fish_color_cwd
 	echo -n (prompt_pwd)
+
+	# Git status
 
 	set -l git_branch (git rev-parse --abbrev-ref HEAD ^ /dev/null)
 	if [ $status -eq 0 ]
@@ -33,29 +46,26 @@ function fish_prompt
 		end
 	end
 
+	# Input line
+
 	printf "\n"
 
 	if set -q __fish_vi_mode
 		switch $fish_bind_mode
 		case default
 			set_color black --background green
-			printf "λ"
 		case insert
 			set_color $fish_prompt_dim
-			printf "λ"
 		case visual
 			set_color black --background blue
-			printf "λ"
 		case replace-one
 			set_color black --background red
-			printf "λ"
 		end
-		set_color normal
 	else
 		set_color $fish_prompt_dim
-		printf "λ"
 	end
+	printf $fish_prompt_char
 
-	set_color $fish_prompt_normal
+	set_color normal
 	printf " "
 end
