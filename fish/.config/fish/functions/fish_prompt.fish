@@ -1,5 +1,4 @@
-function fish_mode_prompt; end
-
+# Fish gh-4269 fix for Termux
 switch $PREFIX
 	case "*termux*"
 		set fish_prompt_char ">"
@@ -7,6 +6,7 @@ switch $PREFIX
 		set fish_prompt_char "λ"
 end
 
+# Prompt
 function fish_prompt
 	# Error notice
 
@@ -50,7 +50,10 @@ function fish_prompt
 
 	printf "\n"
 
-	if set -q __fish_vi_mode
+	if test "$fish_key_bindings" = "fish_vi_key_bindings"
+
+	# VI mode
+
 		switch $fish_bind_mode
 		case default
 			set_color black --background green
@@ -62,10 +65,14 @@ function fish_prompt
 			set_color black --background red
 		end
 	else
-		set_color $fish_prompt_dim
-	end
-	printf $fish_prompt_char
 
+		# Non-VI mode
+
+		set_color $fish_prompt_dim
+
+	end
+
+	printf $fish_prompt_char
 	set_color normal
 	printf " "
 end
