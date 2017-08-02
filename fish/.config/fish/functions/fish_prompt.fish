@@ -1,10 +1,5 @@
-# Fish gh-4269 fix for Termux
-switch $PREFIX
-	case "*termux*"
-		set fish_prompt_char ">"
-	case "*"
-		set fish_prompt_char "λ"
-end
+# Prompt character
+set fish_prompt_prefix "λ "
 
 # Prompt
 function fish_prompt
@@ -72,7 +67,6 @@ function fish_prompt
 
 	end
 
-	printf $fish_prompt_char
+	printf $fish_prompt_prefix
 	set_color normal
-	printf " "
 end
