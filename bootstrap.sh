@@ -169,11 +169,17 @@ if has_level $LEVEL_MINIMAL; then
 	install git
 fi
 
+############ python
+
+if has_level $LEVEL_FULL; then
+	install python
+fi
+
 ############ vim
 
 if has_level $LEVEL_MINIMAL; then
 	stow vim --no-folding
-	install vim
+	install vim-python vim
 fi
 
 if has_level $LEVEL_BASIC && [ ! -d ~/.vim/bundle/vimproc.vim ]; then
@@ -223,6 +229,10 @@ if has_level $LEVEL_FULL; then
 			sudo add-apt-repository ppa:neovim-ppa/stable
 			sudo apt-get update
 			sudo apt-get install neovim -y
+		elif is_os "linux-android"; then
+			packages install python-dev -y
+			pip3 install neovim
+			packages install neovim -y
 		else
 			install neovim nvim
 		fi

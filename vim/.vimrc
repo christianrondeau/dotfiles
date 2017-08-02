@@ -1,8 +1,6 @@
 " Christian Rondeau's .vimrc
 " Get it from https://github.com/christianrondeau/.vim
 
-
-
 " Setup {{{
 
 set nocompatible
@@ -169,9 +167,6 @@ Plug 'vim-scripts/utl.vim'
 " Fuzzy finding
 " `:FZF`, `:(G)Files`, `:Buffers`, `:Ag`, `:(B)Lines`, `:History`, `:Commands`
 " More information: https://github.com/junegunn/fzf.vim
-if has('unix')
-	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-endif
 Plug 'junegunn/fzf.vim'
 
 " }}}
@@ -199,7 +194,7 @@ Plug 'godlygeek/tabular'
 
 " Omni complete w/ tab
 " Simply use `<Tab>` to autocomplete
-" Plug 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
 " Base64 conversion
 " Use `<leader>btoa` or `<leader>atob` on visually selected text
@@ -869,7 +864,9 @@ let g:netrw_altv = 1 " Open in vertical split
 
 " Settings: ultisnips {{{
 
+
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
 
 " }}}
 
