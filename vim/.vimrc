@@ -1,6 +1,8 @@
 " Christian Rondeau's .vimrc
 " Get it from https://github.com/christianrondeau/.vim
 
+
+
 " Setup {{{
 
 set nocompatible
@@ -31,18 +33,17 @@ if(has("gui_running"))
 		au GuiEnter * set visualbell t_vb=
 	augroup END
 
-
 	" Prevent resetting gvim when sourcing vimrc
-	if(!exists('g:vimrc_gui_set'))
+	if(!exists('g:vimrc_gvim_config_initialized'))
 		set lines=40 columns=140
 		if(has("unix"))
-			set guifont=Hack\ 11
+			set guifont=Hack\ 12
 		elseif(has("win32"))
-			set guifont=Hack:h11
+			set guifont=Hack:h12
 		endif
 		set guioptions-=T " Hide toolbar
 		set guioptions-=m  "remove menu bar
-		let g:vimrc_gui_set = 1
+		let g:vimrc_gvim_config_initialized = 1
 	endif
 
 endif
@@ -80,13 +81,6 @@ call plug#begin("~/.vim/bundle")
 
 " Plugins: Dependencies {{{
 
-" Dependency for SnipMate
-Plug 'MarcWeber/vim-addon-mw-utils'
-
-" Dependency for SnipMate
-Plug 'tomtom/tlib_vim'
-
-" Dependency for tsuquyomi
 if(has("unix"))
 	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 else
@@ -123,10 +117,6 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 " CTRL+P shortcut to fuzzy find files
 " Use `<c-p>` for fuzzy search, `<c-b>` for buffers search
 Plug 'ctrlpvim/ctrlp.vim'
-
-" Switch from/to absolute line numbers
-" Absolute when unfocused, relative when focused
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Improved status line
 Plug 'vim-airline/vim-airline'
@@ -168,10 +158,6 @@ Plug 'junegunn/vim-slash'
 " Use `<leader>cd`
 Plug 'dbakker/vim-projectroot'
 
-" Find and replace variations
-" Use `:Subvert/address{,es}/reference{,s}`
-Plug 'tpope/vim-abolish'
-
 " Closes all buffers but the current one
 " Use `:BufOnly`
 Plug 'vim-scripts/BufOnly.vim'
@@ -181,7 +167,11 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'vim-scripts/utl.vim'
 
 " Fuzzy finding
-" Run with `:FZF` and more: https://github.com/junegunn/fzf.vim
+" `:FZF`, `:(G)Files`, `:Buffers`, `:Ag`, `:(B)Lines`, `:History`, `:Commands`
+" More information: https://github.com/junegunn/fzf.vim
+if has('unix')
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+endif
 Plug 'junegunn/fzf.vim'
 
 " }}}
@@ -193,8 +183,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 
 " Snippets
-" see ~/.vim/snippets, use `<Tab>` like autocomplete
-Plug 'garbas/vim-snipmate'
+" see ~/.vim/snippets, use `<Tab>` to autocomplete
+if has('python')
+	Plug 'SirVer/ultisnips'
+endif
 
 " Operations for quotes, parenthesis
 " Use `cs"'` to replace `"`" by `'`, or `cs"<p>` for tags
@@ -207,7 +199,7 @@ Plug 'godlygeek/tabular'
 
 " Omni complete w/ tab
 " Simply use `<Tab>` to autocomplete
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 
 " Base64 conversion
 " Use `<leader>btoa` or `<leader>atob` on visually selected text
@@ -221,18 +213,6 @@ Plug 'vim-scripts/ReplaceWithRegister'
 " Note: This additional mapping allows doing "undo" between linebreaks
 inoremap <CR> <C-G>u<CR>
 Plug 'tpope/vim-endwise'
-
-" }}}
-
-" Plugins: External Tools {{{
-
-" Search in  Loggly
-" Use <leader>loggly to search
-Plug 'christianrondeau/vim-loggly-search'
-
-" Follow links (paths & urls)
-" Run with `<leader>ww`, follow link with <leader>wo, back with `<c-o>`
-Plug 'vimwiki/vimwiki'
 
 " }}}
 
@@ -297,21 +277,26 @@ Plug 'fatih/vim-go'
 
 " Plugins: OmniSharp {{{
 
-	" Requires:
-	" * Install Python 32 bit (match Vim): `choco install python2-x86_32`
-	" * Update `OmniSharp` submodules: `cd ~/.vim/bundle/omnisharp-vim` and `git submodule update --init --recursive`
-	" * Build the server with `cd server` and `msbuild` on Windows, or `cd roslyn` and `build.sh` on Linux
+" Requires:
+" * Install Python 32 bit (match Vim): `choco install python2-x86_32`
+" * Update `OmniSharp` submodules: `cd ~/.vim/bundle/omnisharp-vim` and `git submodule update --init --recursive`
+" * Build the server with `cd server` and `msbuild` on Windows, or `cd roslyn` and `build.sh` on Linux
 
-if(has("python") && has("win32") && filereadable("C:/Python27/python.exe") && filereadable(expand("~/.vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp") . ".exe"))
-	let s:OmniSharp_enabled = 1
-elseif(has("python") && has("unix") && filereadable(expand("~/.vim/bundle/omnisharp-vim/omnisharp-roslyn/src/OmniSharp/bin/Release/netcoreapp1.0/linux-x64/OmniSharp") . ".exe"))
-	let s:OmniSharp_enabled = 1
+" NOTE: Disabled by default unless the OMNISHARP environment variable is set
+if exists("$OMNISHARP")
+	if(has("python") && has("win32") && filereadable("C:/Python27/python.exe") && filereadable(expand("~/.vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp") . ".exe"))
+		let s:OmniSharp_enabled = 1
+	elseif(has("python") && has("unix") && filereadable(expand("~/.vim/bundle/omnisharp-vim/omnisharp-roslyn/src/OmniSharp/bin/Release/netcoreapp1.0/linux-x64/OmniSharp") . ".exe"))
+		let s:OmniSharp_enabled = 1
+	else
+		let s:OmniSharp_enabled = 0
+	endif
+
+	let OmniSharp_plugcfg = (s:OmniSharp_enabled ? { 'for': ['csharp', 'razor'] } : { 'on': [] })
+	Plug 'OmniSharp/omnisharp-vim', OmniSharp_plugcfg
 else
 	let s:OmniSharp_enabled = 0
 endif
-
-let OmniSharp_plugcfg = (s:OmniSharp_enabled ? { 'for': ['csharp', 'razor'] } : { 'on': [] })
-Plug 'OmniSharp/omnisharp-vim', OmniSharp_plugcfg
 
 " }}}
 
@@ -365,7 +350,7 @@ endif
 
 set visualbell t_vb=               " No screen flash
 set noerrorbells                   " No error sounds
-if(stridx(expand('~/'), 'termux') == -1)
+if(stridx(expand('~/'), 'termux') == -1) " On termux system register is slow
 	set clipboard=unnamed,unnamedplus  " Use system register
 end
 
@@ -464,10 +449,10 @@ set nobackup                       " Prevents creating <filename>~ files
 set nowritebackup                  " Prevents creating <filename>~ files
 set nolazyredraw                   " Avoids redrawing when running macros
 
-set undofile                       " Create a persistent undo file
 set undodir=$HOME/.vim/undo
 set backupdir=$TEMP,$TMP,.
 set directory=$TEMP,$TMP,.
+set undofile                       " Create a persistent undo file
 
 set undolevels=100
 set undoreload=10000
@@ -638,8 +623,10 @@ augroup END
 
 " Mappings: Functions {{{
 
+" To avoid typical typos after typing `:`
 command! -bang Wq execute "wq" . ((<bang>0) ? "!" : "")
 command! -bang Q execute "q" . ((<bang>0) ? "!" : "")
+command! -bang Qa execute "qa" . ((<bang>0) ? "!" : "")
 
 " }}}
 
@@ -824,27 +811,9 @@ let g:startify_skiplist = [
 			\ 'bundle[/\\].*[/\\]doc',
       \ '[/\\].vim[/\\]vim80',
       \ 'TextEditorAnywhere_',
-      \ '[/\\]vimwiki',
       \ '.vimrc',
       \ '[/\\].git[/\\]',
       \ ]
-
-" }}}
-
-" Settings: vimwiki {{{
-
-" Prevent CR override
-nnoremap łwf <Plug>VimwikiFollowLink
-nnoremap łws <Plug>VimwikiSplitLink
-nnoremap łwv <Plug>VimwikiVSplitLink
-nnoremap łwv <Plug>VimwikiTabnewLink
-vnoremap łwn <Plug>VimwikiNormalizeLinkVisualCR
-inoremap łwn VimwikiReturn
-
-augroup filetype_vimwiki
-	autocmd!
-	autocmd FileType vimwiki nnoremap <silent><buffer> <leader>wo <Plug>VimwikiFollowLink
-augroup END
 
 " }}}
 
@@ -887,7 +856,7 @@ let g:vim_markdown_new_list_item_indent = 0
 
 " }}}
 
-" Settings: netwrw {{{
+" Settings: netrw {{{
 
 " Note: I use NERDtree, but when opening a folder it opens netrw by default
 let g:netrw_liststyle = 3 " Tree View
@@ -898,28 +867,11 @@ let g:netrw_altv = 1 " Open in vertical split
 
 " }}}
 
+" Settings: ultisnips {{{
+
+let g:UltiSnipsExpandTrigger="<tab>"
+
 " }}}
-
-" PowerShell {{{
-
-if(has("win32"))
-	let g:curshell = &shell
-	let g:curshellcmdflag = &shellcmdflag
-
-	function! TogglePowerShell()
-		if(&shell ==# "powershell")
-			let &shell = g:curshell
-			let &shellcmdflag = g:curshellcmdflag
-			echom "shell reset to default shell"
-		else
-			set shell=powershell
-			set shellcmdflag=-command
-			echom "shell set to PowerShell"
-		endif
-	endfunction
-	nnoremap <F9> :call TogglePowerShell()<cr>
-	cnoremap <F9> <c-c>:call TogglePowerShell()<cr>:
-endif
 
 " }}}
 
