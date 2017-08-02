@@ -204,7 +204,7 @@ if has_level $LEVEL_BASIC; then
 	if ! is_installed fzf; then
 		if is_os "linux-android"; then
 			install fzf
-		elif is_os "linux-gnu"; then
+		elif is_os "linux-gnu" || is_os "linux-alpine"; then
 			log "Installing fzf"
 			git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 			~/.fzf/install
