@@ -34,9 +34,10 @@ In a PowerShell window:
 
 ## Linux (Ubuntu/Mint)
 
-    cd ~/
-    sudo apt-get update && sudo apt-get upgrade
-    ssh-keygen -t rsa -C $(read -p "Email: " emailvar && echo $emailvar)
+    bash <(curl -s https://raw.githubusercontent.com/christianrondeau/dotfiles/master/provision/provision-ubuntu.sh)
+
+Or if you prefer doing it manually:
+
     sudo apt-get install git -y
     git clone git@github.com:christianrondeau/dotfiles.git
     cd dotfiles

@@ -68,10 +68,17 @@ case "${profile}" in
 	basic) LEVEL=$LEVEL_BASIC ;;
 	full) LEVEL=$LEVEL_FULL ;;
 	experimental) LEVEL=$LEVEL_EXPERIMENTAL ;;
-	*) error "Unexpected profile ${profile}" ;;
+	*) error "Unknown profile ${profile}" ;;
 esac
 
-log "Profile: $profile ($LEVEL)"
+log "Selected profile: $profile ($LEVEL)"
+
+############ SSH
+
+if has_level $LEVEL_BASIC && ! [ -f "$HOME/.ssh/id_rsa" ]; then
+	log "Creating a SSH key"
+	ssh-keygen -t rsa -N "" -C $(read -p "Email: " emailvar && echo $emailvar)
+fi
 
 ############ mintty
 
@@ -276,12 +283,10 @@ if has_level $LEVEL_BASIC; then
 		fi
 	fi
 
-	if has_level $LEVEL_FULL && [ ! -e ~/.config/fish/functions/fisher.fish ]; then
+	if has_level $LEVEL_BASIC && [ ! -e ~/.config/fish/functions/fisher.fish ]; then
 		log "Installing fisher"
 		curl git.io/fisher -L > ~/.config/fish/functions/fisher.fish
-		source ~/.config/fish/functions/fisher.fish
-		fish -c fisher
-	else
+		fish -c 'source ~/.config/fish/functions/fisher.fish; fisher up' > /dev/null 2>&1
 		log "fisher already installed"
 	fi
 fi
