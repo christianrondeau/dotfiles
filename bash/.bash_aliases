@@ -24,7 +24,7 @@ alias gaa="git add -A"
 alias gc="git commit"
 alias gca="git commit --amend"
 alias gp="git push"
-alias gu="git pull"
+alias gu="git pull --ff-only"
 alias gd="git diff"
 alias gl='git log --graph --color --all --decorate --format="%C(auto)%d %s"'
 alias gll='git log --graph --color --all --decorate --format="%C(auto)%h %d %s %Cblue %ar %an"'

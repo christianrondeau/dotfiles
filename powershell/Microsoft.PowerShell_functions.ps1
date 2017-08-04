@@ -13,7 +13,7 @@ function Git-AddAll  { git add -A }
 function Git-Commit { git commit }
 function Git-Amend  { git commit --amend }
 function Git-Push { git push }
-function Git-Pull { git pull }
+function Git-Pull { git pull --ff-only }
 function Git-Diff { git diff }
 function Git-Log  { git log --graph --color --all --decorate --format="%C(auto)%d %s" }
 function Git-LogVerbose  { git log --graph --color --all --decorate --format="%C(auto)%h %d %s %Cblue %ar %an" }
