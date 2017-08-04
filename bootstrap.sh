@@ -322,6 +322,15 @@ if has_level $LEVEL_FULL && is_os "linux-gnu"; then
 	$PKGCMD fonts-hack-ttf $PKGARGS
 fi
 
+############ nodejs
+
+if has_level $LEVEL_FULL && ! is_installed node; then
+	if is_os "linux-gnu"; then
+		curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+	fi
+	install nodejs node
+fi
+
 ############ go
 
 if has_level $LEVEL_EXPERIMENTAL; then
