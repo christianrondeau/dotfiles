@@ -45,6 +45,10 @@ install() {
 	fi
 }
 
+install_ignore_exec() {
+	$PKGCMD $1 $PKGARGS
+}
+
 is_os() {
 	if [[ " $1 " =~ " $OSTYPE " ]]; then
 		return 0

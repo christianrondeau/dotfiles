@@ -80,6 +80,22 @@ if has_level $LEVEL_BASIC && ! [ -f "$HOME/.ssh/id_rsa" ]; then
 	ssh-keygen -t rsa -N "" -C $(read -p "Email: " emailvar && echo $emailvar)
 fi
 
+############ Busybox
+
+if has_level $LEVEL_BASIC; then
+	# Busybox tools have trouble displaying colors, which breaks things
+	# like git diff or grep
+
+	if [ "$(realpath `which less`)" == "/bin/busybox" ];
+		install_ignore_exec less
+	fi
+
+	if [ "$(realpath `which grep`)" == "/bin/busybox" ];
+		install_ignore_exec grep
+	fi
+
+fi
+
 ############ mintty
 
 if has_level $LEVEL_MINIMAL && is_os "msys"; then
