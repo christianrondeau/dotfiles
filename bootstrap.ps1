@@ -168,8 +168,8 @@ try {
 
 		SetEnvVariable "User" "VIM" (Get-Item "$env:HOME\.vim").FullName
 
-		Install python2
-		Install vim
+		Install python3
+		Install vim-tux
 
 		if((Get-Command vim -ErrorAction SilentlyContinue)) {
 			SetEnvVariable "Machine" "VIMRUNTIME" (Split-Path (Get-Command vim).Path)
