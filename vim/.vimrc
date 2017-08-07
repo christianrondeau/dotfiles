@@ -119,6 +119,10 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Improved status line
 Plug 'vim-airline/vim-airline'
 
+" Switch from/to absolute line numbers
+" Absolute when unfocused, relative when focused
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
 " Show the undo tree
 " Use `<leader>u` to open tree
 Plug 'sjl/gundo.vim'
