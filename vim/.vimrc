@@ -213,6 +213,8 @@ Plug 'vim-scripts/ReplaceWithRegister'
 inoremap <CR> <C-G>u<CR>
 Plug 'tpope/vim-endwise'
 
+" Allow re-playing commands with `.`
+Plug 'tpope/vim-repeat'
 " }}}
 
 " Plugins: Testing {{{
