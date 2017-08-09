@@ -217,7 +217,6 @@ try {
 		Install GoogleChrome
 		Install 7zip
 		Install curl
-		Install python2
 	}
 	
 	# Full Setup
