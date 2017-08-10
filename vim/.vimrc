@@ -276,12 +276,13 @@ Plug 'fatih/vim-go'
 
 " }}}
 
-" Plugins: OmniSharp {{{
+" Plugins: YouCompleteMe {{{
 
-" Requires:
-" * Install Python 32 bit (match Vim): `choco install python2-x86_32`
-" * Update `OmniSharp` submodules: `cd ~/.vim/bundle/omnisharp-vim` and `git submodule update --init --recursive`
-" * Build the server with `cd server` and `msbuild` on Windows, or `cd roslyn` and `build.sh` on Linux
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+
+" }}}
+
+" Plugins: OmniSharp {{{
 
 " NOTE: Disabled by default unless the OMNISHARP environment variable is set
 if exists("$OMNISHARP")
@@ -495,7 +496,7 @@ set pastetoggle=<F2>
 inoremap <C-v> <Esc>:set paste<CR>"+p:set nopaste<CR>a
 nnoremap <leader>cd :ProjectRootCD<CR>
 nnoremap <silent> <leader>n :noh<CR>
-nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>
+nnoremap <silent> <leader>path :let @+ = expand("%:p")<CR>:echo "Copied: " . @+<CR>
 nnoremap <leader>ev :e $HOME/dotfiles/vim/.vimrc<CR>
 nnoremap <C-F4> :bd<cr>
 if(stridx(expand('~/'), 'termux') != -1)
