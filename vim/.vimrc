@@ -276,32 +276,6 @@ Plug 'fatih/vim-go'
 
 " }}}
 
-" Plugins: YouCompleteMe {{{
-
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-
-" }}}
-
-" Plugins: OmniSharp {{{
-
-" NOTE: Disabled by default unless the OMNISHARP environment variable is set
-if exists("$OMNISHARP")
-	if(has("python") && has("win32") && filereadable("C:/Python27/python.exe") && filereadable(expand("~/.vim/bundle/omnisharp-vim/server/OmniSharp/bin/Debug/OmniSharp") . ".exe"))
-		let s:OmniSharp_enabled = 1
-	elseif(has("python") && has("unix") && filereadable(expand("~/.vim/bundle/omnisharp-vim/omnisharp-roslyn/src/OmniSharp/bin/Release/netcoreapp1.0/linux-x64/OmniSharp") . ".exe"))
-		let s:OmniSharp_enabled = 1
-	else
-		let s:OmniSharp_enabled = 0
-	endif
-
-	let OmniSharp_plugcfg = (s:OmniSharp_enabled ? { 'for': ['csharp', 'razor'] } : { 'on': [] })
-	Plug 'OmniSharp/omnisharp-vim', OmniSharp_plugcfg
-else
-	let s:OmniSharp_enabled = 0
-endif
-
-" }}}
-
 " Plugins: Fun & Games {{{
 
 " A text-based roguelike
@@ -373,11 +347,7 @@ if(stridx(&shell, 'cmd.exe') != -1)
 	set cursorline                   " Highlight the current line
 endif
 set showmode                       " Shows when in paste mode
-if(s:OmniSharp_enabled)
-	set noshowmatch                  " Disabled for OmniSharp
-else
-	set showmatch                    " Highlight matching braces
-endif
+set showmatch                      " Highlight matching braces
 set completeopt=longest,menuone
 set wildmode=longest,list,full     " Bash-like, then cycle
 set wildmenu                       " Shows a menu when using Tab in command paths
@@ -733,53 +703,6 @@ endif
 
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
-
-" }}}
-
-" Settings: omnisharp-vim {{{
-
-if(s:OmniSharp_enabled)
-
-	" OmniSharp
-	if(has("unix") && !has("win32unix"))
-		let g:OmniSharp_server_type = 'roslyn'
-	endif
-
-	" CtrlP
-	let g:OmniSharp_selector_ui = 'ctrlp'
-
-	" SuperTab
-	let g:SuperTabDefaultCompletionType = 'context'
-	let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-	let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
-	let g:SuperTabClosePreviewOnPopupClose = 1
-
-	" Syntastic
-	let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
-
-	augroup omnisharp_commands
-		autocmd!
-
-		" File Settings
-		autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-		autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-		autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-		autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-
-		" Shortcuts
-		autocmd FileType cs nnoremap <localleader>b :wa!<cr>:OmniSharpBuildAsync<cr>
-		autocmd FileType cs nnoremap <localleader>rr :OmniSharpRename<cr>
-		autocmd FileType cs nnoremap <localleader>gd :OmniSharpGotoDefinition<cr>
-		autocmd FileType cs nnoremap <localleader>gi :OmniSharpFindImplementations<cr>
-		autocmd FileType cs nnoremap <localleader>t :OmniSharpFindType<cr>
-		autocmd FileType cs nnoremap <localleader>ts :OmniSharpFindSymbol<cr>
-		autocmd FileType cs nnoremap <localleader>gu :OmniSharpFindUsages<cr>
-		autocmd FileType cs nnoremap <localleader><localleader> :OmniSharpGetCodeActions<cr>
-		autocmd FileType cs vnoremap <localleader><localleader> :call OmniSharp#GetCodeActions('visual')<cr>
-
-	augroup END
-
-endif
 
 " }}}
 
