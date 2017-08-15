@@ -22,9 +22,12 @@ alias ga="git add"
 alias gaa="git add -A"
 alias gc="git commit"
 alias gca="git commit --amend"
+alias gcaa="git commit --amend --no-edit"
 alias gp="git push"
 alias gu="git pull --ff-only"
 alias gd="git diff"
+alias gds="git diff --staged"
 alias gl='git log --graph --color --all --decorate --format="%C(auto)%d %s"'
 alias gll='git log --graph --color --all --decorate --format="%C(auto)%h %d %s %Cblue %ar %an"'
 alias gx="git show -s --format='%Cgreen%h %Cblue%an %Cred%cr%Creset%n%s'"
+alias groot="pushd (git rev-parse --show-toplevel)"

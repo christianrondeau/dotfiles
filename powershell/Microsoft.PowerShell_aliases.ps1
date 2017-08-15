@@ -1,12 +1,1 @@
-﻿Set-Alias -Name ggs -Value Git-Status
-Set-Alias -Name gga -Value Git-Add
-Set-Alias -Name ggaa -Value Git-AddAll
-Set-Alias -Name ggc -Value Git-Commit
-Set-Alias -Name ggca -Value Git-Amend
-Set-Alias -Name ggp -Value Git-Push
-Set-Alias -Name ggu -Value Git-Pull
-Set-Alias -Name ggd -Value Git-Diff
-Set-Alias -Name ggl -Value Git-Log
-Set-Alias -Name ggll -Value Git-LogVerbose
-Set-Alias -Name ggx -Value Git-Current
-Set-Alias -Name ggroot -Value Git-Root
+﻿

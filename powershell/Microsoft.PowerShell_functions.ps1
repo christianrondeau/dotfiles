@@ -7,15 +7,17 @@ function which($name)
 
 # Git Shortcuts
 
-function Git-Status { git status }
-function Git-Add { git add }
-function Git-AddAll  { git add -A }
-function Git-Commit { git commit }
-function Git-Amend  { git commit --amend }
-function Git-Push { git push }
-function Git-Pull { git pull --ff-only }
-function Git-Diff { git diff }
-function Git-Log  { git log --graph --color --all --decorate --format="%C(auto)%d %s" }
-function Git-LogVerbose  { git log --graph --color --all --decorate --format="%C(auto)%h %d %s %Cblue %ar %an" }
-function Git-Current  { git show -s --format='%Cgreen%h %Cblue%an %Cred%cr%Creset%n%s' }
-function Git-Root() { pushd (git rev-parse --show-toplevel) }
+function ggs{ git status }
+function gga { git add }
+function ggaa  { git add -A }
+function ggc { git commit }
+function ggca  { git commit --amend }
+function ggcaa  { git commit --amend --no-edit }
+function ggp { git push }
+function ggu { git pull --ff-only }
+function ggd { git diff }
+function ggds { git diff --staged }
+function ggl  { git log --graph --color --all --decorate --format="%C(auto)%d %s" }
+function ggll  { git log --graph --color --all --decorate --format="%C(auto)%h %d %s %Cblue %ar %an" }
+function ggx { git show -s --format='%Cgreen%h %Cblue%an %Cred%cr%Creset%n%s' }
+function ggroot { pushd (git rev-parse --show-toplevel) }
