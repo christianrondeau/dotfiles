@@ -68,7 +68,11 @@ function DownloadFile([string]$url, [string]$target, [string]$hash) {
 			Write-Verbose "$target already downloaded"
 		} else {
 			Write-Verbose "Downloading $target"
-			(New-Object System.Net.WebClient).DownloadFile($url, $target)
+			try {
+				(New-Object System.Net.WebClient).DownloadFile($url, $target)
+			} catch {
+				$_ | Write-Error
+			}
 			$targethash = Get-FileHash $target -Algorithm "SHA256"
 
 			$diff = 0
@@ -183,7 +187,7 @@ try {
 
 	if($Level -ge $LevelBasic) {
 		DownloadFile "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.2/vimproc_win64.dll" "$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll" "D96CA8904D4485A7C9BDED019B5EB2EA688EE803E211F0888AB0FD099095FB55"
-		DownloadFile "https://github.com/derekmcloughlin/gvimfullscreen_win32/blob/master/gvimfullscreen.dll" "$env:VIMRUNTIME\gvimfullscreen.dll" "137E49F0BF8B685072561F560651E90A42DCA971005E2BEE077BCBA8DB608CB8"
+		DownloadFile "https://github.com/derekmcloughlin/gvimfullscreen_win32/raw/master/gvimfullscreen_64.dll" "$env:VIMRUNTIME\gvimfullscreen_64.dll" "1C83747B67ED73C05D44C1AF8222A860BC5A48B56BF54CD6E21465A2DEB78456"
 
 		if(-not (Get-Command vim -ErrorAction SilentlyContinue)) {
 			Write-Verbose "Vim is not in the PATH. Cannot install plugins."

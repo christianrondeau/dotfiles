@@ -760,7 +760,7 @@ endif
 
 function! s:togglefullscreen()
 	if(s:vimrc_gvimfullscreen_installed)
-		call libcallnr(expand("$VIM") . "/bundle/gvimfullscreen_win32/gvimfullscreen.dll", "ToggleFullScreen", 0)
+		call libcallnr(expand("$VIM") . "/bundle/gvimfullscreen_win32/gvimfullscreen_64.dll", "ToggleFullScreen", 0)
 	endif
 endfunction
 
