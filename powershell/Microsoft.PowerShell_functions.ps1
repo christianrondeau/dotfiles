@@ -8,8 +8,9 @@ function which($name)
 # Git Shortcuts
 
 function ggs { git status }
-function gga { git add }
-function ggaa { git add -A }
+function gga($file) { git add $file }
+function ggai { git add --interactive }
+function ggaa { git add --all }
 function ggc($msg) { if($msg) { git commit -m $msg } else { git commit } }
 function ggca { git commit --amend }
 function ggcaa { git commit --amend --no-edit }
