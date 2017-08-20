@@ -10,6 +10,10 @@ if test -d ~/dotfiles/bin
 	set PATH ~/dotfiles/bin $PATH
 end
 
+if test -d ~/go/bin
+	set PATH ~/go/bin $PATH
+end
+
 . "$HOME/.config/fish/aliases.fish"
 
 set fish_greeting ""
