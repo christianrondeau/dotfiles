@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2017-05-18 22:09:59" build="170402">
+		<key name=".Vanilla" modified="2017-08-29 15:12:13" build="170807">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -59,7 +59,7 @@
 			<value name="FontSize" type="ulong" data="16"/>
 			<value name="StatusFontHeight" type="long" data="12"/>
 			<value name="TabFontHeight" type="long" data="11"/>
-			<key name="HotKeys" modified="2017-05-18 22:09:59" build="170402">
+			<key name="HotKeys" modified="2017-08-29 15:12:13" build="170807">
 				<value name="MinimizeRestore" type="dword" data="00000000"/>
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="0000005b"/>
@@ -245,6 +245,13 @@
 				<value name="DndLKey" type="hex" data="00"/>
 				<value name="DndRKey" type="hex" data="a2"/>
 				<value name="WndDragKey" type="dword" data="00121101"/>
+				<value name="Multi.SplitSwap" type="dword" data="00125d58"/>
+				<value name="Multi.SplitSwapU" type="dword" data="00125d26"/>
+				<value name="Multi.SplitSwapD" type="dword" data="00125d28"/>
+				<value name="Multi.SplitSwapL" type="dword" data="00125d25"/>
+				<value name="Multi.SplitSwapR" type="dword" data="00125d27"/>
+				<value name="Multi.GroupInputAll" type="dword" data="00105d47"/>
+				<value name="Multi.GroupInputKey" type="dword" data="00125d47"/>
 			</key>
 			<value name="UseCurrentSizePos" type="hex" data="00"/>
 			<value name="AutoSaveSizePos" type="hex" data="00"/>
@@ -253,7 +260,7 @@
 			<value name="WindowMode" type="dword" data="0000051f"/>
 			<value name="ConWnd X" type="long" data="220"/>
 			<value name="ConWnd Y" type="long" data="60"/>
-			<value name="LastMonitor" type="string" data="0,0,1680,1010"/>
+			<value name="LastMonitor" type="string" data="0,0,1920,1040"/>
 			<value name="ConWnd Width" type="dword" data="0000008c"/>
 			<value name="ConWnd Height" type="dword" data="0000002e"/>
 			<value name="16bit Height" type="ulong" data="0"/>
@@ -586,9 +593,9 @@
 			<value name="Update.DownloadPath" type="string" data="%TEMP%\ConEmu"/>
 			<value name="Update.LeavePackages" type="hex" data="00"/>
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
-			<key name="Tasks" modified="2017-05-18 22:09:59" build="170402">
-				<value name="Count" type="long" data="7"/>
-				<key name="Task1" modified="2017-05-18 22:09:59" build="170402">
+			<key name="Tasks" modified="2017-08-29 15:16:58" build="170807">
+				<value name="Count" type="long" data="10"/>
+				<key name="Task1" modified="2017-08-29 15:16:58" build="170807">
 					<value name="Name" type="string" data="{cmd::cmd}"/>
 					<value name="Flags" type="dword" data="00000002"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -597,7 +604,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task2" modified="2017-05-18 22:09:59" build="170402">
+				<key name="Task2" modified="2017-08-29 15:16:58" build="170807">
 					<value name="Name" type="string" data="{cmd::cmd (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -606,7 +613,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task3" modified="2017-05-18 22:09:59" build="170402">
+				<key name="Task3" modified="2017-08-29 15:16:58" build="170807">
 					<value name="Name" type="string" data="{PowerShell::PowerShell}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -615,7 +622,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task4" modified="2017-05-18 22:09:59" build="170402">
+				<key name="Task4" modified="2017-08-29 15:16:58" build="170807">
 					<value name="Name" type="string" data="{PowerShell::PowerShell (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -625,7 +632,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task5" modified="2017-05-18 22:09:59" build="170402">
+				<key name="Task5" modified="2017-08-29 15:16:58" build="170807">
 					<value name="Name" type="string" data="{Bash::Bash (lxss)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -634,7 +641,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task6" modified="2017-05-18 22:09:59" build="170402">
+				<key name="Task6" modified="2017-08-29 15:16:58" build="170807">
 					<value name="Name" type="string" data="{Bash::Git}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -643,7 +650,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task7" modified="2017-05-18 22:09:59" build="170402">
+				<key name="Task7" modified="2017-08-29 15:16:58" build="170807">
 					<value name="Name" type="string" data="{Editors::GVim}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -652,32 +659,35 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task8" modified="2017-04-26 09:55:28" build="170402">
-					<value name="Name" type="string" data="{Bash::Git bash}"/>
+				<key name="Task8" modified="2017-08-29 15:16:58" build="170807">
+					<value name="Name" type="string" data="{Editors::GVim/Right}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="&quot;%ConEmuDir%\..\Git\git-cmd.exe&quot; --no-cd --command=usr/bin/bash.exe -l -i"/>
+					<value name="GuiArgs" type="string" data="/dir %HOMEPATH%"/>
+					<value name="Cmd1" type="string" data="gvim.exe --windowid !ConEmuBackHWND! -new_console -new_console:s50H"/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
+					<value name="Cmd2" type="string" data="gvim.exe --windowid !ConEmuBackHWND! -new_console:s70V"/>
 				</key>
-				<key name="Task9" modified="2017-04-26 09:55:28" build="170402">
-					<value name="Name" type="string" data="{Putty}"/>
+				<key name="Task9" modified="2017-08-29 15:16:58" build="170807">
+					<value name="Name" type="string" data="{Splits::GVim/PowerShell/Vertical}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="Putty.exe"/>
+					<value name="GuiArgs" type="string" data="/dir %HOMEPATH%"/>
+					<value name="Cmd1" type="string" data="gvim.exe --windowid !ConEmuBackHWND!"/>
 					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="1"/>
+					<value name="Count" type="long" data="2"/>
+					<value name="Cmd2" type="string" data="powershell.exe -new_console:s70V"/>
 				</key>
-				<key name="Task10" modified="2017-04-26 09:55:28" build="170402">
-					<value name="Name" type="string" data="{Helper::Show ANSI colors}"/>
+				<key name="Task10" modified="2017-08-29 15:16:58" build="170807">
+					<value name="Name" type="string" data="{Splits::GVim/PowerShell/Horizontal}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="cmd.exe /k type &quot;%ConEmuBaseDir%\Addons\AnsiColors16t.ans&quot; -cur_console:n"/>
+					<value name="GuiArgs" type="string" data="/dir %HOMEPATH%"/>
+					<value name="Cmd1" type="string" data="powershell.exe"/>
 					<value name="Active" type="long" data="0"/>
-					<value name="Count" type="long" data="1"/>
+					<value name="Count" type="long" data="2"/>
+					<value name="Cmd2" type="string" data="gvim.exe --windowid !ConEmuBackHWND! -new_console:s50H"/>
 				</key>
 				<key name="Task11" modified="2017-04-26 09:55:28" build="170402">
 					<value name="Name" type="string" data="{Tools::Chocolatey (Admin)}"/>
@@ -707,13 +717,15 @@
 					<value name="Count" type="long" data="1"/>
 				</key>
 			</key>
-			<key name="Apps" modified="2017-05-18 22:09:59" build="170402">
+			<key name="Apps" modified="2017-08-29 15:16:58" build="170807">
 				<value name="Count" type="long" data="0"/>
 			</key>
-			<key name="Colors" modified="2017-05-18 22:09:59" build="170402">
+			<key name="Colors" modified="2017-08-29 15:16:58" build="170807">
 				<value name="Count" type="long" data="0"/>
 			</key>
 			<value name="CmdLineHistory" type="multi"/>
+			<value name="ClipboardAllLinesPosix" type="hex" data="00"/>
+			<value name="ClipboardFirstLinePosix" type="hex" data="00"/>
 		</key>
 	</key>
 </key>
