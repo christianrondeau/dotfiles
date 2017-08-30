@@ -16,6 +16,12 @@ function Write-Error([string]$message) {
     [Console]::ResetColor()
 }
 
+function Write-Warn([string]$message) {
+    [Console]::ForegroundColor = 'yellow'
+    [Console]::Error.WriteLine($message)
+    [Console]::ResetColor()
+}
+
 function StowFile([String]$link, [String]$target) {
 	$file = Get-Item $link -ErrorAction SilentlyContinue
 
@@ -145,7 +151,11 @@ try {
 
 	# Git
 	if($Level -ge $LevelMinimal) {
-		Stow git $env:HOME
+		if(!(Test-Path $env:HOME/.gitconfig)) {
+			Copy-Item ./git/.gitconfig $env:HOME/.gitconfig
+		} else {
+			Write-Warn ".gitconfig already exists (cannot symlink since it's not supported in GitExtensions"
+		}
 		Install git
 	}
 
