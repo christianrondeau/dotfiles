@@ -579,7 +579,17 @@ augroup filetype_json
 	autocmd!
 	" <localleader>f to format json
 	let b:vimpipe_command="python -m json.tool"
-	nnoremap <localleader>f :%!python -m json.tool<cr>
+	autocmd FileType json nnoremap <buffer> <localleader>f :%!python -m json.tool<cr>
+augroup END
+
+" }}}
+
+" Mappings: *.go Shortcuts {{{
+
+augroup filetype_go
+	autocmd!
+	autocmd filetype go nnoremap <buffer> <localleader>ur :update \| GoTest<cr>
+	autocmd filetype go nnoremap <buffer> <F12> GoDef<cr>
 augroup END
 
 " }}}
