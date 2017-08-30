@@ -5,6 +5,14 @@ function which($name)
     Get-Command $name | Select-Object -ExpandProperty Definition
 }
 
+function rm-history
+{
+	Clear-History
+	Remove-Item (Get-PSReadlineOption).HistorySavePath
+	[Microsoft.PowerShell.PSConsoleReadLine]::ClearHistory()
+	Clear-Host
+}
+
 # Git Shortcuts
 
 function ggs { git status }
