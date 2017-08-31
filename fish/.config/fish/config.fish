@@ -12,6 +12,7 @@ end
 
 if test -d ~/go/bin
 	set PATH ~/go/bin $PATH
+	set -x GOPATH ~/go
 end
 
 . "$HOME/.config/fish/aliases.fish"
