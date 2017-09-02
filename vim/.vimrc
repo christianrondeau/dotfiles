@@ -588,8 +588,22 @@ augroup END
 
 augroup filetype_go
 	autocmd!
-	autocmd filetype go nnoremap <buffer> <localleader>ur :update \| GoTest<cr>
-	autocmd filetype go nnoremap <buffer> <F12> GoDef<cr>
+	" Commands to eventually map:
+	" GoCoverage (, GoCoverageToggle, GoCoverageBrowser)
+	" GoInfo, GoImplements, GoCallees, GoReferrers
+	" GoLint, GoVet
+	" GoAlternate (switc to/from _test.go)
+	" GoImport (GoImportAs, GoDrop)
+
+	" VS-like
+	autocmd filetype go nnoremap <buffer> <localleader>ur :update \| GoTestFunc<cr>
+	autocmd filetype go nnoremap <buffer> <localleader>ul :update \| GoTest ./...<cr>
+	autocmd filetype go nnoremap <buffer> <localleader>rr :update \| GoRename<cr>
+	autocmd filetype go nnoremap <buffer> <F12> :GoDef<cr>
+	autocmd filetype go nmap <buffer> <F5> <Plug>(go-run)
+
+	" This gets re-written by vim-go otherwise
+	autocmd filetype go nnoremap <buffer> K i<cr><esc>
 augroup END
 
 " }}}
@@ -713,6 +727,7 @@ endif
 
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
+let g:tsuquyomi_use_vimproc = 1
 
 " }}}
 
