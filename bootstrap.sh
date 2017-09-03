@@ -86,11 +86,11 @@ if has_level $LEVEL_BASIC; then
 	# Busybox tools have trouble displaying colors, which breaks things
 	# like git diff or grep
 
-	if [ "$(realpath `which less`)" == "/bin/busybox" ];
+	if [ "$(realpath `which less`)" == "/bin/busybox" ]; then
 		install_ignore_exec less
 	fi
 
-	if [ "$(realpath `which grep`)" == "/bin/busybox" ];
+	if [ "$(realpath `which grep`)" == "/bin/busybox" ]; then
 		install_ignore_exec grep
 	fi
 
