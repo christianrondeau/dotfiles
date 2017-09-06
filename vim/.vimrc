@@ -453,6 +453,8 @@ nnoremap Y y$
 nnoremap q; q:
 " Avoid useless cursor movement with missed shortcuts
 nnoremap <space> <NOP>
+" Do not line break with enter in visual mode
+vnoremap <cr> <NOP>
 " Prevent ex mode, I never use it and it conflicts with 'q:'
 nnoremap Q <NOP>
 " When pressing <cr>, register an 'undo' step (conflicts with vim-endwise)
