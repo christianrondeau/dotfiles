@@ -59,7 +59,7 @@
 			<value name="FontSize" type="ulong" data="16"/>
 			<value name="StatusFontHeight" type="long" data="12"/>
 			<value name="TabFontHeight" type="long" data="11"/>
-			<key name="HotKeys" modified="2017-09-12 17:15:54" build="170910">
+			<key name="HotKeys" modified="2017-09-12 21:22:07" build="170910">
 				<value name="MinimizeRestore" type="dword" data="00000000"/>
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="0000005b"/>
@@ -74,7 +74,7 @@
 				<value name="ChildSystemMenu" type="dword" data="00000000"/>
 				<value name="Multi.NewConsole" type="dword" data="00005b57"/>
 				<value name="Multi.NewConsoleShift" type="dword" data="00105b57"/>
-				<value name="Multi.CmdKey" type="dword" data="80808058"/>
+				<value name="Multi.CmdKey" type="dword" data="00000000"/>
 				<value name="Multi.NewWindow" type="dword" data="00000000"/>
 				<value name="Multi.NewConsolePopup" type="dword" data="00005b4e"/>
 				<value name="Multi.NewConsolePopup2" type="dword" data="00000000"/>
@@ -593,9 +593,9 @@
 			<value name="Update.DownloadPath" type="string" data="%TEMP%\ConEmu"/>
 			<value name="Update.LeavePackages" type="hex" data="00"/>
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
-			<key name="Tasks" modified="2017-09-12 17:15:54" build="170910">
+			<key name="Tasks" modified="2017-09-12 21:22:07" build="170910">
 				<value name="Count" type="long" data="10"/>
-				<key name="Task1" modified="2017-09-12 17:15:54" build="170910">
+				<key name="Task1" modified="2017-09-12 21:22:07" build="170910">
 					<value name="Name" type="string" data="{cmd::cmd}"/>
 					<value name="Flags" type="dword" data="00000002"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -604,7 +604,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task2" modified="2017-09-12 17:15:54" build="170910">
+				<key name="Task2" modified="2017-09-12 21:22:07" build="170910">
 					<value name="Name" type="string" data="{cmd::cmd (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -613,7 +613,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task3" modified="2017-09-12 17:15:54" build="170910">
+				<key name="Task3" modified="2017-09-12 21:22:07" build="170910">
 					<value name="Name" type="string" data="{PowerShell::PowerShell}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -622,7 +622,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task4" modified="2017-09-12 17:16:29" build="170910">
+				<key name="Task4" modified="2017-09-12 21:22:07" build="170910">
 					<value name="Name" type="string" data="{PowerShell::PowerShell (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00005b58"/>
@@ -632,7 +632,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task5" modified="2017-09-12 17:16:29" build="170910">
+				<key name="Task5" modified="2017-09-12 21:22:07" build="170910">
 					<value name="Name" type="string" data="{Bash::Bash (lxss)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -641,7 +641,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task6" modified="2017-09-12 17:16:29" build="170910">
+				<key name="Task6" modified="2017-09-12 21:22:07" build="170910">
 					<value name="Name" type="string" data="{Bash::Git}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -650,7 +650,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task7" modified="2017-09-12 17:16:29" build="170910">
+				<key name="Task7" modified="2017-09-12 21:22:07" build="170910">
 					<value name="Name" type="string" data="{Editors::GVim}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -659,7 +659,7 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task8" modified="2017-09-12 17:16:29" build="170910">
+				<key name="Task8" modified="2017-09-12 21:22:07" build="170910">
 					<value name="Name" type="string" data="{Editors::GVim/Right}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -669,7 +669,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd2" type="string" data="gvim.exe --windowid !ConEmuBackHWND! -new_console:s70V"/>
 				</key>
-				<key name="Task9" modified="2017-09-12 17:16:29" build="170910">
+				<key name="Task9" modified="2017-09-12 21:22:07" build="170910">
 					<value name="Name" type="string" data="{Splits::GVim/PowerShell/Vertical}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -679,7 +679,7 @@
 					<value name="Count" type="long" data="2"/>
 					<value name="Cmd2" type="string" data="powershell.exe -new_console:s70V"/>
 				</key>
-				<key name="Task10" modified="2017-09-12 17:16:29" build="170910">
+				<key name="Task10" modified="2017-09-12 21:22:07" build="170910">
 					<value name="Name" type="string" data="{Splits::GVim/PowerShell/Horizontal}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -717,10 +717,10 @@
 					<value name="Count" type="long" data="1"/>
 				</key>
 			</key>
-			<key name="Apps" modified="2017-09-12 17:16:29" build="170910">
+			<key name="Apps" modified="2017-09-12 21:22:07" build="170910">
 				<value name="Count" type="long" data="0"/>
 			</key>
-			<key name="Colors" modified="2017-09-12 17:16:29" build="170910">
+			<key name="Colors" modified="2017-09-12 21:22:07" build="170910">
 				<value name="Count" type="long" data="0"/>
 			</key>
 			<value name="CmdLineHistory" type="multi"/>
