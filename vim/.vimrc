@@ -243,31 +243,23 @@ Plug 'vim-scripts/visSum.vim'
 Plug 'scrooloose/syntastic'
 
 " Markdown
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown'
 
-" JavaScript
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-
-" TypeScript Language Server
-Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
-
-" TypeScript
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-
-" JavaScript/TypeScript HTML templates
-Plug 'Quramy/vim-js-pretty-template', { 'for': ['javascript', 'typescript'] }
-
-" JavaScript/TypeScript Indentation
-Plug 'jason0x43/vim-js-indent', { 'for': ['javascript', 'typescript'] }
+" JavaScript/TypeScript
+Plug 'Quramy/tsuquyomi'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/vim-js-pretty-template'
+Plug 'jason0x43/vim-js-indent'
 
 " JSON
-Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'elzr/vim-json'
 
 " PowerShell
-Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
+Plug 'PProvost/vim-ps1'
 
 " C#/Razor
-Plug 'OrangeT/vim-csharp', { 'for': ['csharp', 'razor'] }
+Plug 'OrangeT/vim-csharp'
 
 " Go Lang
 " Install with :GoInstallBinaries
