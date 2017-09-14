@@ -448,7 +448,8 @@ nnoremap <space> <NOP>
 " Do not line break with enter in visual mode
 vnoremap <cr> <NOP>
 " Prevent ex mode, I never use it and it conflicts with 'q:'
-nnoremap Q <NOP>
+nnoremap Q q:
+vnoremap Q q:
 " When pressing <cr>, register an 'undo' step (conflicts with vim-endwise)
 " imap <expr> <silent> <CR> pumvisible() ? "<C-y>" : "<C-g>u<CR>"
 " }}}
