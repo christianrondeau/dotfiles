@@ -108,8 +108,8 @@ fi
 
 ############ OS configuration
 
-if $(hash packages 2>/dev/null); then # termux
-	PKGCMD="packages install"
+if $(hash termux-info 2>/dev/null); then # termux
+	PKGCMD="apt install"
 	PKGARGS="-y"
 elif $(hash apt-get 2>/dev/null); then # ubuntu
 	PKGCMD="sudo apt-get install"
