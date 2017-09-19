@@ -248,6 +248,7 @@ try {
 		Install sharpkeys
 		Install nodejs
 		Install slack
+		Install everything
 	}
 
 	# SSH Keys 
