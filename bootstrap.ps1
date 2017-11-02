@@ -143,6 +143,12 @@ try {
 		StowFile $Global:PROFILE (Get-Item "powershell\Microsoft.PowerShell_profile.ps1").FullName
 	}
 
+	# Windows Updates with PowerShell
+	if($Level -ge $LevelFull -and -not (Get-Command -Module PSWindowsUpdate) ) {
+		Install-Module PSWindowsUpdate -Confirm:$false
+		Add-WUServiceManager -ServiceID 7971f918-a847-4430-9279-4a52d1efe18d
+	}
+
 	# ConEmu
 	if($Level -ge $LevelBasic) {
 		Stow conemu $env:APPDATA
