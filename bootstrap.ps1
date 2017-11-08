@@ -249,6 +249,7 @@ try {
 		Install hackfont
 		Install ConEmu
 		Install fiddler4
+		Install kdiff3
 		Install gitextensions
 		Install greenshot
 		Install launchy
