@@ -32,6 +32,7 @@ In a PowerShell window:
     
 * Now, create a SSH key with puttygen in `~/.ssh/id_rsa`, and add a startup link in `%AppData%\Microsoft\Windows\Start Menu\Programs\Startup` to `C:\ProgramData\chocolatey\lib\putty.portable\tools\pageant.exe "%HOMEDRIVE%%HOMEPATH%\.ssh\id_rsa.ppk"`
 * Add an environment variable `GIT_SSH` pointing to `C:\ProgramData\chocolatey\lib\putty.portable\tools\plink.exe`
+* Add an environment variable `VIM_RUNTIME` pointing to `C:\Program Files\Vim\vim80`
 
 ## Linux (Ubuntu/Mint)
 
