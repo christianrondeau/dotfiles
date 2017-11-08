@@ -23,14 +23,15 @@ In a PowerShell window:
     cd ~/
     Set-ExecutionPolicy RemoteSigned -Force
     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    # Restart console
     choco install git putty -y
+    # Restart console
     git clone https://github.com/christianrondeau/dotfiles $env:HOMEDRIVE$env:HOMEPATH/dotfiles
     cd dotfiles
-    ~/bootstrap.ps1
+    ~/bootstrap.ps1 -Profile Basic
     
 * Now, create a SSH key with puttygen in `~/.ssh/id_rsa`, and add a startup link in `%AppData%\Microsoft\Windows\Start Menu\Programs\Startup` to `C:\ProgramData\chocolatey\lib\putty.portable\tools\pageant.exe "%HOMEDRIVE%%HOMEPATH%\.ssh\id_rsa.ppk"`
 * Add an environment variable `GIT_SSH` pointing to `C:\ProgramData\chocolatey\lib\putty.portable\tools\plink.exe`
-* Add `C:\Program Files\Git\usr\bin\` to the `PATH`
 
 ## Linux (Ubuntu/Mint)
 
@@ -43,13 +44,13 @@ Or if you prefer doing it manually:
     cd dotfiles
     ./bootstrap.sh -p basic
 
-### Termux
+## Termux
 
 Same instructions as linux, but instead run `./termux-bootstrap.sh`
 
 Install the Hack font: https://play.google.com/store/apps/details?id=com.termux.styling&hl=en
 
-### Docker
+## Docker
 
 You can also run a mini development environment in Docker:
 
