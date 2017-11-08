@@ -237,6 +237,8 @@ try {
 		Install GoogleChrome
 		Install 7zip
 		Install curl
+		Install gnuwin32-grep.install
+		Install procexp
 	}
 	
 	# Full Setup
