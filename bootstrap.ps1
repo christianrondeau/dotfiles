@@ -255,7 +255,7 @@ try {
 		Install launchy
 		Install paint.net
 		Install sharpkeys
-		Install nodejs
+		Install nodejs-lts
 		Install slack
 		Install everything
 	}
