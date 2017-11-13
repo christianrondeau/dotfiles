@@ -331,6 +331,7 @@ set shortmess+=I
 set hidden                         " Allows hidden buffers
 set laststatus=2                   " Always show status line
 set relativenumber                 " By default, show line numbers relative to the cursor
+set number                         " Show the current line number at the cursor
 set display=lastline               " Show wrapped last line, not just "@".
 set textwidth=0                    " Disables auto line breaks
 set showcmd                        " Show typed commands
