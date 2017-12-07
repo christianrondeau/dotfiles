@@ -12,16 +12,6 @@ set rtp+=~/.vim/vimfiles
 
 " Terminal {{{
 
-" Terminal: Colors {{{
-
-if(!has('gui_running') && !has('nvim') && stridx(&shell, 'cmd.exe') != -1)
-	colors industry
-else
-	colors wombat
-endif
-
-" }}}
-
 " Terminal: GVim {{{
 
 if(has("gui_running"))
@@ -74,6 +64,12 @@ endif
 " vim-plug allows installing, updating plugins.
 " Usage: :PlugInstall, :PlugUpdate and :PlugUpgrade
 call plug#begin("~/.vim/bundle")
+
+" }}}
+
+" Plugins: Themes {{{
+
+Plug 'tomasiser/vim-code-dark'
 
 " }}}
 
@@ -298,6 +294,22 @@ endtry
 " }}}
 
 " VIM Settings {{{
+
+" VIM: Colors {{{
+
+if(!has('gui_running') && !has('nvim') && stridx(&shell, 'cmd.exe') != -1)
+	colorscheme industry
+else
+	try
+		colorscheme codedark
+		let g:airline_theme = 'codedark'
+	catch /^Vim\%((\a\+)\)\=:E185/
+		" Well, too bad...
+		colorscheme industry
+	endtry
+endif
+
+" }}}
 
 " VIM: Macros {{{
 
