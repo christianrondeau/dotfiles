@@ -2,17 +2,12 @@
 
 Set-StrictMode -version Latest
 
-if ($env:GITPATH) {
-	$repos = @(Get-ChildItem -Path $env:GITPATH | ?{ $_.PSIsContainer })
-	echo "Updating $($repos.Length) repositories"
-	foreach ($repo in $repos) {
-		echo "updating $($repo.Name)"
-		pushd $repo.FullName
-		try {
-			git pull --ff-only
-		} finally {
-			popd
-		}
+if (Test-Path ~/.gitlist) {
+	cat ~/.gitlist | ? {
+		pushd $_
+		pwd
+		git pull --ff-only
+		popd
 	}
 }
 
