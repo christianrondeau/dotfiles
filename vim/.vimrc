@@ -708,11 +708,20 @@ let g:ctrlp_custom_ignore = {
 " Settings: ctrlsf.vim (ag) {{{
 
 let g:ctrlsf_default_root = 'project'
+let g:ctrlsf_indent = 2
 
 let g:ctrlsf_mapping = {
     \ "next": "n",
     \ "prev": "N",
+    \ "quit": "<F3>",
     \ }
+
+let g:ctrlsf_ignore_dir = [
+	\ "lib_bower",
+	\ "node_modules",
+	\ "dist",
+	\ "bin"
+	\]
 
 " }}}
 
