@@ -13,6 +13,12 @@ function rm-history
 	Clear-Host
 }
 
+# Fuzzy Find History
+
+function fzf-hist {
+	Invoke-Expression (cat (Get-PSReadlineOption | select -ExpandProperty historysavepath) | Invoke-Fzf)
+}
+
 # Git Shortcuts
 
 function ggs { git status }
