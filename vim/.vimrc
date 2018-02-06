@@ -853,6 +853,16 @@ function! s:make_buffer_temporary()
 	nnoremap <buffer> q :qa<CR>
 endfunction
 
+" Split at cursor {{{
+function! Utils_splitatcursor()
+	normal! dGgg
+	vsplit
+	enew
+	call s:make_buffer_temporary()
+	normal! Vpgg<c-w>h
+endfunction
+" }}}
+
 " Compare JSON in tests {{{
 function! Utils_comparejsonintest()
 	" Expected buffer
