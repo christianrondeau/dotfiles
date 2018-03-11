@@ -17,18 +17,18 @@ if [[ "$OSTYPE" == "cygwin" ]]; then
 fi
 
 # Git
-alias g="git"
-alias gs="git status"
-alias ga="git add"
-alias gaa="git add --all"
-alias gai="git add --interactive"
-alias gc="git commit"
-alias gca="git commit --amend"
-alias gcaa="git commit --amend --no-edit"
-alias gp="git push"
-alias gu="git pull --ff-only"
-alias gd="git diff"
-alias gds="git diff --staged"
-alias gl='git log --graph --color --all --decorate --format="%C(auto)%d %s"'
-alias gll='git log --graph --color --all --decorate --format="%C(auto)%h %d %s %Cblue %ar %an"'
-alias gx="git show -s --format='%Cgreen%h %Cblue%an %Cred%cr%Creset%n%s'"
+alias gg="git"
+alias ggs="git status"
+alias gga="git add"
+alias ggaa="git add --all"
+alias ggai="git add --interactive"
+alias ggc="git commit"
+alias ggca="git commit --amend"
+alias ggcaa="git commit --amend --no-edit"
+alias ggp="git push"
+alias ggu="git pull --ff-only"
+alias ggd="git diff"
+alias ggds="git diff --staged"
+alias ggl='git log --graph --color --all --decorate --format="%C(auto)%d %s"'
+alias ggll='git log --graph --color --all --decorate --format="%C(auto)%h %d %s %Cblue %ar %an"'
+alias ggx="git show -s --format='%Cgreen%h %Cblue%an %Cred%cr%Creset%n%s'"
