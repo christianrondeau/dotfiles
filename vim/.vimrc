@@ -427,8 +427,8 @@ set nowritebackup                  " Prevents creating <filename>~ files
 set nolazyredraw                   " Avoids redrawing when running macros
 
 set undodir=$HOME/.vim/undo
-set backupdir=$TEMP,$TMP,.
-set directory=$TEMP,$TMP,.
+set backupdir=$TEMP,$TMP,/tmp,.
+set directory=$TEMP,$TMP,/tmp,.
 set undofile                       " Create a persistent undo file
 
 set undolevels=100
