@@ -42,7 +42,7 @@ endif
 
 if(stridx(&shell, 'cmd.exe') == -1 && !has('gui_running'))
 	" Allows mouse when using SSH from Termux
-	set mouse=nv
+	set mouse=a
 
 	" Termux
 	if(stridx(expand('~/'), 'termux') != -1)
@@ -141,9 +141,7 @@ endif
 
 " Multiple cursors
 " Use <C-n> to move to next occurence of word
-if(has("gui_running"))
-	Plug 'terryma/vim-multiple-cursors'
-endif
+Plug 'terryma/vim-multiple-cursors'
 
 " Search using The Silver Searcher (Ag)
 " Use <C-f> to search
