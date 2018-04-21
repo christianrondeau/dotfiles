@@ -337,6 +337,12 @@ if has_level $LEVEL_EXPERIMENTAL; then
 	install golang go
 fi
 
+############ postgres
+
+if has_level $LEVEL_BASIC; then
+	stow postgres --no-folding
+fi
+
 ############ other
 
 if [[ "$install" != "" ]]; then
