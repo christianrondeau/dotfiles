@@ -167,6 +167,10 @@ Plug 'vim-scripts/utl.vim'
 " More information: https://github.com/junegunn/fzf.vim
 Plug 'junegunn/fzf.vim'
 
+" Highlights matches when doing find, word, etc.
+" Run with `<leader><leader>` and any movement
+Plug 'easymotion/vim-easymotion'
+
 " }}}
 
 " Plugins: Text Processing {{{
