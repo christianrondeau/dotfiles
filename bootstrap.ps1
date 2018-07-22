@@ -7,6 +7,7 @@ Param(
 )
 
 Set-StrictMode -version Latest
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 # Functions
 
@@ -73,11 +74,11 @@ function DownloadFile([string]$url, [string]$target, [string]$hash) {
 		if(Test-Path $target) {
 			Write-Verbose "$target already downloaded"
 		} else {
-			Write-Verbose "Downloading $target"
+			Write-Verbose "Downloading $url to $target"
 			try {
 				(New-Object System.Net.WebClient).DownloadFile($url, $target)
 			} catch {
-				$_ | Write-Error
+				Write-Error $_
 			}
 			$targethash = Get-FileHash $target -Algorithm "SHA256"
 
@@ -175,11 +176,6 @@ try {
 		Install fzf
 	}
 
-	# Hub (GitHub Git wrapper)
-	if($Level -ge $LevelFull) {
-		Install hub
-	}
-
 	# Vim
 	if($Level -ge $LevelMinimal) {
 		StowFile "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
@@ -196,13 +192,9 @@ try {
 		}
 	}
 
-	if($Level -ge $LevelFull) {
-		Stow neovim-windows $env:LOCALAPPDATA/nvim
-		Install neovim
-	}
-
+	# Vim Plugins
 	if($Level -ge $LevelBasic) {
-		DownloadFile "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.2/vimproc_win64.dll" "$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll" "D96CA8904D4485A7C9BDED019B5EB2EA688EE803E211F0888AB0FD099095FB55"
+		DownloadFile "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.3/vimproc_win64.dll" "$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll" "B6E71408676B095D91BE5376B25C8106DEDD9A4AF76A73B2729B4D2E1368874F"
 		DownloadFile "https://github.com/derekmcloughlin/gvimfullscreen_win32/raw/master/gvimfullscreen_64.dll" "$env:VIMRUNTIME\gvimfullscreen_64.dll" "1C83747B67ED73C05D44C1AF8222A860BC5A48B56BF54CD6E21465A2DEB78456"
 
 		if(-not (Get-Command vim -ErrorAction SilentlyContinue)) {
@@ -231,6 +223,13 @@ try {
 			Install-Module -Name PSFzf -Force
 		}
 	}
+
+	# VS Code
+	if($Level -ge $LevelFull) {
+		Install vscode
+		StowFile $env:APPDATA\Code\User\settings.json (Get-Item "vscode\settings.json").FullName
+		StowFile $env:APPDATA\Code\User\keybindings.json (Get-Item "vscode\keybindings.json").FullName
+	}
 	
 	# Common Tools
 	if($Level -ge $LevelBasic) {
@@ -245,10 +244,8 @@ try {
 	if($Level -ge $LevelFull) {
 		Install Firefox
 		Install gotowindow
-		Install lastpass
 		Install hackfont
-		Install ConEmu
-		Install fiddler4
+		Install fiddler
 		Install kdiff3
 		Install gitextensions
 		Install greenshot

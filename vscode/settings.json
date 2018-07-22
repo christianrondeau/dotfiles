@@ -1,0 +1,127 @@
+{
+	// VSCodeVim https://github.com/VSCodeVim/Vim
+	"vim.easymotion": true,
+	"vim.sneak": true,
+	"vim.incsearch": true,
+	"vim.useSystemClipboard": true,
+	"vim.useCtrlKeys": true,
+	"vim.hlsearch": true,
+	"vim.insertModeKeyBindingsNonRecursive": [
+		{
+			"before": [
+				"j",
+				"k"
+			],
+			"after": [
+				"<Esc>"
+			]
+		},
+		{
+			"before": [
+				"C-v"
+			],
+			"commands": [
+				"editor.action.clipboardPasteAction"
+			],
+			"after": [
+				"<Nop>"
+			]
+		}
+	],
+	"vim.visualModeKeyBindingsNonRecursive": [
+		{
+			"before": [
+				";"
+			],
+			"after": [
+				":"
+			]
+		},
+		{
+			"before": [
+				","
+			],
+			"after": [
+				";"
+			]
+		},
+		{
+			"before": [
+				"p"
+			],
+			"after": [
+				"p",
+				"g",
+				"v",
+				"y"
+			]
+		}
+	],
+	"vim.normalModeKeyBindingsNonRecursive": [
+		{
+			"before": [
+				";"
+			],
+			"after": [
+				":"
+			]
+		},
+		{
+			"before": [
+				","
+			],
+			"after": [
+				";"
+			]
+		},
+		{
+			"before": [
+				"Y"
+			],
+			"after": [
+				"y",
+				"$"
+			]
+		},
+		{
+			"before": [
+				"<C-n>"
+			],
+			"commands": [
+				":nohl"
+			]
+		},
+		{
+			"before": [
+				"\\",
+				"f"
+			],
+			"commands": [
+				"editor.action.formatDocument"
+			]
+		},
+		{
+			"before": [
+				"Z",
+				"Z"
+			],
+			"commands": [
+				":wq"
+			]
+		}
+	],
+	"vim.leader": "<space>",
+	"vim.handleKeys": {
+		"<C-f>": false,
+		"<C-h>": false
+	},
+	// Exclusion
+	"files.exclude": {
+		"node_modules/": true
+	},
+	// Typescript
+	"typescript.updateImportsOnFileMove.enabled": "never",
+	// VS Code
+	"workbench.startupEditor": "welcomePage",
+	"explorer.confirmDragAndDrop": false
+}
