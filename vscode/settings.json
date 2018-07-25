@@ -123,5 +123,9 @@
 	"typescript.updateImportsOnFileMove.enabled": "never",
 	// VS Code
 	"workbench.startupEditor": "welcomePage",
-	"explorer.confirmDragAndDrop": false
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": false,
+	"editor.minimap.enabled": false,
+	"editor.fontFamily": "Hack, Consolas, 'Courier New', monospace",
+	"window.zoomLevel": 0
 }
