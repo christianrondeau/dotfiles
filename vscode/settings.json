@@ -113,19 +113,20 @@
 	"vim.leader": "<space>",
 	"vim.handleKeys": {
 		"<C-f>": false,
-		"<C-h>": false
+		"<C-h>": false,
+		"<C-k>": false,
+		"<C-s>": false
 	},
 	// Exclusion
 	"files.exclude": {
 		"node_modules/": true
 	},
-	// Typescript
-	"typescript.updateImportsOnFileMove.enabled": "never",
 	// VS Code
 	"workbench.startupEditor": "welcomePage",
 	"explorer.confirmDragAndDrop": false,
 	"explorer.confirmDelete": false,
 	"editor.minimap.enabled": false,
 	"editor.fontFamily": "Hack, Consolas, 'Courier New', monospace",
-	"window.zoomLevel": 0
+	"window.zoomLevel": 0,
+	"typescript.tsdk": "C:\\Users\\christian\\AppData\\Roaming\\npm\\node_modules\\typescript\\lib"
 }
