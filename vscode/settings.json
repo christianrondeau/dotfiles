@@ -115,7 +115,8 @@
 		"<C-f>": false,
 		"<C-h>": false,
 		"<C-k>": false,
-		"<C-s>": false
+		"<C-s>": false,
+		"<C-n>": false
 	},
 	// Exclusion
 	"files.exclude": {
