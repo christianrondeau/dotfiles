@@ -129,5 +129,6 @@
 	"editor.minimap.enabled": false,
 	"editor.fontFamily": "Hack, Consolas, 'Courier New', monospace",
 	"window.zoomLevel": 0,
-	"typescript.tsdk": "C:\\Users\\christian\\AppData\\Roaming\\npm\\node_modules\\typescript\\lib"
+	"typescript.tsdk": "C:\\Users\\christian\\AppData\\Roaming\\npm\\node_modules\\typescript\\lib",
+	"cSpell.language": ",fr"
 }
