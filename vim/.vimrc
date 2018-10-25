@@ -171,6 +171,10 @@ Plug 'junegunn/fzf.vim'
 " Run with `<leader><leader>` and any movement
 Plug 'easymotion/vim-easymotion'
 
+" Operates on search patterns
+" Search, and use `:Grey` to yank matching lines
+Plug 'kana/vim-grex'
+
 " }}}
 
 " Plugins: Text Processing {{{
