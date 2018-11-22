@@ -237,6 +237,10 @@ Plug 'krisajenkins/vim-pipe'
 " Run with `<leader>su`
 Plug 'vim-scripts/visSum.vim'
 
+" Loads the .editorconfig
+" Nothing special to do!
+Plug 'editorconfig/editorconfig-vim'
+
 " }}}
 
 " Plugins: Languages / Syntax {{{

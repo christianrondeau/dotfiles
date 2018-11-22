@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/data/data/com.termux/files/home/mediaclip-hub-admin-fuse/Mediaclip.Hub.Admin.Web/ClientApp/src/app/orders/models'
+let g:netrw_dirhist_2='/data/data/com.termux/files/home/mediaclip-hub-admin-fuse/Mediaclip.Hub.Admin.Web/ClientApp/src/app/orders/actions'
+let g:netrw_dirhist_3='/data/data/com.termux/files/home/mediaclip-hub-graphql/src/datasources'

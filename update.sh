@@ -30,7 +30,7 @@ fi
 
 if is_installed fish; then
 	echo 'Updating fish plugins'
-	fish -c "fisher up"
+	fish -c "fisher"
 fi
 
 ############ Update vim plugins
