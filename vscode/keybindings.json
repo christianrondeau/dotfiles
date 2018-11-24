@@ -1,6 +1,11 @@
 [
-    {
-        "key": "ctrl+shift+s",
-        "command": "workbench.action.files.saveAll"
-    }
+  {
+    "key": "ctrl+shift+s",
+    "command": "workbench.action.files.saveAll"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocus"
+  }
 ]
