@@ -258,6 +258,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/vim-js-pretty-template'
 Plug 'jason0x43/vim-js-indent'
 
+" GraphQL
+Plug 'jparise/vim-graphql'
+
 " JSON
 Plug 'elzr/vim-json'
 
