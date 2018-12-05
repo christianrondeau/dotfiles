@@ -112,11 +112,12 @@
 	],
 	"vim.leader": "<space>",
 	"vim.handleKeys": {
+		"<C-d>": false,
 		"<C-f>": false,
 		"<C-h>": false,
 		"<C-k>": false,
-		"<C-s>": false,
-		"<C-n>": false
+		"<C-n>": false,
+		"<C-s>": false
 	},
 	// Exclusion
 	"files.exclude": {
@@ -127,8 +128,9 @@
 	"explorer.confirmDragAndDrop": false,
 	"explorer.confirmDelete": false,
 	"editor.minimap.enabled": false,
-	"editor.fontFamily": "Hack, Consolas, 'Courier New', monospace",
+	"editor.fontFamily": "Fira Code, Hack, Consolas, 'Courier New', monospace",
+	"editor.fontLigatures": true,
+	"editor.fontWeight": "300",
 	"window.zoomLevel": 0,
-	"cSpell.language": ",fr",
 	"terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
 }
