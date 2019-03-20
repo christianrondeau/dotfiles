@@ -119,10 +119,6 @@ Plug 'vim-airline/vim-airline'
 " Absolute when unfocused, relative when focused
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
-" Show the undo tree
-" Use `<leader>u` to open tree
-Plug 'sjl/gundo.vim'
-
 " Launch with a useful startup screen
 Plug 'mhinz/vim-startify'
 
@@ -162,18 +158,9 @@ Plug 'vim-scripts/BufOnly.vim'
 " Run with `<leader>o`, back with `<c-o>`
 Plug 'vim-scripts/utl.vim'
 
-" Fuzzy finding
-" `:FZF`, `:(G)Files`, `:Buffers`, `:Ag`, `:(B)Lines`, `:History`, `:Commands`
-" More information: https://github.com/junegunn/fzf.vim
-Plug 'junegunn/fzf.vim'
-
 " Highlights matches when doing find, word, etc.
 " Run with `<leader><leader>` and any movement
 Plug 'easymotion/vim-easymotion'
-
-" Operates on search patterns
-" Search, and use `:Grey` to yank matching lines
-Plug 'kana/vim-grex'
 
 " }}}
 
@@ -183,20 +170,10 @@ Plug 'kana/vim-grex'
 " Use `<leader>cc` to comment, `<leader>cu` to uncomment
 Plug 'scrooloose/nerdcommenter'
 
-" Snippets
-" see ~/.vim/snippets, use `<Tab>` to autocomplete
-if has('python')
-	Plug 'SirVer/ultisnips'
-endif
-
 " Operations for quotes, parenthesis
 " Use `cs"'` to replace `"`" by `'`, or `cs"<p>` for tags
 " Use `ds(` to delete parenthesis, etc.
 Plug 'tpope/vim-surround'
-
-" Align columns
-" Run `:Tabularize /<char>` to align text blocks
-Plug 'godlygeek/tabular'
 
 " Omni complete w/ tab
 " Simply use `<Tab>` to autocomplete
@@ -217,6 +194,7 @@ Plug 'tpope/vim-endwise'
 
 " Allow re-playing commands with `.`
 Plug 'tpope/vim-repeat'
+
 " }}}
 
 " Plugins: Testing {{{
@@ -233,10 +211,6 @@ Plug 'junegunn/vader.vim',  { 'on': 'Vader', 'for': ['vader', 'vim'] }
 " See b:vimpipe_command for usages
 Plug 'krisajenkins/vim-pipe'
 
-" Sums a list of numbers
-" Run with `<leader>su`
-Plug 'vim-scripts/visSum.vim'
-
 " Loads the .editorconfig
 " Nothing special to do!
 Plug 'editorconfig/editorconfig-vim'
@@ -252,7 +226,6 @@ Plug 'scrooloose/syntastic'
 Plug 'plasticboy/vim-markdown'
 
 " JavaScript/TypeScript
-Plug 'Quramy/tsuquyomi'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/vim-js-pretty-template'
@@ -274,14 +247,6 @@ Plug 'OrangeT/vim-csharp'
 " Install with :GoInstallBinaries
 " Doc: https://github.com/fatih/vim-go/blob/master/README.md
 Plug 'fatih/vim-go'
-
-" }}}
-
-" Plugins: Fun & Games {{{
-
-" A text-based roguelike
-" Launch with `:Vimcastle`
-Plug 'christianrondeau/vimcastle'
 
 " }}}
 
