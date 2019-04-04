@@ -7,6 +7,16 @@ if (Test-Path ~/.gitlist) {
 		pushd $_
 		pwd
 		git pull --ff-only
+		if(-not (git status --porcelain)) {
+			if (Test-Path package-lock.json) {
+				npm install
+				git checkout package-lock.json --force
+			}
+			elseif (Test-Path yarn.lock) {
+				yarn install
+				git checkout yarn.lock --force
+			}
+		}
 		popd
 	}
 }

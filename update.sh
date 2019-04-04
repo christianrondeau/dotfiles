@@ -39,3 +39,4 @@ if is_installed vim; then
 	echo 'Updating vim plugins'
 	vim -c 'PlugUpdate' -c 'qa!'
 fi
+
