@@ -29,6 +29,7 @@ function ggc($msg) { if($msg) { git commit -m $msg } else { git commit } }
 function ggca { git commit --amend }
 function ggcaa { git commit --amend --no-edit }
 function ggp { git push }
+function ggpf { git push --force-with-lease }
 function ggu { git pull --ff-only }
 function ggd { git diff }
 function ggds { git diff --staged }
