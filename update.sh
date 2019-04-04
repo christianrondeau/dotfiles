@@ -40,3 +40,7 @@ if is_installed vim; then
 	vim -c 'PlugUpdate' -c 'qa!'
 fi
 
+############ Update git repos
+
+./scripts/update-git-repos.sh
+
