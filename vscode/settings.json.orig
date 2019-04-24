@@ -134,16 +134,20 @@
 	"window.zoomLevel": 0,
 	"terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
 	"typescript.updateImportsOnFileMove.enabled": "always",
+<<<<<<< Updated upstream
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+=======
 	"[typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[javascript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"[json]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
 	"[markdown]": {
+>>>>>>> Stashed changes
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	}
 }
