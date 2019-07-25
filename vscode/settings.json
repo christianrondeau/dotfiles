@@ -154,5 +154,6 @@
 	},
 	"[csharp]": {
 		"editor.defaultFormatter": "ms-vscode.csharp"
-	}
+	},
+	"terminal.integrated.rendererType": "dom"
 }
