@@ -337,10 +337,10 @@ if has_level $LEVEL_EXPERIMENTAL; then
 	install golang go
 fi
 
-############ postgres
+############ jq
 
-if has_level $LEVEL_BASIC; then
-	stow postgres --no-folding
+if has_level $LEVEL_BASIC && ! is_installed jq; then
+	install jq
 fi
 
 ############ other
