@@ -158,6 +158,7 @@
 	"[csharp]": {
 		"editor.defaultFormatter": "ms-vscode.csharp"
 	},
-	"terminal.integrated.rendererType": "dom",
+	"terminal.integrated.rendererType": "dom", 
+	"omnisharp.enableRoslynAnalyzers": true,
 	"vim.vimrc.enable": false
 }
