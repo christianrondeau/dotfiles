@@ -161,7 +161,7 @@ try {
 		if(!(Test-Path $env:HOME/.gitconfig)) {
 			Copy-Item ./git/.gitconfig $env:HOME/.gitconfig
 		} else {
-			Write-Warn ".gitconfig already exists (cannot symlink since it's not supported in GitExtensions"
+			Write-Warn ".gitconfig already exists (cannot symlink since it's not supported in GitExtensions)"
 		}
 		Install git
 	}
