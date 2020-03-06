@@ -7,5 +7,10 @@
     "key": "ctrl+k",
     "command": "workbench.action.terminal.clear",
     "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
   }
 ]

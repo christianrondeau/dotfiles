@@ -108,6 +108,23 @@
 			"commands": [
 				":wq"
 			]
+		},
+		{
+			"before": [
+				"<space>",
+				"j"
+			],
+			"commands": [
+				"workbench.action.terminal.focusNext"
+			]
+		},
+		{
+			"before": [
+				"<C-j>"
+			],
+			"commands": [
+				"workbench.action.terminal.focusNext"
+			]
 		}
 	],
 	"vim.leader": "<space>",
@@ -160,5 +177,6 @@
 	},
 	"terminal.integrated.rendererType": "dom", 
 	"omnisharp.enableRoslynAnalyzers": true,
-	"vim.vimrc.enable": false
+	"vim.vimrc.enable": false,
+	"omnisharp.enableEditorConfigSupport": true
 }
