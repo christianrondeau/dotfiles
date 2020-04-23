@@ -173,7 +173,7 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[csharp]": {
-		"editor.defaultFormatter": "ms-vscode.csharp"
+		"editor.defaultFormatter": "ms-dotnettools.csharp"
 	},
 	"terminal.integrated.rendererType": "dom", 
 	"omnisharp.enableRoslynAnalyzers": true,
