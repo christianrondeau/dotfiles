@@ -144,6 +144,11 @@ try {
 		StowFile $Global:PROFILE (Get-Item "powershell\Microsoft.PowerShell_profile.ps1").FullName
 	}
 
+	# WSL
+	if($Level -ge $LevelBasic) {
+		StowFile "$env:HOME\.wslconfig" (Get-Item "wsl\.wslconfig").FullName
+	}
+
 	# Windows Updates with PowerShell
 	if($Level -ge $LevelFull -and -not (Get-Command -Module PSWindowsUpdate) ) {
 		Install-Module PSWindowsUpdate -Confirm:$false

@@ -719,14 +719,14 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 				</key>
-				<key name="Task14" modified="2020-08-26 08:34:18" build="200713">
+				<key name="Task14" modified="2020-08-26 08:40:47" build="200713">
 					<value name="Name" type="string" data="{wsl::wsl}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
+					<value name="GuiArgs" type="string" data='-icon "%USERPROFILE%\AppData\Local\lxss\bash.ico"'/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
-					<value name="Cmd1" type="string" data="wsl.exe"/>
+					<value name="Cmd1" type="string" data="wsl.exe -cur_console:pm:/mnt"/>
 				</key>
 			</key>
 			<key name="Apps" modified="2017-11-09 16:19:33" build="171025">
