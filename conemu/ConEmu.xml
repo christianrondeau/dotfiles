@@ -596,8 +596,8 @@
 			<value name="Update.DownloadPath" type="string" data="%TEMP%\ConEmu"/>
 			<value name="Update.LeavePackages" type="hex" data="00"/>
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
-			<key name="Tasks" modified="2020-03-06 12:02:47" build="191012">
-				<value name="Count" type="long" data="13"/>
+			<key name="Tasks" modified="2020-08-26 08:34:18" build="200713">
+				<value name="Count" type="long" data="14"/>
 				<key name="Task1" modified="2017-11-09 16:19:33" build="171025">
 					<value name="Name" type="string" data="{cmd::cmd}"/>
 					<value name="Flags" type="dword" data="00000002"/>
@@ -718,6 +718,15 @@
 					<value name="Cmd1" type="string" data="C:\ProgramData\chocolatey\lib\putty.portable\tools\PUTTY.EXE"/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
+				</key>
+				<key name="Task14" modified="2020-08-26 08:34:18" build="200713">
+					<value name="Name" type="string" data="{wsl::wsl}"/>
+					<value name="Flags" type="dword" data="00000004"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
+					<value name="Active" type="long" data="0"/>
+					<value name="Count" type="long" data="1"/>
+					<value name="Cmd1" type="string" data="wsl.exe"/>
 				</key>
 			</key>
 			<key name="Apps" modified="2017-11-09 16:19:33" build="171025">
