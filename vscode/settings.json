@@ -178,5 +178,6 @@
 	"terminal.integrated.rendererType": "dom", 
 	"omnisharp.enableRoslynAnalyzers": true,
 	"vim.vimrc.enable": false,
-	"omnisharp.enableEditorConfigSupport": true
+	"omnisharp.enableEditorConfigSupport": true,
+	"powershell.integratedConsole.showOnStartup": false
 }
