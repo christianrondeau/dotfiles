@@ -281,7 +281,7 @@ if has_level $LEVEL_BASIC; then
 	stow fish --no-folding
 	if ! is_installed fish; then
 		if is_os "linux-gnu"; then
-			sudo apt-add-repository ppa:fish-shell/release-2 -y
+			sudo apt-add-repository ppa:fish-shell/release-3 -y
 			sudo apt-get update
 			sudo apt-get install fish -y
 		else
