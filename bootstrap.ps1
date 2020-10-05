@@ -248,13 +248,11 @@ try {
 	# Full Setup
 	if($Level -ge $LevelFull) {
 		Install Firefox
-		Install gotowindow
 		Install hackfont
 		Install fiddler
 		Install kdiff3
 		Install gitextensions
 		Install greenshot
-		Install launchy
 		Install paint.net
 		Install sharpkeys
 		Install nodejs-lts
@@ -274,4 +272,3 @@ try {
 # TODO:
 # * Install sharpkeys CapsLock
 # * Setup putty at startup
-# * configure launchy with chocolatey
