@@ -214,6 +214,11 @@ try {
 		}
 	}
 
+	# Rider / Idea
+	if($Level -ge $LevelBasic) {
+		StowFile "$env:HOME\.ideavimrc" (Get-Item "idea\.ideavimrc").FullName
+	}
+
 	# PowerShell Modules
 	if($Level -ge $LevelBasic) {
 		if(!(Get-Command z -ErrorAction SilentlyContinue)) {
