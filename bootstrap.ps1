@@ -132,6 +132,7 @@ if(-not $env:HOME) {
 # TODO:
 # * Chocolatey
 # * Setup environment variables
+# * Install Powershell Core, Winget https://dev.to/smashse/wsl-chocolatey-powershell-winget-1d6p
 
 # Bootstrap
 
@@ -153,6 +154,12 @@ try {
 	if($Level -ge $LevelFull -and -not (Get-Command -Module PSWindowsUpdate) ) {
 		Install-Module PSWindowsUpdate -Confirm:$false
 		Add-WUServiceManager -ServiceID 7971f918-a847-4430-9279-4a52d1efe18d
+	}
+
+	# Windows Terminal
+	if($Level -ge $LevelFull) {
+		StowFile "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" (Get-Item ".\windowsterminal\settings.json").FullName
+		Install conemu
 	}
 
 	# ConEmu
