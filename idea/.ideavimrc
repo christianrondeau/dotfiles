@@ -1,1 +1,10 @@
+set surround
+set multiple-cursors
+set ReplaceWithRegister
+
+set ideajoin
+set ideastatusicon=gray
+
+
 set clipboard=unnamedplus
+set clipboard+=ideaput
