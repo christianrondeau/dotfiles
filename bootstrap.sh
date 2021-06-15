@@ -133,6 +133,17 @@ else
 	log "install command: $PKGCMD {package} $PKGARGS"
 fi
 
+############ ubuntu checks
+
+is_ubuntu_20=false
+if is_os "linux-gnu"; then
+	ubuntu_version=$(lsb_release -a 2>/dev/null | grep Release | awk '{ print $2 }')
+	if [[ $ubuntu_version == "20.*" ]]; then
+		is_ubuntu_20=true
+		log "os: ubuntu ${ubuntu_version} detected"
+	fi
+fi
+
 ############ sanity check
 
 if is_os "linux-gnu"; then
@@ -202,7 +213,11 @@ fi
 
 if has_level $LEVEL_MINIMAL; then
 	stow vim --no-folding
-	install vim-python vim
+	if is_os "linux-android"; then
+        install vim-python vim
+    else
+        install vim
+    fi
 fi
 
 if has_level $LEVEL_BASIC && [ ! -d ~/.vim/bundle/vimproc.vim ]; then
@@ -243,41 +258,9 @@ if has_level $LEVEL_BASIC; then
 	fi
 fi
 
-############ neovim
-
-if has_level $LEVEL_FULL; then
-	stow neovim --no-folding
-	if ! is_installed nvim; then
-		if is_os "linux-gnu"; then
-			sudo add-apt-repository ppa:neovim-ppa/stable
-			sudo apt-get update
-			sudo apt-get install neovim -y
-		elif is_os "linux-android"; then
-			packages install python-dev -y
-			pip3 install neovim
-			packages install neovim -y
-		else
-			install neovim nvim
-		fi
-	fi
-fi
-
-############ tmux
-
-if has_level $LEVEL_FULL; then
-	stow tmux --no-folding
-	install tmux
-fi
-
-############ mosh
-
-if has_level $LEVEL_EXPERIMENTAL; then
-	install mosh
-fi
-
 ############ fish
 
-if has_level $LEVEL_BASIC; then
+if has_level $LEVEL_FULL; then
 	stow fish --no-folding
 	if ! is_installed fish; then
 		if is_os "linux-gnu"; then
@@ -325,21 +308,35 @@ fi
 ############ nodejs
 
 if has_level $LEVEL_FULL && ! is_installed node; then
-	if is_os "linux-gnu"; then
-		curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-	fi
 	install nodejs node
 fi
 
-############ go
+############ microsoft
 
-if has_level $LEVEL_EXPERIMENTAL; then
-	install golang go
+if has_level $LEVEL_FULL && is_ubuntu_20; then
+	sudo apt install -y wget apt-transport-https software-properties-common
+	wget -q https://packages.microsoft.com/config/ubuntu/${ubuntu_version}/packages-microsoft-prod.deb -P /tmp/
+	sudo dpkg -i packages-microsoft-prod.deb
+	sudo apt-get update
+	sudo add-apt-repository universe
+	rm /tmp/packages-microsoft-prod.deb 
+fi
+
+############ dotnet
+
+if has_level $LEVEL_FULL && is_ubuntu_20; then
+	install dotnet-sdk-5 dotnet
+fi
+
+############ powershell
+
+if has_level $LEVEL_FULL && is_ubuntu_20; then
+	install powershell pwsh
 fi
 
 ############ jq
 
-if has_level $LEVEL_BASIC && ! is_installed jq; then
+if has_level $LEVEL_FULL; then
 	install jq
 fi
 
@@ -349,4 +346,3 @@ if [[ "$install" != "" ]]; then
 	log "Installing extra packages $install"
 	install $install
 fi
-
