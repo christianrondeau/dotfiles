@@ -119,18 +119,6 @@ Plug 'vim-airline/vim-airline'
 " Absolute when unfocused, relative when focused
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
-" Launch with a useful startup screen
-Plug 'mhinz/vim-startify'
-
-" Distraction-free writing
-" Use `:Goyo` to start
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-if(has('win32') && has("gui_running"))
-	Plug 'derekmcloughlin/gvimfullscreen_win32'
-	let s:vimrc_gvimfullscreen_installed = 1
-endif
-
 " }}}
 
 " Plugins: Searching and navigation {{{
@@ -242,11 +230,6 @@ Plug 'PProvost/vim-ps1'
 
 " C#/Razor
 Plug 'OrangeT/vim-csharp'
-
-" Go Lang
-" Install with :GoInstallBinaries
-" Doc: https://github.com/fatih/vim-go/blob/master/README.md
-Plug 'fatih/vim-go'
 
 " }}}
 
@@ -747,21 +730,6 @@ endif
 
 " }}}
 
-" Settings: startify {{{
-
-let g:startify_session_dir = '~/.vim/session'
-let g:startify_custom_header = 'winwidth(0) > 64 ? map(startify#fortune#boxed(), "\"   \".v:val") : startify#fortune#quote()'
-let g:startify_skiplist = [
-      \ 'COMMIT_EDITMSG',
-			\ 'bundle[/\\].*[/\\]doc',
-      \ '[/\\].vim[/\\]vim80',
-      \ 'TextEditorAnywhere_',
-      \ '.vimrc',
-      \ '[/\\].git[/\\]',
-      \ ]
-
-" }}}
-
 " Settings: vader.vim {{{
 
 command! -bang -nargs=* -range -complete=file Test exec '<line1>,<line2>Vader<bang>' <q-args> | cclose
@@ -773,19 +741,6 @@ command! -bang -nargs=* -range -complete=file Test exec '<line1>,<line2>Vader<ba
 if(stridx(expand('~/'), 'termux') != -1)
 	let g:utl_cfg_hdl_scm_http = "silent !termux-open-url %u"
 endif
-
-" }}}
-
-" Settings: goyo.vim / limelight.vim {{{
-
-function! s:togglefullscreen()
-	if(s:vimrc_gvimfullscreen_installed)
-		call libcallnr(expand("$VIM") . "/bundle/gvimfullscreen_win32/gvimfullscreen_64.dll", "ToggleFullScreen", 0)
-	endif
-endfunction
-
-autocmd! User GoyoEnter Limelight | set guioptions-=m | call s:togglefullscreen()
-autocmd! User GoyoLeave Limelight! | set guioptions+=m | call s:togglefullscreen()
 
 " }}}
 
@@ -812,14 +767,6 @@ let g:netrw_altv = 1 " Open in vertical split
 
 " }}}
 
-" Settings: ultisnips {{{
-
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-n>"
-
-" }}}
-
 " }}}
 
 " Utilities {{{
@@ -838,92 +785,6 @@ function! Utils_splitatcursor()
 	enew
 	call s:make_buffer_temporary()
 	normal! Vpgg<c-w>h
-endfunction
-" }}}
-
-" Compare JSON in tests {{{
-function! Utils_comparejsonintest()
-	" Expected buffer
-	e nunit_expected
-	call s:make_buffer_temporary()
-	" Paste
-	normal! "+pgg0
-	" Keep only 1st object, put 2nd in register
-	exec "normal! d/{\<cr>%"
-	s/>//e
-	normal! jdG
-  " Return to top of buffer
-	normal! gg
-	" Format as JSON if it is a JSON
-	if(search('\"[a-zA-Z0-9_]\"\:', 'n') > 0)
-		set filetype=json
-	else
-		set filetype=cs
-	endif
-
-	" Actual buffer
-	vsplit nunit_actual
-	call s:make_buffer_temporary()
-	" Paste
-	normal! Vp0
-	" Remove everything else
-	normal! dt{%
-	s/>//e
-	normal! jdG
-  " Return to top of buffer
-	normal! gg
-	" Format as JSON if it is a JSON
-	if(search('\"[a-zA-Z0-9_]\"\:', 'n') > 0)
-		set filetype=json
-	else
-		set filetype=cs
-	endif
-	" Run diff on both buffers
-	windo diffthis
-	" Alloq quick quit with `q`
-	nnoremap q :qa!<CR>
-endfunction
-" }}}
-
-" Compare XML in tests {{{
-function! Utils_comparexmlintest()
-	" Expected buffer
-	e nunit_expected.xml
-	call s:make_buffer_temporary()
-	" Paste
-	normal! "+pgg0
-	set filetype=xml
-	" Remove <?xml ... ?>
-	g/\v\<\?xml/d
-	" Find beginning of XML
-	execute "normal! gg0d/Expected\<cr>dt<"
-	s/\v\<\</\</e
-	" Go to the end of the XML block
-	normal 0l%
-	s/\v\>\>/\>/e
-	s/\v\>"/\>/e
-	execute "normal! \<cr>0"
-	" Remove everything in between
-	exec "normal! dt<"
-	" Move everything else to new buffer
-	exec "normal! dG"
-	" Actual buffer
-	vsplit nunit_actual.xml
-	call s:make_buffer_temporary()
-	" Paste
-	normal! Vp0
-	set filetype=xml
-	" Fix object-type display (<<xml .../>>)
-	s/\v\<\</\</e
-	" Go to the end of the XML block
-	normal 0l%
-	s/\v\>\>/\>/e
-	s/\v\>"/\>/e
-	" Remove everything after the XML block
-	normal! jdG
-	" Run diff on both buffers
-	windo diffthis
-	" Allow quick quit with `q`
 endfunction
 " }}}
 
