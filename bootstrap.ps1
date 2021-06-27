@@ -163,7 +163,7 @@ try {
 	}
 
 	# ConEmu
-	if($Level -ge $LevelBasic) {
+	if($Level -ge $LevelFull) {
 		Stow conemu $env:APPDATA
 		Install conemu
 	}
@@ -189,7 +189,7 @@ try {
 	}
 
 	# Vim
-	if($Level -ge $LevelMinimal) {
+	if($Level -ge $LevelFull) {
 		StowFile "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
 		StowFile "$env:HOME\_vimrc" (Get-Item "vim\.vimrc").FullName
 		StowFile "$env:HOME\_vsvimrc" (Get-Item "vim\.vsvimrc").FullName
@@ -202,10 +202,8 @@ try {
 		if((Get-Command vim -ErrorAction SilentlyContinue)) {
 			SetEnvVariable "Machine" "VIMRUNTIME" (Split-Path (Get-Command vim).Path)
 		}
-	}
 
-	# Vim Plugins
-	if($Level -ge $LevelBasic) {
+		# Vim Plugins
 		DownloadFile "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.3/vimproc_win64.dll" "$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll" "B6E71408676B095D91BE5376B25C8106DEDD9A4AF76A73B2729B4D2E1368874F"
 		DownloadFile "https://github.com/derekmcloughlin/gvimfullscreen_win32/raw/master/gvimfullscreen_64.dll" "$env:VIMRUNTIME\gvimfullscreen_64.dll" "1C83747B67ED73C05D44C1AF8222A860BC5A48B56BF54CD6E21465A2DEB78456"
 
@@ -222,7 +220,7 @@ try {
 	}
 
 	# Rider / Idea
-	if($Level -ge $LevelBasic) {
+	if($Level -ge $LevelFull) {
 		StowFile "$env:HOME\.ideavimrc" (Get-Item "idea\.ideavimrc").FullName
 	}
 
@@ -242,7 +240,7 @@ try {
 	}
 
 	# VS Code
-	if($Level -ge $LevelFull) {
+	if($Level -ge $LevelBasic) {
 		Install vscode
 		StowFile $env:APPDATA\Code\User\settings.json (Get-Item "vscode\settings.json").FullName
 		StowFile $env:APPDATA\Code\User\keybindings.json (Get-Item "vscode\keybindings.json").FullName
