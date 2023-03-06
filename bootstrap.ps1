@@ -61,7 +61,7 @@ function Stow([String]$package, [String]$target) {
 	}
 }
 
-function Install([String]$package) {
+function ChocoInstall([String]$package) {
 	if(-not ((choco list $package --exact --local-only --limitoutput) -like "$package*")) {
 		Write-Verbose "Installing package $package"
 		choco install $package -y
@@ -159,13 +159,13 @@ try {
 	# Windows Terminal
 	if($Level -ge $LevelFull) {
 		StowFile "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" (Get-Item ".\windowsterminal\settings.json").FullName
-		Install conemu
+		ChocoInstall conemu
 	}
 
 	# ConEmu
 	if($Level -ge $LevelFull) {
 		Stow conemu $env:APPDATA
-		Install conemu
+		ChocoInstall conemu
 	}
 
 	# Git
@@ -175,17 +175,17 @@ try {
 		} else {
 			Write-Warn ".gitconfig already exists (cannot symlink since it's not supported in GitExtensions)"
 		}
-		Install git
+		ChocoInstall git
 	}
 
 	# SilverSearcher (ag)
 	if($Level -ge $LevelBasic) {
-		Install ag
+		ChocoInstall ag
 	}
 
 	# Fzf
 	if($Level -ge $LevelBasic) {
-		Install fzf
+		ChocoInstall fzf
 	}
 
 	# Vim
@@ -196,8 +196,8 @@ try {
 
 		SetEnvVariable "User" "VIM" (Get-Item "$env:HOME\.vim").FullName
 
-		Install python3
-		Install vim-tux
+		ChocoInstall python3
+		ChocoInstall vim-tux
 
 		if((Get-Command vim -ErrorAction SilentlyContinue)) {
 			SetEnvVariable "Machine" "VIMRUNTIME" (Split-Path (Get-Command vim).Path)
@@ -241,33 +241,33 @@ try {
 
 	# VS Code
 	if($Level -ge $LevelBasic) {
-		Install vscode
+		ChocoInstall vscode
 		StowFile $env:APPDATA\Code\User\settings.json (Get-Item "vscode\settings.json").FullName
 		StowFile $env:APPDATA\Code\User\keybindings.json (Get-Item "vscode\keybindings.json").FullName
 	}
 	
 	# Common Tools
 	if($Level -ge $LevelBasic) {
-		Install GoogleChrome
-		Install 7zip
-		Install curl
-		Install gnuwin32-coreutils.install
-		Install procexp
+		ChocoInstall GoogleChrome
+		ChocoInstall 7zip
+		ChocoInstall curl
+		ChocoInstall gnuwin32-coreutils.install
+		ChocoInstall procexp
 	}
 	
 	# Full Setup
 	if($Level -ge $LevelFull) {
-		Install Firefox
-		Install hackfont
-		Install fiddler
-		Install kdiff3
-		Install gitextensions
-		Install greenshot
-		Install paint.net
-		Install sharpkeys
-		Install nodejs-lts
-		Install slack
-		Install everything
+		ChocoInstall Firefox
+		ChocoInstall hackfont
+		ChocoInstall fiddler
+		ChocoInstall kdiff3
+		ChocoInstall gitextensions
+		ChocoInstall greenshot
+		ChocoInstall paint.net
+		ChocoInstall sharpkeys
+		ChocoInstall nodejs-lts
+		ChocoInstall slack
+		ChocoInstall everything
 	}
 
 	# SSH Keys 
