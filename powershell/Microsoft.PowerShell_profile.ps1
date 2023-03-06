@@ -36,3 +36,7 @@ if (Test-Path("$ProfileScriptsPath\Microsoft.PowerShell_aliases.ps1")) {
 if (Test-Path("$ProfileScriptsPath\Microsoft.PowerShell_local.ps1")) {
 	. "$ProfileScriptsPath\Microsoft.PowerShell_local.ps1"
 }
+
+try {if(Get-Command op) {
+	op completion powershell | Out-String | Invoke-Expression
+}} catch {}
