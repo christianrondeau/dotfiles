@@ -1,13 +1,6 @@
 ﻿#Requires -RunAsAdministrator
-[CmdletBinding()]
-Param(
-    [Parameter()]
-    [ValidateSet("Minimal","Basic","Full")]
-    $Profile
-)
 
 Set-StrictMode -version Latest
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 # Functions
 
@@ -101,21 +94,6 @@ function SetEnvVariable([string]$target, [string]$name, [string]$value) {
 	}
 }
 
-# Arguments
-
-$LevelMinimal = 1
-$LevelBasic = 10
-$LevelFull = 100
-$Level = 0
-
-switch($Profile) {
-	"Minimal" { $Level = $LevelMinimal }
-	"Basic" { $Level = $LevelBasic }
-	"Full" { $Level = $LevelFull }
-}
-
-Write-Verbose "Profile: $Profile ($Level)"
-
 # Sanity Check
 
 if(-not [environment]::Is64BitOperatingSystem) {
@@ -126,13 +104,6 @@ if(-not [environment]::Is64BitOperatingSystem) {
 if(-not $env:HOME) {
 	$env:HOME = "$($env:HOMEDRIVE)$($env:HOMEPATH)"
 }
-
-# Prepare
-
-# TODO:
-# * Chocolatey
-# * Setup environment variables
-# * Install Powershell Core, Winget https://dev.to/smashse/wsl-chocolatey-powershell-winget-1d6p
 
 # Bootstrap
 
@@ -150,73 +121,14 @@ try {
 		StowFile "$env:HOME\.wslconfig" (Get-Item "wsl\.wslconfig").FullName
 	}
 
-	# Windows Updates with PowerShell
-	if($Level -ge $LevelFull -and -not (Get-Command -Module PSWindowsUpdate) ) {
-		Install-Module PSWindowsUpdate -Confirm:$false
-		Add-WUServiceManager -ServiceID 7971f918-a847-4430-9279-4a52d1efe18d
-	}
-
-	# Windows Terminal
-	if($Level -ge $LevelFull) {
-		StowFile "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" (Get-Item ".\windowsterminal\settings.json").FullName
-		ChocoInstall conemu
-	}
-
-	# ConEmu
-	if($Level -ge $LevelFull) {
-		Stow conemu $env:APPDATA
-		ChocoInstall conemu
-	}
-
 	# Git
 	if($Level -ge $LevelMinimal) {
-		if(!(Test-Path $env:HOME/.gitconfig)) {
-			Copy-Item ./git/.gitconfig $env:HOME/.gitconfig
-		} else {
-			Write-Warn ".gitconfig already exists (cannot symlink since it's not supported in GitExtensions)"
-		}
 		ChocoInstall git
 	}
 
 	# SilverSearcher (ag)
 	if($Level -ge $LevelBasic) {
 		ChocoInstall ag
-	}
-
-	# Fzf
-	if($Level -ge $LevelBasic) {
-		ChocoInstall fzf
-	}
-
-	# Vim
-	if($Level -ge $LevelFull) {
-		StowFile "$env:HOME\.vim" (Get-Item "vim\.vim").FullName
-		StowFile "$env:HOME\_vimrc" (Get-Item "vim\.vimrc").FullName
-		StowFile "$env:HOME\_vsvimrc" (Get-Item "vim\.vsvimrc").FullName
-
-		SetEnvVariable "User" "VIM" (Get-Item "$env:HOME\.vim").FullName
-
-		ChocoInstall python3
-		ChocoInstall vim-tux
-
-		if((Get-Command vim -ErrorAction SilentlyContinue)) {
-			SetEnvVariable "Machine" "VIMRUNTIME" (Split-Path (Get-Command vim).Path)
-		}
-
-		# Vim Plugins
-		DownloadFile "https://github.com/Shougo/vimproc.vim/releases/download/ver.9.3/vimproc_win64.dll" "$env:HOME\.vim\vimfiles\autoload\vimproc_win64.dll" "B6E71408676B095D91BE5376B25C8106DEDD9A4AF76A73B2729B4D2E1368874F"
-		DownloadFile "https://github.com/derekmcloughlin/gvimfullscreen_win32/raw/master/gvimfullscreen_64.dll" "$env:VIMRUNTIME\gvimfullscreen_64.dll" "1C83747B67ED73C05D44C1AF8222A860BC5A48B56BF54CD6E21465A2DEB78456"
-
-		if(-not (Get-Command vim -ErrorAction SilentlyContinue)) {
-			Write-Verbose "Vim is not in the PATH. Cannot install plugins."
-		} elseif(Test-Path "$env:HOME\.vim\bundle\vimproc.vim") {
-			Write-Verbose "Vim plugins already installed. Update with 'vim -c `"PlugUpdate`" -c `"qa!`"'"
-		} else {
-			Write-Verbose "Installing Vim plugins"
-			vim -c "PlugInstall vimproc.vim" -c "qa!"
-			vim -c "silent VimProcInstall" -c "qa!"
-			vim -c "PlugInstall" -c "qa!"
-		}
 	}
 
 	# Rider / Idea
@@ -233,10 +145,6 @@ try {
 		if(!(Get-Module posh-git)) {
 			Install-Module posh-git -Scope CurrentUser -Force
 		}
-
-		if(!(Get-Module PSFzf)) {
-			Install-Module -Name PSFzf -Force
-		}
 	}
 
 	# VS Code
@@ -247,38 +155,21 @@ try {
 	}
 	
 	# Common Tools
-	if($Level -ge $LevelBasic) {
-		ChocoInstall GoogleChrome
-		ChocoInstall 7zip
-		ChocoInstall curl
-		ChocoInstall gnuwin32-coreutils.install
-		ChocoInstall procexp
-	}
-	
-	# Full Setup
-	if($Level -ge $LevelFull) {
-		ChocoInstall Firefox
-		ChocoInstall hackfont
-		ChocoInstall fiddler
-		ChocoInstall kdiff3
-		ChocoInstall gitextensions
-		ChocoInstall greenshot
-		ChocoInstall paint.net
-		ChocoInstall sharpkeys
-		ChocoInstall nodejs-lts
-		ChocoInstall slack
-		ChocoInstall everything
-	}
-
-	# SSH Keys 
-	if($Level -ge $LevelBasic) {
-		# TODO: Generate a id_rsa if none exist
-	}
-	
+	ChocoInstall GoogleChrome
+	ChocoInstall 7zip
+	ChocoInstall curl
+	ChocoInstall gnuwin32-coreutils.install
+	ChocoInstall procexp
+	ChocoInstall hackfont
+	ChocoInstall kdiff3
+	ChocoInstall gitextensions
+	ChocoInstall paint.net
+	ChocoInstall sharpkeys
+	ChocoInstall nodejs-lts
+	ChocoInstall slack
 } finally {
 	popd
 }
 
 # TODO:
 # * Install sharpkeys CapsLock
-# * Setup putty at startup

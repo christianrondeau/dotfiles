@@ -179,5 +179,7 @@
 	"omnisharp.enableRoslynAnalyzers": true,
 	"vim.vimrc.enable": false,
 	"omnisharp.enableEditorConfigSupport": true,
-	"powershell.integratedConsole.showOnStartup": false
+	"powershell.integratedConsole.showOnStartup": false,
+	"editor.inlineSuggest.enabled": true,
+	"workbench.colorTheme": "Visual Studio 2019 Dark"
 }
