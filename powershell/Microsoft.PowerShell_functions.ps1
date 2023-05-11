@@ -31,6 +31,8 @@ function ggcaa { git commit --amend --no-edit }
 function ggp { git push }
 function ggpf { git push --force-with-lease }
 function ggu { git pull --ff-only }
+function ggf { git fetch }
+function ggfa { git fetch --all }
 function ggd { git diff }
 function ggds { git diff --staged }
 function ggl { git log --graph --color --all --decorate --format="%C(auto)%d %s" }

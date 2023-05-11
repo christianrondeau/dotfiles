@@ -17,7 +17,6 @@ if [[ "$OSTYPE" == "cygwin" ]]; then
 fi
 
 # Git
-alias gg="git"
 alias ggs="git status"
 alias gga="git add"
 alias ggaa="git add --all"
@@ -26,8 +25,10 @@ alias ggc="git commit"
 alias ggca="git commit --amend"
 alias ggcaa="git commit --amend --no-edit"
 alias ggp="git push"
-alias ggp="git push --force-with-lease"
+alias ggpf="git push --force-with-lease"
 alias ggu="git pull --ff-only"
+alias ggf="git fetch"
+alias ggfa="git fetch --all"
 alias ggd="git diff"
 alias ggds="git diff --staged"
 alias ggl='git log --graph --color --all --decorate --format="%C(auto)%d %s"'
